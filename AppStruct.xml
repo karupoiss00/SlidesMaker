@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-09-21T20:45:28.886Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="prvP5OnvZnTViDItr1Xn" version="13.7.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-09-21T20:53:20.079Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="pSg4FVsUJtWBh2yAwdJp" version="13.7.3" type="github">
   <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
     <mxGraphModel dx="1666" dy="947" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
@@ -234,7 +234,7 @@
         <mxCell id="SRQFvdjb5MnAlMPu53jq-33" value="paragraph(): !Pargraph" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="SRQFvdjb5MnAlMPu53jq-7">
           <mxGeometry y="320" width="250" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="SRQFvdjb5MnAlMPu53jq-34" value="setText()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="SRQFvdjb5MnAlMPu53jq-7">
+        <mxCell id="SRQFvdjb5MnAlMPu53jq-34" value="setText(text: string): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="SRQFvdjb5MnAlMPu53jq-7">
           <mxGeometry y="346" width="250" height="26" as="geometry" />
         </mxCell>
         <mxCell id="SRQFvdjb5MnAlMPu53jq-35" value="textChangeEvent(): !IEventDispatcher" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="SRQFvdjb5MnAlMPu53jq-7">

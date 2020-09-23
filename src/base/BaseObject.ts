@@ -33,10 +33,10 @@ class BaseObject {
 
     protected _removeHandler(dispatcher: IEventDispatcher, handler: (() => any), context: Object) {
         const activeHandlerIndex = this._activeHandlers.findIndex(
-            (element) => (element.dispatcher == dispatcher) && (element.handler == handler) && (element.context == context)
+            (element) => (element.dispatcher === dispatcher) && (element.handler === handler) && (element.context === context)
         );
 
-        if (activeHandlerIndex != -1)
+        if (activeHandlerIndex !== -1)
         {
             this._activeHandlers.splice(activeHandlerIndex, 1);
             dispatcher.removeHandler(handler, context);
@@ -45,7 +45,7 @@ class BaseObject {
 
     protected _removeObjectHandlers(object: Object) {
         const activeHandlers = this._activeHandlers.filter(
-            (element) => element.dispatcher.owner() == object
+            (element) => element.dispatcher.owner() === object
         );
 
         activeHandlers.forEach(
@@ -60,10 +60,10 @@ class BaseObject {
 
     protected _unlisten(element: Element | HTMLDocument, type: string, listener: () => any) {
         const activeListenerIndex = this._activeListeners.findIndex(
-            (value) => (value.element == element) && (value.type == type) && (value.listener == listener)
+            (value) => (value.element === element) && (value.type === type) && (value.listener === listener)
         );
 
-        if (activeListenerIndex != -1)
+        if (activeListenerIndex !== -1)
         {
             this._activeListeners.splice(activeListenerIndex, 1);
             element.removeEventListener(type, listener);
@@ -72,7 +72,7 @@ class BaseObject {
 
     protected _unlistenByType(element: Element | HTMLDocument, type: string) {
         const activeListeners = this._activeListeners.filter(
-            (value) =>  (value.element == element) && (value.type == type)
+            (value) =>  (value.element === element) && (value.type === type)
         );
 
         activeListeners.forEach(

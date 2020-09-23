@@ -1,7 +1,7 @@
 interface IEventDispatcher {
     addHandler(handler: () => any, context: Object): void;
     removeHandler(handler: () => any, context: Object): void;
-    dispatch(...args: []): void;
+    dispatch(...args: any[]): void;
     owner(): Object | null;
 }
 

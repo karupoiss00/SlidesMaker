@@ -20,7 +20,7 @@ class EventDispatcher implements IEventDispatcher {
 
     removeHandler(handler: () => any, context: Object): void {
         this._handlers.some((value, index, array) => {
-            if (value.handler == handler && value.context == context)
+            if (value.handler === handler && value.context === context)
             {
                 array.splice(index, 1);
                 return true;
@@ -30,9 +30,9 @@ class EventDispatcher implements IEventDispatcher {
         });
     }
 
-    dispatch(...args: []): void {
+    dispatch(...args: any[]): void {
         this._handlers.forEach(({handler, context}) => {
-            handler.apply(context, args);
+            handler.apply<any, this>(args);
         });
     }
 

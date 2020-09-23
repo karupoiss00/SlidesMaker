@@ -1,9 +1,9 @@
-import {IEventDisptcher} from "./observer/IEventDisptcher";
+import {IEventDispatcher} from "./observer/IEventDispatcher";
 import {EventDispatcher} from "./observer/EventDispatcher";
 
 class BaseObject {
     private _activeHandlers: Array<{
-        dispatcher: IEventDisptcher,
+        dispatcher: IEventDispatcher,
         handler: (() => any),
         context: Object
     }>;
@@ -26,12 +26,12 @@ class BaseObject {
         });
     }
 
-    protected _addHandler(dispatcher: IEventDisptcher, handler: (() => any), context: Object) {
+    protected _addHandler(dispatcher: IEventDispatcher, handler: (() => any), context: Object) {
         dispatcher.addHandler(handler, context);
         this._activeHandlers.push({dispatcher, handler, context});
     }
 
-    protected _removeHandler(dispatcher: IEventDisptcher, handler: (() => any), context: Object) {
+    protected _removeHandler(dispatcher: IEventDispatcher, handler: (() => any), context: Object) {
         const activeHandlerIndex = this._activeHandlers.findIndex(
             (element) => (element.dispatcher == dispatcher) && (element.handler == handler) && (element.context == context)
         );
@@ -80,3 +80,5 @@ class BaseObject {
         );
     }
 }
+
+export {BaseObject}

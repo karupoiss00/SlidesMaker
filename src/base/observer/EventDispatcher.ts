@@ -1,6 +1,6 @@
-import {IEventDisptcher} from "./IEventDisptcher";
+import {IEventDispatcher} from "./IEventDispatcher";
 
-class EventDispatcher implements IEventDisptcher {
+class EventDispatcher implements IEventDispatcher {
     private _owner: Object | null;
     private _onEventInit: (() => any) | null | undefined;
     private _handlers: Array<{handler: () => any, context: Object | undefined}>;

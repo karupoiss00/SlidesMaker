@@ -1,7 +1,7 @@
 import {BaseObject} from "../base/BaseObject";
 import {IEventDispatcher} from "../base/observer/IEventDispatcher";
 
-class Rect extends BaseObject{
+class Rect extends BaseObject {
     private _x: number;
     private _y: number;
     private _width: number;
@@ -17,19 +17,19 @@ class Rect extends BaseObject{
         this._rectChangeEvent = this._createEventDispatcher();
     }
 
-    getX(): number {
+    x(): number {
         return this._x;
     }
 
-    getY(): number {
+    y(): number {
         return this._y;
     }
 
-    getWidth(): number {
+    width(): number {
         return this._width;
     }
 
-    getHeight(): number {
+    height(): number {
         return this._height;
     }
 

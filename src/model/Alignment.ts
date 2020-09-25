@@ -1,7 +1,7 @@
 const enum Alignment {
-    LEFT = "Left",
-    CENTER = "Center",
-    RIGHT = "Right",
+    LEFT = "left",
+    CENTER = "center",
+    RIGHT = "right",
 }
 
 export {Alignment}

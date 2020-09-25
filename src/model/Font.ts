@@ -39,27 +39,27 @@ class Font extends BaseObject {
         return this._isUnderlined;
     }
 
-    setFontSize(fontSize: number) : void {
+    setFontSize(fontSize: number) {
         this._fontSize = fontSize;
         this._fontChangeEvent.dispatch();
     }
 
-    setFontName(fontName: string): void {
+    setFontName(fontName: string) {
         this._fontName = fontName;
         this._fontChangeEvent.dispatch();
     }
 
-    setBold(state: boolean): void {
+    setBold(state: boolean) {
         this._isBold = state;
         this._fontChangeEvent.dispatch();
     }
 
-    setUnderlined(state: boolean): void {
+    setUnderlined(state: boolean) {
         this._isUnderlined = state;
         this._fontChangeEvent.dispatch();
     }
 
-    setItalic(state: boolean): void {
+    setItalic(state: boolean) {
         this._isItalic = state;
         this._fontChangeEvent.dispatch();
     }

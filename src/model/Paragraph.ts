@@ -8,7 +8,7 @@ class Paragraph extends BaseObject {
 
     constructor() {
         super();
-        this._alignmentState = Alignment.RIGHT;
+        this._alignmentState = Alignment.LEFT;
         this._paragraphChangeEvent = this._createEventDispatcher();
     }
 

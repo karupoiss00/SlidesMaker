@@ -1,5 +1,6 @@
 import {BaseObject} from "../base/BaseObject";
 import {IEventDispatcher} from "../base/observer/IEventDispatcher";
+import {Alignment} from "./Alignment";
 
 class Paragraph extends BaseObject {
     _alignmentState: Alignment

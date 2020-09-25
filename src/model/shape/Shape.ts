@@ -1,10 +1,11 @@
 import {BaseObject} from "../../base/BaseObject";
 import {IEventDispatcher} from "../../base/observer/IEventDispatcher";
+import {IShape} from "./IShape";
 import {Rect} from "../Rect";
 import {Style} from "../Style";
 import {ShapeType} from "./ShapeType";
 
-class Shape extends BaseObject {
+class Shape extends BaseObject implements IShape {
     private _shapeType: ShapeType;
     private _rect: Rect;
     private _style: Style;

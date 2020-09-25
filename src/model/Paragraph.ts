@@ -22,3 +22,5 @@ class Paragraph extends BaseObject {
     }
 
 }
+
+export {Paragraph}

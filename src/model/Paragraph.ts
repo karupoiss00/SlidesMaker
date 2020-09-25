@@ -3,12 +3,12 @@ import {IEventDispatcher} from "../base/observer/IEventDispatcher";
 import {Alignment} from "./Alignment";
 
 class Paragraph extends BaseObject {
-    _alignmentState: Alignment
+    private _alignmentState: Alignment
     private readonly _paragraphChangeEvent: IEventDispatcher
 
     constructor() {
         super();
-        this._alignmentState = right;  //<<<
+        this._alignmentState = Alignment.RIGHT;  //<<<
         this._paragraphChangeEvent = this._createEventDispatcher();
     }
 
@@ -19,6 +19,10 @@ class Paragraph extends BaseObject {
     setAlignmentState(state: Alignment) {
         this._alignmentState = state;
         this._paragraphChangeEvent.dispatch();
+    }
+
+    paragraphChangeEvent() {
+        return this._paragraphChangeEvent;
     }
 
 }

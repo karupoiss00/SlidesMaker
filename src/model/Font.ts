@@ -39,6 +39,10 @@ class Font extends BaseObject {
         return this._isUnderlined;
     }
 
+    fontChangeEvent(): IEventDispatcher {
+        return this._fontChangeEvent;
+    }
+
     setFontSize(fontSize: number) {
         this._fontSize = fontSize;
         this._fontChangeEvent.dispatch();

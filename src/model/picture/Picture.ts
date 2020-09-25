@@ -7,12 +7,14 @@ class Picture extends BaseObject implements IPicture {
     private _src: string;
     private _rect: Rect;
     private readonly _rectChangeEvent: IEventDispatcher;
+    private readonly _srcChangeEvent: IEventDispatcher;
 
     constructor() {
         super();
         this._src = "";
         this._rect = new Rect();
         this._rectChangeEvent = this._createEventDispatcher();
+        this._srcChangeEvent = this._createEventDispatcher();
 
         this._addHandler(this._rect.rectChangeEvent(), () => {
             this._rectChangeEvent.dispatch();
@@ -28,8 +30,17 @@ class Picture extends BaseObject implements IPicture {
         return this._rect;
     }
 
+    setSrc(src: string) {
+        this._src = src;
+        this._srcChangeEvent.dispatch();
+    }
+
     rectChangeEvent() {
         return this._rectChangeEvent;
+    }
+
+    srcChangeEvent() {
+        return this._srcChangeEvent;
     }
 
 }

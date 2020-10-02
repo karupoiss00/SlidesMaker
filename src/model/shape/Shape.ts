@@ -1,11 +1,9 @@
 import {Rect} from "../Rect";
 import {Style} from "../Style";
+import {ShapeType} from "./ShapeType";
 
-type ShapeType = {
-    type: 'rectangle' | 'triangle' | 'ellipse'
-}
-
-type Shape = ShapeType & {
+type Shape = {
+    shapeType: ShapeType,
     rect: Rect,
     style: Style
 }

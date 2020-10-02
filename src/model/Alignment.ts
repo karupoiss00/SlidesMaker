@@ -1,7 +1,5 @@
-const enum Alignment {
-    LEFT = "left",
-    CENTER = "center",
-    RIGHT = "right",
+type Alignment = {
+    alignmentState: 'left' | 'center' | 'right'
 }
 
-export {Alignment}
+export type {Alignment}

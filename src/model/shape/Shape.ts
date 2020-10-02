@@ -6,3 +6,5 @@ type Shape = {
     rect: Rect,
     style: Style
 }
+
+export type {Shape};

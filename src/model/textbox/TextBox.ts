@@ -9,4 +9,4 @@ type TextBox = {
     font: Font
 }
 
-
+export type {TextBox};

@@ -3,7 +3,7 @@ type Font = {
     fontSize: number,
     isBold: boolean,
     isItalic: boolean,
-    _isUnderlined: boolean
+    isUnderlined: boolean
 }
 
 export type {Font}

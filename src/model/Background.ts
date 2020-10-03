@@ -1,4 +1,4 @@
-import {Color} from "./color";
+import {Color} from "./Color";
 import {Picture} from "./picture/Picture";
 
 type Background = Color | Picture;

@@ -1,11 +1,20 @@
-import {Rect} from "../Rect";
-import {Style} from "../Style";
+import {createRect, Rect} from "../types/Rect";
+import {createStyle, Style} from "../types/Style";
 import {ShapeType} from "./ShapeType";
 
-type Shape = {
+export type Shape = {
     shapeType: ShapeType,
     rect: Rect,
     style: Style
 }
 
-export type {Shape};
+function createShape(shapeType: ShapeType): Shape {
+    return {
+        shapeType: shapeType,
+        rect: createRect(),
+        style: createStyle(),
+    }
+}
+
+
+export {createShape};

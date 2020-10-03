@@ -1,8 +1,15 @@
-import {Rect} from "../Rect";
+import {createRect, Rect} from "../types/Rect";
 
-type Picture = {
+export type Picture = {
     src: string,
     rect: Rect
 }
 
-export type {Picture};
+function createPicture(src: string) {
+    return {
+        src: src,
+        rect: createRect(),
+    }
+}
+
+export {createPicture};

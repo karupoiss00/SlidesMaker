@@ -45,7 +45,27 @@ function addImage(slide: Slide, src: string): Slide {
     let newSlide = {...slide};
     newSlide.pictures.push(createPicture(src));
     newSlide.selectedPicture = newSlide.pictures.length - 1;
+    return {...newSlide};
+}
 
+function removeTextBox(slide: Slide): Slide {
+    let newSlide = {...slide};
+    newSlide.textBoxes.splice(newSlide.selectedTextBox, 1);
+    newSlide.selectedTextBox = -1;
+    return {...newSlide};
+}
+
+function removeShape(slide: Slide): Slide {
+    let newSlide = {...slide};
+    newSlide.shapes.splice(newSlide.selectedShape, 1);
+    newSlide.selectedShape = -1;
+    return {...newSlide};
+}
+
+function removeImage(slide: Slide): Slide {
+    let newSlide = {...slide};
+    newSlide.pictures.splice(newSlide.selectedPicture, 1);
+    newSlide.selectedPicture = -1;
     return {...newSlide};
 }
 

@@ -1,3 +1,7 @@
-type ShapeType = 'rectangle' | 'triangle' | 'ellipse';
+const enum ShapeType {
+    RECTANGLE = 'rectangle',
+    TRIANGLE = 'triangle',
+    ELLIPSE = 'ellipse'
+}
 
-export type {ShapeType};
+export {ShapeType};

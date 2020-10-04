@@ -3,7 +3,7 @@ import {createPicture, Picture} from "../picture/Picture";
 import {createShape, Shape} from "../shape/Shape";
 import {ShapeType} from "../shape/ShapeType";
 import {Background} from "../types/Background";
-import {Color} from "../types/Color";
+import {Colors} from "../types/Colors";
 
 export type Slide = {
     textBoxes: Array<TextBox>,
@@ -23,7 +23,7 @@ function createSlide(): Slide {
         selectedShape: -1,
         pictures: [],
         selectedPicture: -1,
-        background: Color.WHITE,
+        background: Colors.WHITE,
     }
 }
 

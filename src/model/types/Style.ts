@@ -1,13 +1,15 @@
+import {Color} from "./Color";
+
 export type Style = {
-    backgroundColor: string,
-    strokeColor: string,
+    backgroundColor: Color,
+    strokeColor: Color,
     strokeWidth: number,
 }
 
 function createStyle() {
     return {
-        backgroundColor: '#ffffff',
-        strokeColor: '#000000',
+        backgroundColor: Color.WHITE,
+        strokeColor: Color.BLACK,
         strokeWidth: 2,
     }
 }

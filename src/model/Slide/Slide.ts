@@ -7,23 +7,23 @@ import {Colors} from "../types/Colors";
 
 export type Slide = {
     textBoxes: Array<TextBox>,
-    selectedTextBox: number,
+    selectedTextBox: number | null,
     shapes: Array<Shape>,
-    selectedShape: number,
+    selectedShape: number | null,
     pictures: Array<Picture>,
-    selectedPicture: number,
+    selectedPicture: number | null,
     background: Background
 }
 
 function createSlide(): Slide {
     return {
         textBoxes: [],
-        selectedTextBox: -1,
+        selectedTextBox: null,
         shapes: [],
-        selectedShape: -1,
+        selectedShape: null,
         pictures: [],
-        selectedPicture: -1,
-        background: Colors.WHITE,
+        selectedPicture: null,
+        background: Colors.WHITE
     }
 }
 
@@ -50,21 +50,27 @@ function addImage(slide: Slide, src: string): Slide {
 
 function removeTextBox(slide: Slide): Slide {
     let newSlide = {...slide};
-    newSlide.textBoxes.splice(newSlide.selectedTextBox, 1);
+    if (newSlide.selectedTextBox != null) {
+        newSlide.textBoxes.splice(newSlide.selectedTextBox, 1);
+    }
     newSlide.selectedTextBox = -1;
     return {...newSlide};
 }
 
 function removeShape(slide: Slide): Slide {
     let newSlide = {...slide};
-    newSlide.shapes.splice(newSlide.selectedShape, 1);
+    if (newSlide.selectedShape != null) {
+        newSlide.shapes.splice(newSlide.selectedShape, 1);
+    }
     newSlide.selectedShape = -1;
     return {...newSlide};
 }
 
 function removeImage(slide: Slide): Slide {
     let newSlide = {...slide};
-    newSlide.pictures.splice(newSlide.selectedPicture, 1);
+    if (newSlide.selectedPicture != null) {
+        newSlide.pictures.splice(newSlide.selectedPicture, 1);
+    }
     newSlide.selectedPicture = -1;
     return {...newSlide};
 }

@@ -4,4 +4,4 @@ const enum Alignment {
     RIGHT = 'right'
 }
 
-export {Alignment}
+export {Alignment};

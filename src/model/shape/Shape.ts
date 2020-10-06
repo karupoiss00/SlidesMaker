@@ -9,12 +9,11 @@ export type Shape = {
 }
 
 function createShape(shapeType: ShapeType): Shape {
-    return {
-        shapeType: shapeType,
-        rect: createRect(),
-        style: createStyle(),
-    }
+	return {
+		shapeType: shapeType,
+		rect: createRect(),
+		style: createStyle(),
+	};
 }
-
 
 export {createShape};

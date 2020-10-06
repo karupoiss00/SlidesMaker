@@ -7,11 +7,11 @@ export type Style = {
 }
 
 function createStyle(): Style {
-    return {
-        backgroundColor: Colors.WHITE,
-        strokeColor: Colors.BLACK,
-        strokeWidth: 2,
-    }
+	return {
+		backgroundColor: Colors.WHITE,
+		strokeColor: Colors.BLACK,
+		strokeWidth: 2,
+	};
 }
 
-export {createStyle}
+export {createStyle};

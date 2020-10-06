@@ -1,10 +1,10 @@
-import {Colors} from "./Colors";
+import { Colors } from './Colors';
 
 export type Style = {
-    backgroundColor: Colors,
-    strokeColor: Colors,
-    strokeWidth: number,
-}
+	backgroundColor: Colors;
+	strokeColor: Colors;
+	strokeWidth: number;
+};
 
 function createStyle(): Style {
 	return {
@@ -14,4 +14,4 @@ function createStyle(): Style {
 	};
 }
 
-export {createStyle};
+export { createStyle };

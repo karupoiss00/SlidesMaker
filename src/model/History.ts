@@ -1,4 +1,4 @@
-import {SlidesMaker} from "./SlidesMaker";
+import { SlidesMaker } from './SlidesMaker';
 
 const undoStack: Array<SlidesMaker> = [];
 const redoStack: Array<SlidesMaker> = [];

@@ -137,7 +137,7 @@ const enum Colors {
 	WHITE = '#FFFFFF',
 	WHITESMOKE = '#F5F5F5',
 	YELLOW = '#FFFF00',
-	YELLOWGREEN = '#9ACD32'
+	YELLOWGREEN = '#9ACD32',
 }
 
-export {Colors};
+export { Colors };

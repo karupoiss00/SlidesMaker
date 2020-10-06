@@ -1,9 +1,9 @@
 export type Rect = {
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-}
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+};
 
 function createRect(): Rect {
 	return {
@@ -14,4 +14,4 @@ function createRect(): Rect {
 	};
 }
 
-export {createRect};
+export { createRect };

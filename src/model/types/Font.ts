@@ -1,10 +1,10 @@
 export type Font = {
-	fontName: string,
-	fontSize: number,
-	isBold: boolean,
-	isItalic: boolean,
-	isUnderlined: boolean
-}
+	fontName: string;
+	fontSize: number;
+	isBold: boolean;
+	isItalic: boolean;
+	isUnderlined: boolean;
+};
 
 function createFont(): Font {
 	return {
@@ -16,4 +16,4 @@ function createFont(): Font {
 	};
 }
 
-export {createFont};
+export { createFont };

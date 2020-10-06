@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
@@ -16,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check": "eslint ./src/model/**/**.* --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,6 +37,9 @@
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.10.0",
-    "eslint-plugin-react": "^7.21.3"
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.3",
+    "prettier": "^2.1.2"
   }
 }

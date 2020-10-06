@@ -1,7 +1,7 @@
 const enum ShapeType {
-    RECTANGLE = 'rectangle',
-    TRIANGLE = 'triangle',
-    ELLIPSE = 'ellipse'
+	RECTANGLE = 'rectangle',
+	TRIANGLE = 'triangle',
+	ELLIPSE = 'ellipse',
 }
 
-export {ShapeType};
+export { ShapeType };

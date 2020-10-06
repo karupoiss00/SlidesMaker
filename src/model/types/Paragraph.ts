@@ -1,8 +1,8 @@
-import {Alignment} from "./Alignment";
+import { Alignment } from './Alignment';
 
 export type Paragraph = {
-	alignmentState: Alignment
-}
+	alignmentState: Alignment;
+};
 
 function createParagraph(): Paragraph {
 	return {
@@ -10,4 +10,4 @@ function createParagraph(): Paragraph {
 	};
 }
 
-export {createParagraph};
+export { createParagraph };

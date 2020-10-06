@@ -1,6 +1,6 @@
-import {Colors} from "./Colors";
-import {Picture} from "../picture/Picture";
+import { Colors } from './Colors';
+import { Picture } from '../picture/Picture';
 
 type Background = Colors | Picture;
 
-export type {Background};
+export type { Background };

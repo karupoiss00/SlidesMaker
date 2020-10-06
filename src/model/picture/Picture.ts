@@ -5,7 +5,7 @@ export type Picture = {
     rect: Rect
 }
 
-function createPicture(src: string) {
+function createPicture(src: string): Picture {
     return {
         src: src,
         rect: createRect(),

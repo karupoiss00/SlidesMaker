@@ -4,8 +4,7 @@ const undoStack: Array<SlidesMaker> = [];
 const redoStack: Array<SlidesMaker> = [];
 
 function undo(): SlidesMaker | undefined {
-    let slidesState: SlidesMaker | undefined;
-    slidesState = undoStack.pop();
+    const slidesState: SlidesMaker | undefined = undoStack.pop();
     if (slidesState) {
         redoStack.push(slidesState);
     }

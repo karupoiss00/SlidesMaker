@@ -6,7 +6,7 @@ export type Style = {
     strokeWidth: number,
 }
 
-function createStyle() {
+function createStyle(): Style {
     return {
         backgroundColor: Colors.WHITE,
         strokeColor: Colors.BLACK,

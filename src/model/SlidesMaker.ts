@@ -1,4 +1,4 @@
-import {createSlide, Slide} from "./Slide/Slide";
+import {createSlide, Slide} from "./slide/Slide";
 
 type SlidesMaker = {
     slideList: Array<Slide>,
@@ -6,7 +6,7 @@ type SlidesMaker = {
 }
 
 function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
-    let newSlidesMaker = {...slidesMaker};
+    const newSlidesMaker = {...slidesMaker};
 
     newSlidesMaker.slideList.push(createSlide());
     newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
@@ -15,7 +15,7 @@ function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
 }
 
 function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
-    let newSlidesMaker = {...slidesMaker};
+    const newSlidesMaker = {...slidesMaker};
 
     newSlidesMaker.slideList.splice(newSlidesMaker.currentSlide, 1);
     newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;

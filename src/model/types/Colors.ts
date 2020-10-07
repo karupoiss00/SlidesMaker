@@ -1,4 +1,4 @@
-const enum Colors {
+export const enum Colors {
 	ALICEBLUE = '#F0F8FF',
 	ANTIQUEWHITE = '#FAEBD7',
 	AQUAMARINE = '#7FFFD4',
@@ -139,5 +139,3 @@ const enum Colors {
 	YELLOW = '#FFFF00',
 	YELLOWGREEN = '#9ACD32',
 }
-
-export { Colors };

@@ -1,4 +1,3 @@
-import {Colors} from "../types/Colors";
 import {ShapeType} from "./ShapeType";
 import {createShape} from "./Shape";
 import {createRect} from "../types/Rect";

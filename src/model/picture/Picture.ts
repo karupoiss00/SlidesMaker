@@ -6,10 +6,10 @@ export type Picture = {
 };
 
 function createPicture(src: string): Picture {
-	return {
-		src: src,
-		rect: createRect(),
-	};
+    return {
+        src: src,
+        rect: createRect(),
+    };
 }
 
 export { createPicture };

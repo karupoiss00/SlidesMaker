@@ -6,21 +6,21 @@ type SlidesMaker = {
 };
 
 function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
-	const newSlidesMaker = { ...slidesMaker };
+    const newSlidesMaker = { ...slidesMaker };
 
-	newSlidesMaker.slideList.push(createSlide());
-	newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
+    newSlidesMaker.slideList.push(createSlide());
+    newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
 
-	return newSlidesMaker;
+    return newSlidesMaker;
 }
 
 function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
-	const newSlidesMaker = { ...slidesMaker };
+    const newSlidesMaker = { ...slidesMaker };
 
-	newSlidesMaker.slideList.splice(newSlidesMaker.currentSlide, 1);
-	newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
+    newSlidesMaker.slideList.splice(newSlidesMaker.currentSlide, 1);
+    newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
 
-	return newSlidesMaker;
+    return newSlidesMaker;
 }
 
 export type { SlidesMaker };

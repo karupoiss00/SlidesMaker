@@ -10,12 +10,12 @@ export type TextBox = {
 };
 
 function createTextBox(): TextBox {
-	return {
-		text: '',
-		rect: createRect(),
-		paragraph: createParagraph(),
-		font: createFont(),
-	};
+    return {
+        text: '',
+        rect: createRect(),
+        paragraph: createParagraph(),
+        font: createFont(),
+    };
 }
 
 export { createTextBox };

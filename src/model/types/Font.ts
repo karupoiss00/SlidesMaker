@@ -7,13 +7,13 @@ export type Font = {
 };
 
 function createFont(): Font {
-	return {
-		fontName: '',
-		fontSize: 0,
-		isBold: false,
-		isItalic: false,
-		isUnderlined: false,
-	};
+    return {
+        fontName: '',
+        fontSize: 0,
+        isBold: false,
+        isItalic: false,
+        isUnderlined: false,
+    };
 }
 
 export { createFont };

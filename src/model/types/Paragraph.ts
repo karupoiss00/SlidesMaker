@@ -5,9 +5,9 @@ export type Paragraph = {
 };
 
 function createParagraph(): Paragraph {
-	return {
-		alignmentState: Alignment.LEFT,
-	};
+    return {
+        alignmentState: Alignment.LEFT,
+    };
 }
 
 export { createParagraph };

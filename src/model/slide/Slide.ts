@@ -1,18 +1,18 @@
-import { createTextBox, TextBox } from '../textbox/TextBox';
-import { createPicture, Picture } from '../picture/Picture';
-import { createShape, Shape } from '../shape/Shape';
-import { ShapeType } from '../shape/ShapeType';
+import { createTextBox, TextBox } from './slide_objects/textbox/TextBox';
+import { createPicture, Picture } from './slide_objects/picture/Picture';
+import { createShape, Shape } from './slide_objects/shape/Shape';
+import { ShapeType } from './slide_objects/shape/ShapeType';
 import { Background } from '../types/Background';
 import { Colors } from '../types/Colors';
 
 export type Slide = {
-	textBoxes: Array<TextBox>;
-	selectedTextBox: number | null;
-	shapes: Array<Shape>;
-	selectedShape: number | null;
-	pictures: Array<Picture>;
-	selectedPicture: number | null;
-	background: Background;
+    textBoxes: Array<TextBox>;
+    selectedTextBox: number | null;
+    shapes: Array<Shape>;
+    selectedShape: number | null;
+    pictures: Array<Picture>;
+    selectedPicture: number | null;
+    background: Background;
 };
 
 function createSlide(): Slide {

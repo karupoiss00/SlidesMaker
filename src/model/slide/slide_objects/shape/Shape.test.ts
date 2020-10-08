@@ -1,7 +1,7 @@
 import { ShapeType } from './ShapeType';
 import { createShape } from './Shape';
-import { createRect } from '../types/Rect';
-import { createStyle } from '../types/Style';
+import { createRect } from '../../../types/Rect';
+import { createStyle } from '../../../types/Style';
 
 describe('импорт ShapeType', () => {
     it('должен понимать ShapeType.RECTANGLE', () => {
@@ -15,7 +15,7 @@ describe('импорт ShapeType', () => {
     });
 });
 
-test('Shape: создание прямоугольника', () => {
+test('Shape: сreateShape', () => {
     expect({
         shapeType: ShapeType.RECTANGLE,
         rect: createRect(),

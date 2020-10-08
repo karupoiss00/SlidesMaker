@@ -1,7 +1,7 @@
 import { Alignment } from './Alignment';
 
 export type Paragraph = {
-	alignmentState: Alignment;
+    alignmentState: Alignment;
 };
 
 function createParagraph(): Paragraph {

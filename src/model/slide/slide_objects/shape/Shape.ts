@@ -1,11 +1,11 @@
-import { createRect, Rect } from '../types/Rect';
-import { createStyle, Style } from '../types/Style';
+import { createRect, Rect } from '../../../types/Rect';
+import { createStyle, Style } from '../../../types/Style';
 import { ShapeType } from './ShapeType';
 
 export type Shape = {
-	shapeType: ShapeType;
-	rect: Rect;
-	style: Style;
+    shapeType: ShapeType;
+    rect: Rect;
+    style: Style;
 };
 
 function createShape(shapeType: ShapeType): Shape {

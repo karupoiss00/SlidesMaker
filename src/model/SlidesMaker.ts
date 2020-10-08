@@ -1,13 +1,19 @@
 import { createSlide, Slide } from './slide/Slide';
 
-type SlidesMaker = {
-	slideList: Array<Slide>;
-	currentSlide: number;
+export type SlidesMaker = {
+    slideList: Array<Slide>;
+    currentSlide: number;
 };
+
+function createSlidesMaker(): SlidesMaker {
+    return {
+        slideList: [createSlide()],
+        currentSlide: 0,
+    };
+}
 
 function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
     const newSlidesMaker = { ...slidesMaker };
-
     newSlidesMaker.slideList.push(createSlide());
     newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
 
@@ -23,4 +29,12 @@ function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
     return newSlidesMaker;
 }
 
-export type { SlidesMaker };
+function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): SlidesMaker {
+    const newSlidesMaker = { ...slidesMaker };
+
+    newSlidesMaker.currentSlide = newSelectedSlide;
+
+    return newSlidesMaker;
+}
+
+export { createSlidesMaker, addSlide, deleteSlide, setSelectedSlide };

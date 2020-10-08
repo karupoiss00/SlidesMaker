@@ -1,5 +1,5 @@
-import {createRect} from "../types/Rect";
-import { createPicture } from './Picture';
+import {createRect} from "../../../types/Rect";
+import {createPicture} from './Picture';
 
 test('Picture: создание картинки', () => {
     expect({

@@ -9,8 +9,6 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "plugin:prettier/recommended",
         "plugin:eslint-plugin-jest/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -22,9 +20,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "@typescript-eslint",
-        "prettier"
+        "@typescript-eslint"
     ],
     "rules": {
         "accessor-pairs": "error",
@@ -179,9 +175,6 @@
         "valid-typeof": ["error", { "requireStringLiterals": true }],
         "wrap-iife": ["error", "any", { "functionPrototypeMethods": true }],
         "yield-star-spacing": ["error", "both"],
-        "yoda": ["error", "never"],
-        "prettier/prettier": ["error", {
-            "endOfLine":"auto"
-        }],
+        "yoda": ["error", "never"]
     }
 }

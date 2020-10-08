@@ -1,7 +1,7 @@
-import {ShapeType} from "./ShapeType";
-import {createShape} from "./Shape";
-import {createRect} from "../types/Rect";
-import {createStyle} from "../types/Style";
+import { ShapeType } from './ShapeType';
+import { createShape } from './Shape';
+import { createRect } from '../types/Rect';
+import { createStyle } from '../types/Style';
 
 describe('импорт ShapeType', () => {
 	it('должен понимать ShapeType.RECTANGLE', () => {

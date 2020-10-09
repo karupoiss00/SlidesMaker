@@ -13,12 +13,12 @@ describe('импорт ShapeType', () => {
     it('должен понимать ShapeType.ELLIPSE', () => {
         expect(ShapeType.ELLIPSE).toEqual('ellipse');
     });
-});
 
-test('Shape: сreateShape', () => {
-    expect({
-        shapeType: ShapeType.RECTANGLE,
-        rect: createRect(),
-        style: createStyle(),
-    }).toStrictEqual(createShape(ShapeType.RECTANGLE));
+    test('Shape: createShape', () => {
+        expect({
+            shapeType: ShapeType.RECTANGLE,
+            rect: createRect(),
+            style: createStyle(),
+        }).toStrictEqual(createShape(ShapeType.RECTANGLE));
+    });
 });

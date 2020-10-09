@@ -53,7 +53,7 @@ function removeTextBox(slide: Slide): Slide {
     if (newSlide.selectedTextBox != null) {
         newSlide.textBoxes.splice(newSlide.selectedTextBox, 1);
     }
-    newSlide.selectedTextBox = -1;
+    newSlide.selectedTextBox = null;
     return { ...newSlide };
 }
 
@@ -62,7 +62,7 @@ function removeShape(slide: Slide): Slide {
     if (newSlide.selectedShape != null) {
         newSlide.shapes.splice(newSlide.selectedShape, 1);
     }
-    newSlide.selectedShape = -1;
+    newSlide.selectedShape = null;
     return { ...newSlide };
 }
 
@@ -71,7 +71,7 @@ function removePicture(slide: Slide): Slide {
     if (newSlide.selectedPicture != null) {
         newSlide.pictures.splice(newSlide.selectedPicture, 1);
     }
-    newSlide.selectedPicture = -1;
+    newSlide.selectedPicture = null;
     return { ...newSlide };
 }
 

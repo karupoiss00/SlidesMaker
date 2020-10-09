@@ -1,6 +1,6 @@
 import { ShapeType } from './ShapeType';
 import { createShape } from './Shape';
-import { createRect } from '../../../types/Rect';
+import { createRect } from '../../../types/rect/Rect';
 import { createStyle } from '../../../types/Style';
 
 describe('импорт ShapeType', () => {

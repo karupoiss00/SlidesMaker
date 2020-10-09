@@ -1,4 +1,4 @@
-import { createRect, Rect } from '../../../types/Rect';
+import { createRect, Rect } from '../../../types/rect/Rect';
 import { createStyle, Style } from '../../../types/Style';
 import { ShapeType } from './ShapeType';
 

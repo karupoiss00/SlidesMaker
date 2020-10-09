@@ -41,7 +41,7 @@ function addShape(slide: Slide, shapeType: ShapeType): Slide {
     return { ...newSlide };
 }
 
-function addImage(slide: Slide, src: string): Slide {
+function addPicture(slide: Slide, src: string): Slide {
     const newSlide = { ...slide };
     newSlide.pictures.push(createPicture(src));
     newSlide.selectedPicture = newSlide.pictures.length - 1;
@@ -66,7 +66,7 @@ function removeShape(slide: Slide): Slide {
     return { ...newSlide };
 }
 
-function removeImage(slide: Slide): Slide {
+function removePicture(slide: Slide): Slide {
     const newSlide = { ...slide };
     if (newSlide.selectedPicture != null) {
         newSlide.pictures.splice(newSlide.selectedPicture, 1);
@@ -75,4 +75,4 @@ function removeImage(slide: Slide): Slide {
     return { ...newSlide };
 }
 
-export { createSlide };
+export { createSlide, addTextBox, addShape, addPicture, removeTextBox, removeShape, removePicture };

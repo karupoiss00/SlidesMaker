@@ -1,4 +1,4 @@
-import { Alignment } from './Alignment';
+import { Alignment } from '../Alignment';
 
 export type Paragraph = {
     alignmentState: Alignment;

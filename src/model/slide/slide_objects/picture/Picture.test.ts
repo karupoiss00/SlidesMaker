@@ -1,4 +1,4 @@
-import {createRect} from "../../../types/Rect";
+import {createRect} from "../../../types/rect/Rect";
 import {createPicture} from './Picture';
 
 test('Picture: создание картинки', () => {

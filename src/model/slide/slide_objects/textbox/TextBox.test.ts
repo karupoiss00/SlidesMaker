@@ -1,6 +1,6 @@
-import {createRect} from "../../../types/Rect";
-import {createParagraph} from "../../../types/Paragraph";
-import {createFont} from "../../../types/Font";
+import {createRect} from "../../../types/rect/Rect";
+import {createParagraph} from "../../../types/paragraph/Paragraph";
+import {createFont} from "../../../types/font/Font";
 import {createTextBox} from "./TextBox";
 
 describe('TextBox.ts', () => {

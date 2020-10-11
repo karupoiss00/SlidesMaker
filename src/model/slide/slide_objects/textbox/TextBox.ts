@@ -1,6 +1,6 @@
-import { createFont, Font } from '../../../types/font/Font';
-import { createRect, Rect } from '../../../types/rect/Rect';
-import { createParagraph, Paragraph } from '../../../types/paragraph/Paragraph';
+import {createFont, Font} from '../../../types/font/Font';
+import {createRect, Rect} from '../../../types/rect/Rect';
+import {createParagraph, Paragraph} from '../../../types/paragraph/Paragraph';
 
 export type TextBox = {
     text: string;

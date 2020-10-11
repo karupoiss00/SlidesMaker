@@ -1,6 +1,6 @@
-import { createRect, Rect } from '../../../types/rect/Rect';
-import { createStyle, Style } from '../../../types/style/Style';
-import { ShapeType } from './ShapeType';
+import {createRect, Rect} from '../../../types/rect/Rect';
+import {createStyle, Style} from '../../../types/style/Style';
+import {ShapeType} from './ShapeType';
 
 export type Shape = {
     shapeType: ShapeType;

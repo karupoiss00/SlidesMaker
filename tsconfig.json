@@ -1,7 +1,4 @@
 {
-  "include": [
-    "src"
-  ],
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -21,5 +18,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
-  }
+  },
+  "include": [
+    "src"
+  ]
 }

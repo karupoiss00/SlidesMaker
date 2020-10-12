@@ -6,8 +6,8 @@ import {Colors} from '../types/Colors';
 import {Id, generateId} from "./slide_objects/id/Id";
 
 export type Slide = {
-    objects: Record<Id, TextBox | Shape | Picture>,
-    background: Background,
+    objects: Record<Id, TextBox | Shape | Picture>;
+    background: Background;
 };
 
 function createSlide(): Slide {

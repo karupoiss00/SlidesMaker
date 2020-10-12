@@ -5,9 +5,9 @@ import {Shape} from "./slide/slide_objects/shape/Shape";
 import {Picture} from "./slide/slide_objects/picture/Picture";
 
 export type SlidesMaker = {
-    slideList: Array<Slide>,
-    selectedObjectId: Id | null,
-    currentSlide: number | null,
+    slideList: Array<Slide>;
+    selectedObjectId: Id | null;
+    currentSlide: number | null;
 };
 
 function createSlidesMaker(): SlidesMaker {

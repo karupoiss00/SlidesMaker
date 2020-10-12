@@ -1,4 +1,4 @@
-import { createRect, Rect } from '../../../types/rect/Rect';
+import { createRect, Rect } from '../../../types/Rect';
 
 export type Picture = {
     src: string;

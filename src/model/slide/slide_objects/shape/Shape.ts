@@ -1,5 +1,5 @@
-import {createRect, Rect} from '../../../types/rect/Rect';
-import {createStyle, Style} from '../../../types/style/Style';
+import {createRect, Rect} from '../../../types/Rect';
+import {createStyle, Style} from '../../../types/Style';
 import {ShapeType} from './ShapeType';
 
 export type Shape = {

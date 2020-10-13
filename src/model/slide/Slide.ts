@@ -35,4 +35,20 @@ function removeObject(slide: Slide, selectedObjectId: Id): Slide {
     return newSlide;
 }
 
-export { createSlide, addObject, removeObject };
+function setSlideBackgroundColor(slide: Slide, color: Colors): Slide {
+    const newSlide = { ...slide };
+
+    newSlide.background = color;
+
+    return newSlide;
+}
+
+function setSlideBackgroundPicture(slide: Slide, picture: Picture): Slide {
+    const newSlide = { ...slide };
+
+    newSlide.background = picture;
+
+    return newSlide;
+}
+
+export { createSlide, addObject, removeObject, setSlideBackgroundColor, setSlideBackgroundPicture };

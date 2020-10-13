@@ -93,5 +93,6 @@ export {
     deleteSlide,
     setSelectedSlide,
     addObjectOnSelectedSlide,
-    removeSelectedObject
+    removeSelectedObject,
+    setBackground
 };

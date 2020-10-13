@@ -3,6 +3,7 @@ import {Id} from "./slide/slide_objects/id/Id";
 import {TextBox} from "./slide/slide_objects/textbox/TextBox";
 import {Shape} from "./slide/slide_objects/shape/Shape";
 import {Picture} from "./slide/slide_objects/picture/Picture";
+import {Background} from "./types/Background";
 
 export type SlidesMaker = {
     slideList: Array<Slide>;
@@ -68,6 +69,19 @@ function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
         currentSlide = removeObject(currentSlide, selectedObjectId);
 
         selectedObjectId = null;
+    }
+
+    return newSlidesMaker;
+}
+
+function setBackground(slidesMaker: SlidesMaker, background: Background): SlidesMaker {
+    const newSlidesMaker: SlidesMaker = { ...slidesMaker };
+
+    if (newSlidesMaker.currentSlide != null)
+    {
+        const currentSlide: Slide = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
+
+        currentSlide.background = background;
     }
 
     return newSlidesMaker;

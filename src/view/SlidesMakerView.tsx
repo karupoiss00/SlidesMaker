@@ -3,16 +3,26 @@ import {Panel} from "./panel/Panel";
 import {SlideView} from "./slide/SlideView";
 import {SlideListView} from "./slidelist/SlideListView";
 import {SlidesMaker} from "../model/SlidesMaker";
+import {Slide} from "../model/slide/Slide";
 
-function SlidesMakerView(slidesMaker: SlidesMaker) {
+interface SlidesMakerViewProps {
+    slidesMaker: SlidesMaker;
+    panelClassName: string;
+    panelBlockClassName: string;
+    slideViewClassName: string;
+    slideListClassName: string;
+}
+
+
+function SlidesMakerView(props: SlidesMakerViewProps) {
     return (
         <div className="view">
-            <Panel></Panel>
+            <Panel className={props.panelClassName} panelBlockClassName={props.panelBlockClassName}></Panel>
             {
-                slidesMaker.currentSlide != null &&
-                    <SlideView className="slide-view" slide={slidesMaker.slideList[slidesMaker.currentSlide]}></SlideView>
+                props.slidesMaker.currentSlide != null &&
+                    <SlideView className={props.slideViewClassName} slide={props.slidesMaker.slideList[props.slidesMaker.currentSlide]}></SlideView>
             }
-            <SlideListView className="slide-list-view" slideList={slidesMaker.slideList}></SlideListView>
+            <SlideListView className={props.slideListClassName} slideList={props.slidesMaker.slideList}></SlideListView>
         </div>
     )
 }

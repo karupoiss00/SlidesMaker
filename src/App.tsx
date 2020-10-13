@@ -1,26 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {SlidesMaker} from "./model/SlidesMaker";
+import {SlidesMakerView} from "./view/SlidesMakerView";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+    appModel: SlidesMaker;
+}
+
+function App(props: AppProps) {
+    return (
+        <SlidesMakerView slidesMaker={props.appModel}
+            panelClassName="panel"
+            panelBlockClassName="panel-block"
+            slideViewClassName="slide-view"
+            slideListClassName="slide-list"/>
+     );
 }
 
 export default App;

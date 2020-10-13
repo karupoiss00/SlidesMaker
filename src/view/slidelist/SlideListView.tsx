@@ -10,8 +10,10 @@ interface SlideViewProps {
 function SlideListView(props: SlideViewProps) {
     const listItems = props.slideList.map((value) => <SlideView className="slide-view-icon" slide={value}></SlideView>);
     return (
-        <div className={props.className}>
-            listItems
+        <div className="slide-list-container">
+            <div className={props.className}>
+                {listItems}
+            </div>
         </div>
     )
 }

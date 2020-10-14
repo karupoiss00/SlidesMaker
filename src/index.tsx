@@ -19,7 +19,7 @@ slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundColor);
 slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
-slidesMaker = setSelectedSlide(slidesMaker, 1);
+slidesMaker = setSelectedSlide(slidesMaker, 2);
 
 ReactDOM.render(
   <React.StrictMode>

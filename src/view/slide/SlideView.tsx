@@ -1,9 +1,9 @@
 import React from 'react'
 import {Slide} from "../../model/slide/Slide";
-import {Picture} from "../../model/slide/slide_objects/picture/Picture";
-import {Background} from "../../model/types/Background";
+import {SlidesMaker, setSelectedSlide} from "../../model/SlidesMaker";
 
 interface SlideViewProps {
+    slidesMaker: SlidesMaker;
     key: number;
     slide: Slide | null;
     className: string;
@@ -18,8 +18,7 @@ function SlideView(props: SlideViewProps) {
 
         if (typeof(props.slide.background) !== "string")
         {
-            background = `no-repeat url(${props.slide.background.src})`;
-            console.log(background);
+            background = `center / contain no-repeat url(${props.slide.background.src})`;
         }
 
         return (

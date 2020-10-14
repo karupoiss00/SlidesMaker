@@ -47,8 +47,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
-    height: 80%;
+    width: 64vw;
+    height: 36vw;
     margin-top: 20px;
     margin-bottom: 20px;
     background: white;
@@ -58,7 +58,26 @@ body {
 .slide-view-icon {
     height: 100%;
     width: 35vh;
-    margin-right: 10px;
+}
+
+#selected-slide-marker {
+    width: 100%;
+    height: 5%;
+    background: #f24e1e;
+}
+
+.slide-view-icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.slide-view-icon-selected {
+    height: 100%;
+    width: 35vh;
 }
 
 .slide-list-container {
@@ -68,6 +87,7 @@ body {
     height: 20%;
     align-content: flex-end;
     background: #2c2c2c;
+    padding-bottom: 40px;
 }
 
 .slide-list {

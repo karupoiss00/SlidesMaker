@@ -2,7 +2,7 @@ import React, {MutableRefObject, useRef} from "react";
 import ReactDOM from "react-dom";
 import {Slide} from "../../model/slide/Slide";
 import {SlideView} from "../slide/SlideView";
-import {SlidesMaker, addSlide} from "../../model/SlidesMaker";
+import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
 import App from "../../App";
 import {Button} from "../controls/Button";
 
@@ -13,9 +13,8 @@ interface SlideViewProps {
     currentSlide: number | null;
 }
 
-function changeSlide(slidesMaker: SlidesMaker, slideNumber: number | null) {
-    const newSlidesMaker = {...slidesMaker};
-    newSlidesMaker.currentSlide = slideNumber;
+function changeSlide(slidesMaker: SlidesMaker, slideNumber: number) {
+    const newSlidesMaker = setSelectedSlide({...slidesMaker}, slideNumber);
 
     return ReactDOM.render(
         <React.StrictMode>

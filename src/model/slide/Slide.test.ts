@@ -1,18 +1,18 @@
 import {Colors} from "../types/Colors";
 import {Slide, createSlide, addObject, removeObject} from "./Slide";
-import {createRect} from "../types/rect/Rect";
-import {createParagraph} from "../types/paragraph/Paragraph";
-import {createFont} from "../types/font/Font";
+import {createRect} from "../types/Rect";
+import {createParagraph} from "../types/Paragraph";
+import {createFont} from "../types/Font";
 import {TextBox} from "./slide_objects/textbox/TextBox";
 import {Shape} from "./slide_objects/shape/Shape";
 import {Picture} from "./slide_objects/picture/Picture";
-import {createStyle} from "../types/style/Style";
+import {createStyle} from "../types/Style";
 import {ShapeType} from "./slide_objects/shape/ShapeType";
 import {generateId, Id} from "./slide_objects/id/Id";
 
 describe('Slide.ts', () => {
     test('Slide: createSlide', () => {
-        let testSlide: Slide = {
+        const testSlide: Slide = {
             objects: {},
             background: Colors.WHITE,
         }
@@ -20,11 +20,11 @@ describe('Slide.ts', () => {
     });
 
     test('Slide: addObject(textBox)', () => {
-        let testSlide: Slide = {
+        const testSlide: Slide = {
             objects: {},
             background: Colors.WHITE,
         }
-        let testTextBox: TextBox = {
+        const testTextBox: TextBox = {
             text: 'Тестовый текст 0',
             rect: createRect(),
             paragraph: createParagraph(),
@@ -35,11 +35,11 @@ describe('Slide.ts', () => {
     });
 
     test('Slide: addObject(shape)', () => {
-        let testSlide: Slide = {
+        const testSlide: Slide = {
             objects: {},
             background: Colors.WHITE,
         }
-        let testShape: Shape = {
+        const testShape: Shape = {
             shapeType: ShapeType.ELLIPSE,
             rect: createRect(),
             style: createStyle(),
@@ -49,11 +49,11 @@ describe('Slide.ts', () => {
     });
 
     test('Slide: addObject(picture)', () => {
-        let testSlide: Slide = {
+        const testSlide: Slide = {
             objects: {},
             background: Colors.WHITE,
         }
-        let testPicture: Picture = {
+        const testPicture: Picture = {
             src: 'svinya.png',
             rect: createRect(),
         };
@@ -62,15 +62,15 @@ describe('Slide.ts', () => {
     });
 
     test('Slide: removeObject(objectIsSelected)', () => {
-        let testSlide: Slide = {
+        const testSlide: Slide = {
             objects: {},
             background: Colors.WHITE,
         }
-        let testPicture: Picture = {
+        const testPicture: Picture = {
             src: 'svinya.png',
             rect: createRect(),
         };
-        let testId: Id = generateId();
+        const testId: Id = generateId();
         testSlide.objects[testId] = testPicture;
         if (testSlide.objects[testId]) {
             delete testSlide.objects[testId];

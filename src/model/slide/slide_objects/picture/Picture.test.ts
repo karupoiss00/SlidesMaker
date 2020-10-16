@@ -1,9 +1,9 @@
-import {createRect} from "../../../types/rect/Rect";
+import {createRect} from "../../../types/Rect";
 import {createPicture, Picture} from './Picture';
 
 describe('Picture.ts', () => {
     test('Picture: createPicture', () => {
-        let testPicture: Picture = {
+        const testPicture: Picture = {
             src: 'picture.png',
             rect: createRect(),
         }

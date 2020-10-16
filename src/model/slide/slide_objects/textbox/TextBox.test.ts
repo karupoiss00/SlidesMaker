@@ -1,11 +1,11 @@
-import {createRect} from "../../../types/rect/Rect";
-import {createParagraph} from "../../../types/paragraph/Paragraph";
-import {createFont} from "../../../types/font/Font";
+import {createRect} from "../../../types/Rect";
+import {createParagraph} from "../../../types/Paragraph";
+import {createFont} from "../../../types/Font";
 import {createTextBox, TextBox} from "./TextBox";
 
 describe('TextBox.ts', () => {
     test('TextBox: createTextBox', () => {
-        let testTextBox: TextBox = {
+        const testTextBox: TextBox = {
             text: '',
             rect: createRect(),
             paragraph: createParagraph(),

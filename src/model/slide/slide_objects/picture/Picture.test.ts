@@ -1,11 +1,12 @@
 import {createRect} from "../../../types/rect/Rect";
-import {createPicture} from './Picture';
+import {createPicture, Picture} from './Picture';
 
 describe('Picture.ts', () => {
     test('Picture: createPicture', () => {
-        expect({
-            src: 'C:/Pictures/picture.jpeg',
+        let testPicture: Picture = {
+            src: 'picture.png',
             rect: createRect(),
-        }).toStrictEqual(createPicture('C:/Pictures/picture2.jpeg'));
+        }
+        expect(testPicture).toStrictEqual(createPicture('picture.png'));
     });
 });

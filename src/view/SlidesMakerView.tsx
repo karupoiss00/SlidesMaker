@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Panel} from "./panel/Panel";
 import {SlideView} from "./slide/SlideView";
 import {SlideListView} from "./slidelist/SlideListView";
 import {SlidesMaker} from "../model/SlidesMaker";
-import {Slide} from "../model/slide/Slide";
 
 interface SlidesMakerViewProps {
     slidesMaker: SlidesMaker;
@@ -15,20 +14,25 @@ interface SlidesMakerViewProps {
 
 
 function SlidesMakerView(props: SlidesMakerViewProps) {
+    const [appState, setAppState] = useState(props.slidesMaker);
+
     return (
         <div className="view">
             <Panel className={props.panelClassName} panelBlockClassName={props.panelBlockClassName}></Panel>
             {
-                props.slidesMaker.currentSlide != null &&
-                    <SlideView className={props.slideViewClassName}
-                               slidesMaker={props.slidesMaker}
-                               slide={props.slidesMaker.slideList[props.slidesMaker.currentSlide]}
-                               key={props.slidesMaker.currentSlide}></SlideView>
+                appState.currentSlide !== null &&
+                    <SlideView
+                        className={props.slideViewClassName}
+                        slidesMaker={appState}
+                        slide={appState.slideList[appState.currentSlide]}
+                    ></SlideView>
+
             }
-            <SlideListView className={props.slideListClassName}
-                            slidesMaker={props.slidesMaker}
-                            slideList={props.slidesMaker.slideList}
-                            currentSlide={props.slidesMaker.currentSlide}/>
+            <SlideListView
+                className={props.slideListClassName}
+                slidesMaker={appState}
+                onChange={setAppState}
+            />
         </div>
     )
 }

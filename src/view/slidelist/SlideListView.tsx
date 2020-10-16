@@ -1,27 +1,12 @@
-import React, {MutableRefObject, useRef} from "react";
-import ReactDOM from "react-dom";
-import {Slide} from "../../model/slide/Slide";
+import React from "react";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
-import App from "../../App";
 import {Button} from "../controls/Button";
 
-interface SlideViewProps {
+interface SlideListViewProps {
     className: string;
     slidesMaker: SlidesMaker;
-    slideList: Array<Slide>;
-    currentSlide: number | null;
-}
-
-function changeSlide(slidesMaker: SlidesMaker, slideNumber: number) {
-    const newSlidesMaker = setSelectedSlide({...slidesMaker}, slideNumber);
-
-    return ReactDOM.render(
-        <React.StrictMode>
-            <App appModel={newSlidesMaker} />
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
+    onChange: (newState: SlidesMaker) => any;
 }
 
 const scrollSlideList = (className: string, deltaX: number) => {
@@ -32,44 +17,33 @@ const scrollSlideList = (className: string, deltaX: number) => {
     });
 }
 
-function addNewSlide(slidesMaker: SlidesMaker) {
-    const newSlidesMaker = addSlide(slidesMaker);
-    return ReactDOM.render(
-        <React.StrictMode>
-            <App appModel={newSlidesMaker} />
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
+function SlideListView(props: SlideListViewProps) {
+    const listItems = props.slidesMaker.slideList.map((value) => {
+        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 == value);
 
-
-function SlideListView(props: SlideViewProps) {
-    const listItems = props.slideList.map((value) => {
-        const slideNumber = props.slideList.findIndex(value1 => value1 == value);
         let cssStyleName: string;
-        const isSelectedSlide: boolean = slideNumber === props.currentSlide;
-
+        const isSelectedSlide: boolean = slideNumber === props.slidesMaker.currentSlide;
         isSelectedSlide
          ? cssStyleName = "slide-view-icon-selected"
          : cssStyleName = "slide-view-icon";
 
-        return (<div className="slide-view-icon-container" key={slideNumber} onClick={() => {changeSlide(props.slidesMaker, slideNumber)}}>
+        return (<div className="slide-view-icon-container" key={slideNumber} onClick={
+                () => {
+                    props.onChange(setSelectedSlide(props.slidesMaker, slideNumber));
+                }}>
             <SlideView
                 className={cssStyleName}
                 slidesMaker={props.slidesMaker}
-                slide={value}
                 key={slideNumber}
+                slide={props.slidesMaker.slideList[slideNumber]}
             />
             {
                 isSelectedSlide &&
                     <div id="selected-slide-marker"> </div>
             }
-
         </div>)
 
     });
-
-
 
     return (
         <div className="slide-list-container">
@@ -79,7 +53,8 @@ function SlideListView(props: SlideViewProps) {
             <div className={props.className}>
                 {listItems}
                 <Button className="slide-list-add-button" text="+" onClick={() => {
-                    addNewSlide(props.slidesMaker);
+                    console.log(props.onChange);
+                    props.onChange(addSlide(props.slidesMaker));
                 }}></Button>
             </div>
             <Button className="slide-list-scroll-button" text=">" onClick={ () => {

@@ -4,21 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {addSlide, createSlidesMaker, setBackground, setSelectedSlide, SlidesMaker} from "./model/SlidesMaker";
-import {setSlideBackgroundColor, setSlideBackgroundPicture} from "./model/slide/Slide";
 import {Colors} from "./model/types/Colors";
 import {createPicture, Picture} from "./model/slide/slide_objects/picture/Picture";
 
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
-const testBackgroundPicture: Picture = createPicture('https://sun9-59.userapi.com/c855736/v855736552/2ab80/5EcafNhcrDg.jpg');
-const testBackgroundPicture2: Picture = createPicture('https://sun9-19.userapi.com/c850220/v850220293/e9ca4/_eAdwybvugU.jpg');
+const testBackgroundPicture: Picture = createPicture('https://media.discordapp.net/attachments/764231322415661076/766796858692599878/on6phJnOxPs.png');
+const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
+const testBackgroundPicture3: Picture = createPicture('https://media.discordapp.net/attachments/764231322415661076/766796555872108554/1MGq9AL2EXY.png');
 const testBackgroundColor: Colors = Colors.GREEN;
 
-slidesMaker = setBackground(slidesMaker, testBackgroundPicture);
-slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundColor);
 slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
+slidesMaker = addSlide(slidesMaker);
+slidesMaker = setBackground(slidesMaker, testBackgroundPicture3);
 slidesMaker = setSelectedSlide(slidesMaker, 1);
 
 ReactDOM.render(

@@ -1,29 +1,43 @@
 import React from 'react'
 import {Slide} from "../../model/slide/Slide";
-import {Picture} from "../../model/slide/slide_objects/picture/Picture";
-import {Background} from "../../model/types/Background";
+import {SlidesMaker} from "../../model/SlidesMaker";
 
-interface SlideViewProps {
-    key: number;
-    slide: Slide | null;
+interface ISlideViewProps {
     className: string;
+    slidesMaker: SlidesMaker;
 }
 
-function SlideView(props: SlideViewProps) {
+type SlideView = ISlideViewProps & {
+    slide: Slide | null;
+}
+
+function SlideView(props: SlideView) {
     let background: string;
+    let currentSlide;
 
-    if (props.slide !== null)
+    if (props.slide === undefined) {
+        if (props.slidesMaker.currentSlide !== null) {
+            currentSlide = props.slidesMaker.slideList[props.slidesMaker.currentSlide];
+        }
+        else {
+            currentSlide = null;
+        }
+    }
+    else {
+        currentSlide = props.slide;
+    }
+
+    if (currentSlide !== null)
     {
-        background = props.slide.background.toString();
+        background = currentSlide.background.toString();
 
-        if (typeof(props.slide.background) !== "string")
+        if (typeof(currentSlide.background) !== "string")
         {
-            background = `no-repeat url(${props.slide.background.src})`;
-            console.log(background);
+            background = `center / cover no-repeat url(${currentSlide.background.src})`;
         }
 
         return (
-            <div className={props.className} style={{background: background, backgroundSize: "cover"}}></div>
+            <div className={props.className} style={{background: background}}></div>
         )
     }
     else

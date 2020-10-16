@@ -47,27 +47,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
-    height: 80%;
+    width: 64vw;
+    height: 36vw;
     margin-top: 20px;
     margin-bottom: 20px;
     background: white;
     box-shadow: 0px 4px 15px 5px rgba(0, 0, 0, 0.25);
 }
 
-.slide-view-icon {
-    height: 100%;
-    width: 35vh;
-    margin-right: 10px;
-}
-
 .slide-list-container {
     display: flex;
-    background: white;
     width: 100%;
-    height: 20%;
+    height: 22%;
     align-content: flex-end;
     background: #2c2c2c;
+    max-width: 100%;
+    padding-bottom: 20px;
 }
 
 .slide-list {
@@ -76,5 +71,67 @@ body {
     padding: 20px;
     width: 100%;
     height: 100%;
+    overflow-x: scroll;
+}
+
+.slide-list-add-button {
+    display: flex;
+    width: 35vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    min-width: 35vh;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #8e8e8e;
+}
+
+.slide-list-scroll-button {
+    display: flex;
+    height: 100%;
+    width: 5vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    color: #8e8e8e;
+    margin-right: 20px;
+    margin-left: 20px;
+    background: #2c2c2c;
+    outline: none;
+    border: none;
+}
+
+.slide-list-scroll-button:hover {
+    background: #242424;
+}
+.slide-list-scroll-button:active {
+    background: #212121;
+}
+
+.slide-view-icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.slide-view-icon {
+    height: 100%;
+    width: 35vh;
+}
+
+.slide-view-icon-selected {
+    height: 100%;
+    width: 35vh;
+}
+
+#selected-slide-marker {
+    width: 100%;
+    height: 5%;
+    background: #f24e1e;
 }
 

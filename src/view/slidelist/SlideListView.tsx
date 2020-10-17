@@ -1,7 +1,7 @@
 import React from "react";
+import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
-import {Button} from "../controls/Button";
 
 interface SlideListViewProps {
     className: string;

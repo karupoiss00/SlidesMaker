@@ -12,7 +12,7 @@ let slidesMaker: SlidesMaker = createSlidesMaker();
 const testBackgroundPicture: Picture = createPicture('https://media.discordapp.net/attachments/764231322415661076/766796858692599878/on6phJnOxPs.png');
 const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
 const testBackgroundPicture3: Picture = createPicture('https://media.discordapp.net/attachments/764231322415661076/766796555872108554/1MGq9AL2EXY.png');
-const testBackgroundColor: Colors = Colors.GREEN;
+const testBackgroundColor: Colors = Colors.BROWN;
 
 slidesMaker = setBackground(slidesMaker, testBackgroundColor);
 slidesMaker = addSlide(slidesMaker);
@@ -23,7 +23,13 @@ slidesMaker = setSelectedSlide(slidesMaker, 1);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App appModel={slidesMaker} />
+    <App
+         appModel={slidesMaker}
+         panelClassName="panel"
+         panelBlockClassName="panel-block"
+         slideViewClassName="slide-view"
+         slideListClassName="slide-list"
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );

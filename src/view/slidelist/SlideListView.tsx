@@ -33,7 +33,6 @@ function SlideListView(props: SlideListViewProps) {
                 }}>
             <SlideView
                 className={cssStyleName}
-                slidesMaker={props.slidesMaker}
                 key={slideNumber}
                 slide={props.slidesMaker.slideList[slideNumber]}
             />
@@ -53,7 +52,6 @@ function SlideListView(props: SlideListViewProps) {
             <div className={props.className}>
                 {listItems}
                 <Button className="slide-list-add-button" text="+" onClick={() => {
-                    console.log(props.onChange);
                     props.onChange(addSlide(props.slidesMaker));
                 }}></Button>
             </div>

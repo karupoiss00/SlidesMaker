@@ -1,16 +1,13 @@
-import React from 'react'
-interface PanelProps {
-    className: string;
-    panelBlockClassName: string;
-}
+import React from 'react';
+import styles from './Panel.module.css';
 
-function Panel(props: PanelProps) {
+function Panel() {
     return (
-        <div className={props.className}>
-            <div className={props.panelBlockClassName}>Presentation</div>
-            <div className={props.panelBlockClassName}>TextBoxes</div>
-            <div className={props.panelBlockClassName}>Shapes</div>
-            <div className={props.panelBlockClassName}>Pictures</div>
+        <div className={styles.panelBar}>
+            <div className={styles.panelButton}>Presentation</div>
+            <div className={styles.panelButton}>TextBoxes</div>
+            <div className={styles.panelButton}>Shapes</div>
+            <div className={styles.panelButton}>Pictures</div>
         </div>
     )
 }

@@ -71,10 +71,13 @@ describe('Slide.ts', () => {
             rect: createRect(),
         };
         const testId: Id = generateId();
+
         testSlide.objects[testId] = testPicture;
+
         if (testSlide.objects[testId]) {
             delete testSlide.objects[testId];
         }
+
         expect(testSlide).toStrictEqual(removeObject(testSlide, testId));
     });
 });

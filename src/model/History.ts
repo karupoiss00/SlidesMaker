@@ -1,13 +1,15 @@
-import { SlidesMaker } from './SlidesMaker';
+import {SlidesMaker} from './SlidesMaker';
 
 const undoStack: Array<SlidesMaker> = [];
 const redoStack: Array<SlidesMaker> = [];
 
 function undo(currentState: SlidesMaker): SlidesMaker | undefined {
     const slidesState: SlidesMaker | undefined = undoStack.pop();
+
     if (slidesState) {
         redoStack.push({...currentState});
     }
+
     return slidesState;
 }
 

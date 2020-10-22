@@ -25,10 +25,6 @@ ReactDOM.render(
   <React.StrictMode>
     <App
          appModel={slidesMaker}
-         panelClassName="panel"
-         panelBlockClassName="panel-block"
-         slideViewClassName="slide-view"
-         slideListClassName="slide-list"
     />
   </React.StrictMode>,
   document.getElementById('root')

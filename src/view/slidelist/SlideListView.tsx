@@ -2,6 +2,7 @@ import React from "react";
 import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
+import styles from "./SlideListView.module.css";
 
 interface SlideListViewProps {
     className: string;
@@ -27,7 +28,7 @@ function SlideListView(props: SlideListViewProps) {
          ? cssStyleName = "slide-view-icon-selected"
          : cssStyleName = "slide-view-icon";
 
-        return (<div className="slide-view-icon-container" key={slideNumber} onClick={
+        return (<div className={styles.slideViewIconContainer} key={slideNumber} onClick={
                 () => {
                     props.onChange(setSelectedSlide(props.slidesMaker, slideNumber));
                 }}>
@@ -45,17 +46,17 @@ function SlideListView(props: SlideListViewProps) {
     });
 
     return (
-        <div className="slide-list-container">
-            <Button className="slide-list-scroll-button" text="<" onClick={ () => {
+        <div className={styles.slideListContainer}>
+            <Button className={styles.slideListScrollButton} text="<" onClick={ () => {
                 scrollSlideList(props.className, -600);
             }}></Button>
             <div className={props.className}>
                 {listItems}
-                <Button className="slide-list-add-button" text="+" onClick={() => {
+                <Button className={styles.slideListAddButton} text="+" onClick={() => {
                     props.onChange(addSlide(props.slidesMaker));
                 }}></Button>
             </div>
-            <Button className="slide-list-scroll-button" text=">" onClick={ () => {
+            <Button className={styles.slideListScrollButton} text=">" onClick={ () => {
                 scrollSlideList(props.className, 600);
             }}></Button>
         </div>

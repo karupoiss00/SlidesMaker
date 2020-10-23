@@ -5,13 +5,41 @@ export type Rect = {
     height: number;
 };
 
-function createRect(): Rect {
+function createRect(x: number, y: number, width: number, height: number): Rect {
     return {
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
+        x: x,
+        y: y,
+        width: width,
+        height: height,
     };
 }
 
-export { createRect };
+function setX(rect: Rect, x: number): Rect {
+    return {
+        ...rect,
+        x: x,
+    }
+}
+
+function setY(rect: Rect, y: number): Rect {
+    return {
+        ...rect,
+        y: y,
+    }
+}
+
+function setWidth(rect: Rect, width: number): Rect {
+    return {
+        ...rect,
+        width: width,
+    }
+}
+
+function setHeight(rect: Rect, height: number): Rect {
+    return {
+        ...rect,
+        height: height,
+    }
+}
+
+export { createRect, setX, setY, setWidth, setHeight };

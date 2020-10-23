@@ -6,12 +6,33 @@ export type Style = {
     strokeWidth: number;
 };
 
-function createStyle(): Style {
+function createStyle(backgroundColor: Colors, strokeColor: Colors, strokeWidth: number): Style {
     return {
-        backgroundColor: Colors.WHITE,
-        strokeColor: Colors.BLACK,
-        strokeWidth: 2,
+        backgroundColor: backgroundColor,
+        strokeColor: strokeColor,
+        strokeWidth: strokeWidth,
     };
+}
+
+function setBackgroundColor(style: Style, color: Colors): Style {
+    return {
+        ...style,
+        backgroundColor: color,
+    }
+}
+
+function setStrokeColor(style: Style, color: Colors): Style {
+    return {
+        ...style,
+        strokeColor: color,
+    }
+}
+
+function setStrokeWidth(style: Style, width: number): Style {
+    return {
+        ...style,
+        strokeWidth: width,
+    }
 }
 
 export { createStyle };

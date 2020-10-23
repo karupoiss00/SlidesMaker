@@ -10,4 +10,10 @@ function createParagraph(): Paragraph {
     };
 }
 
-export { createParagraph };
+function setAlignment(paragraph: Paragraph, state: Alignment): Paragraph {
+    return {
+        alignmentState: state,
+    }
+}
+
+export { createParagraph, setAlignment };

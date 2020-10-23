@@ -20,7 +20,7 @@ const scrollSlideList = (className: string, deltaX: number) => {
 
 function SlideListView(props: SlideListViewProps) {
     const listItems = props.slidesMaker.slideList.map((value) => {
-        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 == value);
+        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 === value);
 
         let cssStyleName: string;
         const isSelectedSlide: boolean = slideNumber === props.slidesMaker.currentSlide;

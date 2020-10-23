@@ -9,7 +9,6 @@ import {createPicture, Picture} from "./model/slide/slide_objects/picture/Pictur
 
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
-const testBackgroundPicture: Picture = createPicture('https://media.discordapp.net/attachments/764231322415661076/766796858692599878/on6phJnOxPs.png');
 const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
 const testBackgroundColor: Colors = Colors.BROWN;
 

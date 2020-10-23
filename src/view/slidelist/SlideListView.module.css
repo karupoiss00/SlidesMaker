@@ -44,6 +44,7 @@
 }
 
 .slideViewIconContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -51,7 +52,6 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
-    position: relative;
 }
 
 .selectedSlideMarker {
@@ -62,6 +62,7 @@
 }
 
 .slideViewIcon {
+    position: relative;
     height: 100%;
     width: 35vh;
 }

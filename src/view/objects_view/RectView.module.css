@@ -1,6 +1,6 @@
 .rect {
     transform-origin: top center;
-    position: relative;
+    position: absolute;
     width: 0;
     height: 0;
     border: 2px dashed #2C2C2C;

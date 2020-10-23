@@ -1,15 +1,58 @@
-import { createRect, Rect } from '../../../types/Rect';
+import {Rect, setRectHeight, setRectWidth, setRectX, setRectY} from '../../../types/Rect';
 
 export type Picture = {
     src: string;
     rect: Rect;
-};
-
-function createPicture(src: string): Picture {
-    return {
-        src: src,
-        rect: createRect(),
-    };
 }
 
-export { createPicture };
+function createPicture(src: string, rect: Rect): Picture {
+    return {
+        src: src,
+        rect: rect,
+    }
+}
+
+function setPictureScr(picture: Picture, src: string): Picture {
+    return {
+        ...picture,
+        src: src,
+    }
+}
+
+function setPictureX(picture: Picture, x: number): Picture {
+    const newRect: Rect = setRectX(picture.rect, x);
+
+    return {
+        ...picture,
+        rect: newRect,
+    }
+}
+
+function setPictureY(picture: Picture, y: number): Picture {
+    const newRect: Rect = setRectY(picture.rect, y);
+
+    return {
+        ...picture,
+        rect: newRect,
+    }
+}
+
+function setPictureWidth(picture: Picture, width: number): Picture {
+    const newRect: Rect = setRectWidth(picture.rect, width);
+
+    return {
+        ...picture,
+        rect: newRect,
+    }
+}
+
+function setPictureHeight(picture: Picture, height: number): Picture {
+    const newRect: Rect = setRectHeight(picture.rect, height);
+
+    return {
+        ...picture,
+        rect: newRect,
+    }
+}
+
+export {createPicture, setPictureScr, setPictureX, setPictureY, setPictureWidth, setPictureHeight};

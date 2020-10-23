@@ -1,6 +1,5 @@
 import React from 'react'
 import {Slide} from "../../model/slide/Slide";
-import {SlidesMaker} from "../../model/SlidesMaker";
 
 interface SlideViewProps {
     className: string;

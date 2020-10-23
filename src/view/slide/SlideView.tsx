@@ -19,7 +19,7 @@ function SlideView(props: SlideViewProps) {
         }
         else
         {
-            background = currentSlide.background.toString();
+            background = currentSlide.background;
         }
     }
     else {

@@ -25,8 +25,8 @@ function SlideListView(props: SlideListViewProps) {
         let cssStyleName: string;
         const isSelectedSlide: boolean = slideNumber === props.slidesMaker.currentSlide;
         isSelectedSlide
-         ? cssStyleName = "slide-view-icon-selected"
-         : cssStyleName = "slide-view-icon";
+         ? cssStyleName = styles.slideViewIconSelected
+         : cssStyleName = styles.slideViewIcon;
 
         return (<div className={styles.slideViewIconContainer} key={slideNumber} onClick={
                 () => {
@@ -39,7 +39,7 @@ function SlideListView(props: SlideListViewProps) {
             />
             {
                 isSelectedSlide &&
-                    <div id="selected-slide-marker"> </div>
+                    <div id={styles.selectedSlideMarker}></div>
             }
         </div>)
 

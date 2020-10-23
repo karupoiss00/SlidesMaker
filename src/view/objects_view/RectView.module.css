@@ -1,0 +1,54 @@
+.rect {
+    transform-origin: top center;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 2px dashed #2C2C2C;
+    background: transparent;
+    cursor: move;
+    box-sizing: border-box;
+}
+
+.rectDotLeftTop {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #BBBBBB;
+    border-radius: 50%;
+    left: -8px;
+    top: -8px;
+    cursor: nesw-resize;
+}
+
+.rectDotLeftBottom {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #BBBBBB;
+    border-radius: 50%;
+    left: -8px;
+    bottom: -8px;
+    cursor: nesw-resize;
+}
+
+.rectDotRightTop {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #BBBBBB;
+    border-radius: 50%;
+    right: -8px;
+    top: -8px;
+    cursor: nesw-resize;
+}
+
+.rectDotRightBottom {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #BBBBBB;
+    border-radius: 50%;
+    right: -8px;
+    bottom: -8px;
+    cursor: nesw-resize;
+}

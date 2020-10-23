@@ -1,6 +1,5 @@
 import React from 'react'
 import {Slide} from "../../model/slide/Slide";
-import {SlidesMaker} from "../../model/SlidesMaker";
 
 interface SlideViewProps {
     className: string;
@@ -19,7 +18,7 @@ function SlideView(props: SlideViewProps) {
         }
         else
         {
-            background = currentSlide.background.toString();
+            background = currentSlide.background;
         }
     }
     else {

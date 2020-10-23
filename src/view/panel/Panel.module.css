@@ -1,4 +1,4 @@
-.panel-bar {
+.panelBar {
     display: flex;
     flex-direction: row;
     background: #2c2c2c;
@@ -8,12 +8,9 @@
     padding: 5px 10px;
 }
 
-.panel-button {
+.panelButton {
     margin-right: 20px;
     color: white;
     padding: 10px 20px;
     background: #2c2c2c;
 }
-
-
-

@@ -20,13 +20,13 @@ const scrollSlideList = (className: string, deltaX: number) => {
 
 function SlideListView(props: SlideListViewProps) {
     const listItems = props.slidesMaker.slideList.map((value) => {
-        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 == value);
+        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 === value);
 
         let cssStyleName: string;
         const isSelectedSlide: boolean = slideNumber === props.slidesMaker.currentSlide;
         isSelectedSlide
-         ? cssStyleName = "slide-view-icon-selected"
-         : cssStyleName = "slide-view-icon";
+         ? cssStyleName = styles.slideViewIconSelected
+         : cssStyleName = styles.slideViewIcon;
 
         return (<div className={styles.slideViewIconContainer} key={slideNumber} onClick={
                 () => {
@@ -39,7 +39,7 @@ function SlideListView(props: SlideListViewProps) {
             />
             {
                 isSelectedSlide &&
-                    <div id="selected-slide-marker"> </div>
+                    <div className={styles.selectedSlideMarker}></div>
             }
         </div>)
 

@@ -1,4 +1,4 @@
-.slide-list-container {
+.slideListContainer {
     display: flex;
     width: 100%;
     height: 22%;
@@ -8,7 +8,14 @@
     padding-bottom: 20px;
 }
 
-.slide-list-scroll-button {
+.slideListScrollButton:hover {
+    background: #242424;
+}
+.slideListScrollButton:active {
+    background: #212121;
+}
+
+.slideListScrollButton {
     display: flex;
     height: 100%;
     width: 5vh;
@@ -23,7 +30,7 @@
     border: none;
 }
 
-.slide-list-add-button {
+.slideListAddButton {
     display: flex;
     width: 35vh;
     align-items: center;
@@ -36,7 +43,8 @@
     color: #8e8e8e;
 }
 
-.slide-view-icon-container {
+.slideViewIconContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -44,5 +52,22 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+}
+
+.selectedSlideMarker {
+    width: 100%;
+    height: 5%;
+    background: #f24e1e;
+    position: absolute;
+}
+
+.slideViewIcon {
     position: relative;
+    height: 100%;
+    width: 35vh;
+}
+
+.slideViewIconSelected {
+    height: 100%;
+    width: 35vh;
 }

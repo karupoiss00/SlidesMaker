@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./App.module.css";
+import "./AppRoot.css";
 import {SlidesMaker} from "./model/SlidesMaker";
 import {Panel} from "./view/panel/Panel";
 import {SlideView} from "./view/slide/SlideView";

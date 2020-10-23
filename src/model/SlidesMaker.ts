@@ -31,7 +31,7 @@ function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
 function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
     const newSlidesMaker: SlidesMaker = { ...slidesMaker };
 
-    if (newSlidesMaker.currentSlide) {
+    if (newSlidesMaker.currentSlide !== null) {
         newSlidesMaker.slideList.splice(newSlidesMaker.currentSlide, 1);
         newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
     }
@@ -50,7 +50,7 @@ function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): S
 function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Shape | Picture): SlidesMaker {
     const newSlidesMaker: SlidesMaker = { ...slidesMaker };
 
-    if (newSlidesMaker.currentSlide) {
+    if (newSlidesMaker.currentSlide !== null) {
         let currentSlide: Slide = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 
         currentSlide = addObject(currentSlide, object);
@@ -64,7 +64,7 @@ function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Sh
 function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
     const newSlidesMaker: SlidesMaker = { ...slidesMaker };
 
-    if (newSlidesMaker.currentSlide && newSlidesMaker.selectedObjectId) {
+    if (newSlidesMaker.currentSlide !== null && newSlidesMaker.selectedObjectId) {
         let selectedObjectId: Id | null = newSlidesMaker.selectedObjectId;
         let currentSlide: Slide = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 
@@ -81,7 +81,7 @@ function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
 function setBackground(slidesMaker: SlidesMaker, background: Background): SlidesMaker {
     const newSlidesMaker: SlidesMaker = { ...slidesMaker };
 
-    if (newSlidesMaker.currentSlide)
+    if (newSlidesMaker.currentSlide !== null)
     {
         const currentSlide: Slide = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 

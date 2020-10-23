@@ -33,6 +33,10 @@ function SlideListView(props: SlideListViewProps) {
                     props.onChange(setSelectedSlide(props.slidesMaker, slideNumber));
                 }}>
             <SlideView
+                {
+                    ...
+                    console.log(cssStyleName)
+                }
                 className={cssStyleName}
                 key={slideNumber}
                 slide={props.slidesMaker.slideList[slideNumber]}

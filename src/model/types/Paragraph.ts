@@ -2,18 +2,18 @@ import { Alignment } from './Alignment';
 
 export type Paragraph = {
     alignmentState: Alignment;
-};
+}
 
 function createParagraph(): Paragraph {
     return {
         alignmentState: Alignment.LEFT,
-    };
+    }
 }
 
-function setAlignment(paragraph: Paragraph, state: Alignment): Paragraph {
+function setParagraphAlignment(paragraph: Paragraph, state: Alignment): Paragraph {
     return {
         alignmentState: state,
     }
 }
 
-export { createParagraph, setAlignment };
+export {createParagraph, setParagraphAlignment};

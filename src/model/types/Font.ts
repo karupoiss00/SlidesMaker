@@ -4,7 +4,7 @@ export type Font = {
     isBold: boolean;
     isItalic: boolean;
     isUnderlined: boolean;
-};
+}
 
 function createFont(fontName: string, fontSize: number): Font {
     return {
@@ -13,42 +13,42 @@ function createFont(fontName: string, fontSize: number): Font {
         isBold: false,
         isItalic: false,
         isUnderlined: false,
-    };
-}
-
-function setFontName(font: Font, fontName: string): Font {
-    return {
-        ...font,
-        fontName: fontName
     }
 }
 
-function setFontSize(font: Font, fontSize: number): Font {
+function setFontFontName(font: Font, fontName: string): Font {
     return {
         ...font,
-        fontSize: fontSize
+        fontName: fontName,
     }
 }
 
-function setBold(font: Font, state: boolean): Font {
+function setFontFontSize(font: Font, fontSize: number): Font {
     return {
         ...font,
-        isBold: state
+        fontSize: fontSize,
     }
 }
 
-function setItalic(font: Font, state: boolean): Font {
+function switchFontBold(font: Font): Font {
     return {
         ...font,
-        isItalic: state
+        isBold: !font.isBold,
     }
 }
 
-function setUnderline(font: Font, state: boolean): Font {
+function switchFontItalic(font: Font): Font {
     return {
         ...font,
-        isUnderlined: state
+        isItalic: !font.isItalic,
     }
 }
 
-export { createFont, setFontName, setFontSize, setBold, setItalic, setUnderline };
+function switchFontUnderline(font: Font): Font {
+    return {
+        ...font,
+        isUnderlined: !font.isUnderlined,
+    }
+}
+
+export {createFont, setFontFontName, setFontFontSize, switchFontBold, switchFontItalic, switchFontUnderline};

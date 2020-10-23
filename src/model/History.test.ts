@@ -19,7 +19,7 @@ test(`History: undo, redo, addToHistory`,() => {
         currentSlide: 2,
     };
     addToHistory(State);
-    let NewState = setBackground(State, Colors.RED);
+    const NewState = setBackground(State, Colors.RED);
     expect(State).toStrictEqual(undo(NewState));
     expect(NewState).toStrictEqual(redo());
 });

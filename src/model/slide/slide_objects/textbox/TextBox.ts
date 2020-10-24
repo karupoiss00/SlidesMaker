@@ -1,4 +1,11 @@
-import {Font, setFontFontName, setFontFontSize} from '../../../types/Font';
+import {
+    Font,
+    setFontFontName,
+    setFontFontSize,
+    switchFontBold,
+    switchFontItalic,
+    switchFontUnderline
+} from '../../../types/Font';
 import {Rect, setRectHeight, setRectWidth, setRectX, setRectY} from '../../../types/Rect';
 import {Paragraph, setParagraphAlignment} from '../../../types/Paragraph';
 import {Alignment} from "../../../types/Alignment";
@@ -90,7 +97,7 @@ function setTextBoxFontSize(textBox: TextBox, fontSize: number): TextBox {
 }
 
 function switchTextBoxBold(textBox: TextBox): TextBox {
-    const newFont: Font = switchTextBoxBold(textBox.font);
+    const newFont: Font = switchFontBold(textBox.font);
 
     return {
         ...textBox,
@@ -99,7 +106,7 @@ function switchTextBoxBold(textBox: TextBox): TextBox {
 }
 
 function switchTextBoxItalic(textBox: TextBox): TextBox {
-    const newFont: Font = switchTextBoxItalic(textBox.font);
+    const newFont: Font = switchFontItalic(textBox.font);
 
     return {
         ...textBox,
@@ -108,7 +115,7 @@ function switchTextBoxItalic(textBox: TextBox): TextBox {
 }
 
 function switchTextBoxUnderline(textBox: TextBox): TextBox {
-    const newFont: Font = switchTextBoxUnderline(textBox.font);
+    const newFont: Font = switchFontUnderline(textBox.font);
 
     return {
         ...textBox,

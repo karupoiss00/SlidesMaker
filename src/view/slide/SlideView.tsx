@@ -1,11 +1,12 @@
 import React, {ReactNode} from 'react'
 import {Slide} from "../../model/slide/Slide";
-import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
+import {createTextBox, setTextBoxText, switchTextBoxBold} from "../../model/slide/slide_objects/textbox/TextBox";
 import {TextBoxView} from "../objects_view/TextBoxView";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
-import {createFont} from "../../model/types/Font";
+import {createFont, setFontFontColor, switchFontBold} from "../../model/types/Font";
 import {Alignment} from "../../model/types/Alignment";
+import {Colors} from "../../model/types/Colors";
 
 interface SlideViewProps {
     className: string;
@@ -33,11 +34,11 @@ function SlideView(props: SlideViewProps) {
 
     return (
         <div className={props.className} style={{background: background}}>
-            <TextBoxView textBox={setTextBoxText(createTextBox(
+            <TextBoxView textBox={switchTextBoxBold(setTextBoxText(createTextBox(
                 createRect(400, 500, 200, 150),
                 setParagraphAlignment(createParagraph(), Alignment.CENTER),
-                createFont('Courier', 15)
-            ), 'Test Text Box')} />
+                setFontFontColor(createFont('Courier', 30), Colors.GREEN)
+            ), 'Test Text Box'))} />
         </div>
     )
 

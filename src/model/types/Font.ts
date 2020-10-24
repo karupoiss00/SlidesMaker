@@ -1,6 +1,9 @@
+import {Colors} from "./Colors";
+
 export type Font = {
     fontName: string;
     fontSize: number;
+    fontColor: Colors;
     isBold: boolean;
     isItalic: boolean;
     isUnderlined: boolean;
@@ -10,6 +13,7 @@ function createFont(fontName: string, fontSize: number): Font {
     return {
         fontName: fontName,
         fontSize: fontSize,
+        fontColor: Colors.BLACK,
         isBold: false,
         isItalic: false,
         isUnderlined: false,
@@ -27,6 +31,13 @@ function setFontFontSize(font: Font, fontSize: number): Font {
     return {
         ...font,
         fontSize: fontSize,
+    }
+}
+
+function setFontFontColor(font: Font, fontColor: Colors): Font {
+    return {
+        ...font,
+        fontColor: fontColor,
     }
 }
 
@@ -51,4 +62,12 @@ function switchFontUnderline(font: Font): Font {
     }
 }
 
-export {createFont, setFontFontName, setFontFontSize, switchFontBold, switchFontItalic, switchFontUnderline};
+export {
+    createFont,
+    setFontFontName,
+    setFontFontSize,
+    switchFontBold,
+    switchFontItalic,
+    switchFontUnderline,
+    setFontFontColor
+};

@@ -5,7 +5,6 @@ import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
 import styles from "./SlideListView.module.css";
 
 interface SlideListViewProps {
-    className: string;
     slidesMaker: SlidesMaker;
     onChange: (newState: SlidesMaker) => any;
 }
@@ -48,16 +47,16 @@ function SlideListView(props: SlideListViewProps) {
     return (
         <div className={styles.slideListContainer}>
             <Button className={styles.slideListScrollButton} text="<" onClick={ () => {
-                scrollSlideList(props.className, -600);
+                scrollSlideList(styles.slideList, -600);
             }}></Button>
-            <div className={props.className}>
+            <div className={styles.slideList}>
                 {listItems}
                 <Button className={styles.slideListAddButton} text="+" onClick={() => {
                     props.onChange(addSlide(props.slidesMaker));
                 }}></Button>
             </div>
             <Button className={styles.slideListScrollButton} text=">" onClick={ () => {
-                scrollSlideList(props.className, 600);
+                scrollSlideList(styles.slideList, 600);
             }}></Button>
         </div>
     )

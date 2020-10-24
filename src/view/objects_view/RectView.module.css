@@ -1,6 +1,6 @@
 .rect {
-    transform-origin: top center;
     position: absolute;
+    transform-origin: top center;
     width: 0;
     height: 0;
     border: 2px dashed #2C2C2C;
@@ -17,7 +17,7 @@
     border-radius: 50%;
     left: -8px;
     top: -8px;
-    cursor: nesw-resize;
+    cursor: nwse-resize;
 }
 
 .rectDotLeftBottom {
@@ -50,5 +50,5 @@
     border-radius: 50%;
     right: -8px;
     bottom: -8px;
-    cursor: nesw-resize;
+    cursor: nwse-resize;
 }

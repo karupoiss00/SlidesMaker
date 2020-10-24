@@ -24,7 +24,6 @@ function App(props: AppProps) {
 
             }
             <SlideListView
-                className={styles.slideList}
                 slidesMaker={appState}
                 onChange={setAppState}
             />

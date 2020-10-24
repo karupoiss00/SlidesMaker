@@ -3,9 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {addSlide, createSlidesMaker, setBackground, setSelectedSlide, SlidesMaker} from "./model/SlidesMaker";
+import {
+    addObjectOnSelectedSlide,
+    addSlide,
+    createSlidesMaker,
+    setBackground,
+    setSelectedSlide,
+    SlidesMaker
+} from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
 import {createPicture, Picture} from "./model/slide/slide_objects/picture/Picture";
+import {createTextBox} from "./model/slide/slide_objects/textbox/TextBox";
+import {createRect} from "./model/types/Rect";
+import {createParagraph} from "./model/types/Paragraph";
+import {Alignment} from "./model/types/Alignment";
+import {createFont} from "./model/types/Font";
 
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
@@ -16,6 +28,12 @@ slidesMaker = setBackground(slidesMaker, testBackgroundColor);
 slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
 slidesMaker = setSelectedSlide(slidesMaker, 1);
+
+slidesMaker = addObjectOnSelectedSlide(slidesMaker, createTextBox(
+        createRect(100, 234, 100, 20),
+        createParagraph(),
+        createFont('Arial', 12)
+    ));
 
 ReactDOM.render(
   <React.StrictMode>

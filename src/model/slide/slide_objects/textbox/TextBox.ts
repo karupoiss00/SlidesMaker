@@ -26,7 +26,7 @@ function createTextBox(rect: Rect, paragraph: Paragraph, font: Font): TextBox {
     }
 }
 
-function setTextBoxText(textBox: TextBox, text: string): TextBox{
+function setTextBoxText(textBox: TextBox, text: string): TextBox {
     return {
         ...textBox,
         text: text,
@@ -123,4 +123,17 @@ function switchTextBoxUnderline(textBox: TextBox): TextBox {
     }
 }
 
-export {createTextBox};
+export {
+    createTextBox,
+    setTextBoxText,
+    setTextBoxX,
+    setTextBoxY,
+    setTextBoxWidth,
+    setTextBoxHeight,
+    setTextBoxAlignment,
+    setTextBoxFontName,
+    setTextBoxFontSize,
+    switchTextBoxBold,
+    switchTextBoxItalic,
+    switchTextBoxUnderline,
+};

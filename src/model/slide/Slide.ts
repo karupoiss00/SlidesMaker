@@ -5,14 +5,19 @@ import {Background} from '../types/Background';
 import {Colors} from '../types/Colors';
 import {Id, generateId} from "./slide_objects/id/Id";
 
+type SlideObjectType = {
+    object: TextBox | Shape | Picture;
+    id: Id;
+}
+
 export type Slide = {
-    objects: Record<Id, TextBox | Shape | Picture>;
+    objects: Array<SlideObjectType>;
     background: Background;
-};
+}
 
 function createSlide(): Slide {
     return {
-        objects: {},
+        objects: [],
         background: Colors.WHITE,
     };
 }
@@ -20,7 +25,10 @@ function createSlide(): Slide {
 function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
     const newSlide = { ...slide };
 
-    newSlide.objects[generateId()] = object;
+    newSlide.objects.unshift({
+        object: object,
+        id: generateId(),
+    });
 
     return newSlide;
 }
@@ -28,9 +36,13 @@ function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
 function removeObject(slide: Slide, selectedObjectId: Id): Slide {
     const newSlide = { ...slide };
 
-    if (newSlide.objects[selectedObjectId]) {
-        delete newSlide.objects[selectedObjectId];
-    }
+    let objectArray: Array<SlideObjectType> = newSlide.objects;
+
+    objectArray.forEach((object, index, objectArray) => {
+        if (object.id == selectedObjectId) {
+            objectArray.slice(index);
+        }
+    })
 
     return newSlide;
 }
@@ -51,4 +63,4 @@ function setSlideBackgroundPicture(slide: Slide, picture: Picture): Slide {
     return newSlide;
 }
 
-export { createSlide, addObject, removeObject, setSlideBackgroundColor, setSlideBackgroundPicture };
+export {createSlide, addObject, removeObject, setSlideBackgroundColor, setSlideBackgroundPicture};

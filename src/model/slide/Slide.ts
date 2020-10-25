@@ -36,10 +36,10 @@ function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
 function removeObject(slide: Slide, selectedObjectId: Id): Slide {
     const newSlide = { ...slide };
 
-    let objectArray: Array<SlideObjectType> = newSlide.objects;
+    const objectArray: Array<SlideObjectType> = newSlide.objects;
 
     objectArray.forEach((object, index, objectArray) => {
-        if (object.id == selectedObjectId) {
+        if (object.id === selectedObjectId) {
             objectArray.slice(index);
         }
     })

@@ -19,7 +19,7 @@ function App(props: AppProps) {
                 appState.currentSlide !== null &&
                 <SlideView
                     className={styles.slideView}
-                    slide={appState.slideList[appState.currentSlide]}
+                    slide={appState.slideList[appState.currentSlide].slide}
                 ></SlideView>
 
             }

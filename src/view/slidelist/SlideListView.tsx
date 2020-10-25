@@ -33,8 +33,8 @@ function SlideListView(props: SlideListViewProps) {
                 }}>
             <SlideView
                 className={cssStyleName}
-                key={slideNumber}
-                slide={props.slidesMaker.slideList[slideNumber]}
+                slide={props.slidesMaker.slideList[slideNumber].slide}
+                key={props.slidesMaker.slideList[slideNumber].id}
             />
             {
                 isSelectedSlide &&

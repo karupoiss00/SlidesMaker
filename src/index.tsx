@@ -13,11 +13,11 @@ import {
 } from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
 import {createPicture, Picture} from "./model/slide/slide_objects/picture/Picture";
-import {createTextBox} from "./model/slide/slide_objects/textbox/TextBox";
+import {createTextBox, setTextBoxText, switchTextBoxBold} from "./model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "./model/types/Rect";
-import {createParagraph} from "./model/types/Paragraph";
+import {createParagraph, setParagraphAlignment} from "./model/types/Paragraph";
 import {Alignment} from "./model/types/Alignment";
-import {createFont} from "./model/types/Font";
+import {createFont, setFontFontColor} from "./model/types/Font";
 
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
@@ -29,11 +29,11 @@ slidesMaker = addSlide(slidesMaker);
 slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
 slidesMaker = setSelectedSlide(slidesMaker, 1);
 
-slidesMaker = addObjectOnSelectedSlide(slidesMaker, createTextBox(
-        createRect(100, 234, 100, 20),
-        createParagraph(),
-        createFont('Arial', 12)
-    ));
+slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBoxText(createTextBox(
+        createRect(400, 500, 300, 50),
+        setParagraphAlignment(createParagraph(), Alignment.CENTER),
+        setFontFontColor(createFont('Courier', 30), Colors.GREEN)),
+    'Test Text Box')));
 
 ReactDOM.render(
   <React.StrictMode>

@@ -5,7 +5,23 @@ import {Shape} from "./slide/slide_objects/shape/Shape";
 import {Picture} from "./slide/slide_objects/picture/Picture";
 import {Background} from "./types/Background";
 
-type SlidesMakerSlideType = {
+
+function deepFreeze(o: Record<string, any>) {
+    Object.freeze(o);
+
+    Object.getOwnPropertyNames(o).forEach(function (prop) {
+        if (prop in o
+            && o[prop] !== null
+            && (typeof o[prop] === "object" || typeof o[prop] === "function")
+            && !Object.isFrozen(o[prop])) {
+            deepFreeze(o[prop]);
+        }
+    });
+
+    return o;
+}
+
+export type SlidesMakerSlideType = {
     slide: Slide;
     id: Id;
 }
@@ -54,6 +70,14 @@ function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): S
     const newSlidesMaker: SlidesMaker = {...slidesMaker};
 
     newSlidesMaker.currentSlide = newSelectedSlide;
+
+    return newSlidesMaker;
+}
+
+function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | null): SlidesMaker {
+    const newSlidesMaker: SlidesMaker = {...slidesMaker};
+
+    newSlidesMaker.selectedObjectId = newSelectedObject;
 
     return newSlidesMaker;
 }
@@ -115,6 +139,7 @@ export {
     addSlide,
     deleteSlide,
     setSelectedSlide,
+    setSelectedObject,
     addObjectOnSelectedSlide,
     removeSelectedObject,
     setBackground,

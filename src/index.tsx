@@ -33,7 +33,7 @@ slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBox
         createRect(400, 500, 300, 50),
         setParagraphAlignment(createParagraph(), Alignment.CENTER),
         setFontFontColor(createFont('Courier', 30), Colors.GREEN)),
-    'Test Text Box')));
+    'Test Text Box 1')));
 
 ReactDOM.render(
   <React.StrictMode>

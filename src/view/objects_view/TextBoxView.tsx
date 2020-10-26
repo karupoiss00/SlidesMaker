@@ -2,9 +2,13 @@ import React from "react";
 import styles from "./TextBoxView.module.css";
 import {TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {RectView} from "./RectView";
+import {Id} from "../../model/slide/slide_objects/id/Id";
 
 interface TextBoxViewProps {
     textBox: TextBox;
+    objectId: Id;
+    isSelected: boolean;
+    onClick: ((newId: Id) => any) | null;
 }
 
 function TextBoxView(props: TextBoxViewProps) {
@@ -14,7 +18,7 @@ function TextBoxView(props: TextBoxViewProps) {
     const paragraph = textBox.paragraph;
 
     return (
-        <RectView rect={rect}>
+        <RectView rect={rect} visibility={props.isSelected}>
             <textarea className={styles.textBoxInput}
                       style={{
                         fontWeight: font.isBold ? "bold" : "normal",
@@ -26,6 +30,13 @@ function TextBoxView(props: TextBoxViewProps) {
                         textAlign: paragraph.alignmentState
                       }}
                       defaultValue={props.textBox.text}
+                      onClick={ (e) => {
+                            e.stopPropagation();
+                            props.onClick && props.objectId &&
+                                props.onClick(props.objectId);
+                        }
+
+                      }
             />
         </RectView>
     )

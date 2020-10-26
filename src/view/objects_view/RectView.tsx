@@ -5,6 +5,7 @@ import {Rect} from "../../model/types/Rect";
 interface RectViewProps {
     children?: ReactNode;
     rect: Rect;
+    visibility: boolean;
 }
 
 export function RectView(props: RectViewProps) {
@@ -14,11 +15,17 @@ export function RectView(props: RectViewProps) {
             top: props.rect.y,
             width: props.rect.width,
             height: props.rect.height,
+            border: props.visibility ? "2px dashed #2C2C2C" : "none",
         }}>
-            <div className={styles.rectDotLeftTop}></div>
-            <div className={styles.rectDotLeftBottom}></div>
-            <div className={styles.rectDotRightTop}></div>
-            <div className={styles.rectDotRightBottom}></div>
+            {props.visibility &&
+                <>
+                    <div className={styles.rectDotLeftTop}/>
+                    <div className={styles.rectDotLeftBottom}/>
+                    <div className={styles.rectDotRightTop}/>
+                    <div className={styles.rectDotRightBottom}/>
+                </>
+            }
+
 
             { props.children }
         </div>

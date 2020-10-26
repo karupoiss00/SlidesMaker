@@ -1,12 +1,14 @@
 import React from "react";
 import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
-import {SlidesMaker, addSlide, setSelectedSlide} from "../../model/SlidesMaker";
+import {SlidesMakerSlideType} from "../../model/SlidesMaker";
 import styles from "./SlideListView.module.css";
 
 interface SlideListViewProps {
-    slidesMaker: SlidesMaker;
-    onChange: (newState: SlidesMaker) => any;
+    slideList: Array<SlidesMakerSlideType>;
+    currentSlide: number | null;
+    onChangeSelectedSlide: (newSlide: number) => any;
+    onAddSlide: () => any;
 }
 
 const scrollSlideList = (className: string, deltaX: number) => {
@@ -18,27 +20,31 @@ const scrollSlideList = (className: string, deltaX: number) => {
 }
 
 function SlideListView(props: SlideListViewProps) {
-    const listItems = props.slidesMaker.slideList.map((value) => {
-        const slideNumber = props.slidesMaker.slideList.findIndex(value1 => value1 === value);
+    const listItems = props.slideList.map((value) => {
+        const slideNumber = props.slideList.findIndex(value1 => value1 === value);
 
         let cssStyleName: string;
-        const isSelectedSlide: boolean = slideNumber === props.slidesMaker.currentSlide;
+        const isSelectedSlide: boolean = slideNumber === props.currentSlide;
         isSelectedSlide
          ? cssStyleName = styles.slideViewIconSelected
          : cssStyleName = styles.slideViewIcon;
 
         return (<div className={styles.slideViewIconContainer} key={slideNumber} onClick={
                 () => {
-                    props.onChange(setSelectedSlide(props.slidesMaker, slideNumber));
+                    props.onChangeSelectedSlide(slideNumber);
                 }}>
             <SlideView
                 className={cssStyleName}
-                slide={props.slidesMaker.slideList[slideNumber].slide}
-                key={props.slidesMaker.slideList[slideNumber].id}
+                slide={props.slideList[slideNumber].slide}
+                selectedObject={null}
+                update={() => {
+                    return;
+                }}
+                key={props.slideList[slideNumber].id}
             />
             {
                 isSelectedSlide &&
-                    <div className={styles.selectedSlideMarker}></div>
+                    <div className={styles.selectedSlideMarker}/>
             }
         </div>)
 
@@ -48,16 +54,16 @@ function SlideListView(props: SlideListViewProps) {
         <div className={styles.slideListContainer}>
             <Button className={styles.slideListScrollButton} text="<" onClick={ () => {
                 scrollSlideList(styles.slideList, -600);
-            }}></Button>
+            }}/>
             <div className={styles.slideList}>
                 {listItems}
                 <Button className={styles.slideListAddButton} text="+" onClick={() => {
-                    props.onChange(addSlide(props.slidesMaker));
-                }}></Button>
+                    props.onAddSlide();
+                }}/>
             </div>
             <Button className={styles.slideListScrollButton} text=">" onClick={ () => {
                 scrollSlideList(styles.slideList, 600);
-            }}></Button>
+            }}/>
         </div>
     )
 }

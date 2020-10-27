@@ -52,16 +52,16 @@ function SlideListView(props: SlideListViewProps) {
 
     return (
         <div className={styles.slideListContainer}>
-            <Button className={styles.slideListScrollButton} text="<" onClick={ () => {
+            <Button className={styles.slideListScrollButton} children="<" onClick={ () => {
                 scrollSlideList(styles.slideList, -600);
             }}/>
             <div className={styles.slideList}>
                 {listItems}
-                <Button className={styles.slideListAddButton} text="+" onClick={() => {
+                <Button className={styles.slideListAddButton} children="+" onClick={() => {
                     props.onAddSlide();
                 }}/>
             </div>
-            <Button className={styles.slideListScrollButton} text=">" onClick={ () => {
+            <Button className={styles.slideListScrollButton} children=">" onClick={ () => {
                 scrollSlideList(styles.slideList, 600);
             }}/>
         </div>

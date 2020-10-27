@@ -35,7 +35,6 @@ function TextBoxView(props: TextBoxViewProps) {
                             props.onClick && props.objectId &&
                                 props.onClick(props.objectId);
                         }
-
                       }
             />
         </RectView>

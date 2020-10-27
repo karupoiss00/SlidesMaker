@@ -18,12 +18,12 @@ export function RectView(props: RectViewProps) {
             border: props.visibility ? "2px dashed #2C2C2C" : "none",
         }}>
             {props.visibility &&
-                <>
+                <div>
                     <div className={styles.rectDotLeftTop}/>
                     <div className={styles.rectDotLeftBottom}/>
                     <div className={styles.rectDotRightTop}/>
                     <div className={styles.rectDotRightBottom}/>
-                </>
+                </div>
             }
 
 

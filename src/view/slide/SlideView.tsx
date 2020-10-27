@@ -56,6 +56,7 @@ function getSlideBackground(slide: Slide | null): string {
     return background;
 }
 
+
 function SlideView(props: SlideViewProps) {
     const currentSlide: Slide | null = props.slide;
 

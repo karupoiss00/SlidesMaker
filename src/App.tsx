@@ -36,7 +36,6 @@ function App(props: AppProps) {
                     selectedObject={appState.selectedObjectId}
                     update={updateSelectedObject}
                 />
-
             }
             <SlideListView
                 slideList={appState.slideList}

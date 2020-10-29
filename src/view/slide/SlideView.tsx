@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react'
 import {Slide} from "../../model/slide/Slide";
 import {TextBoxView} from "../objects_view/TextBoxView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
+import {ShapeView} from "../objects_view/ShapeView";
 
 interface SlideViewProps {
     className: string;
@@ -29,6 +30,24 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                              key={pair.id}
                              objectId={pair.id}
                              onClick={callback}
+                />
+            );
+        }
+        else if ("shapeType" in pair.object) {
+            let isSelectedObject = false;
+            if (selectedObject)
+            {
+                if (pair.id === selectedObject)
+                {
+                    isSelectedObject = true;
+                }
+            }
+            slideObjects.push(
+                <ShapeView shape={pair.object}
+                           isSelected={isSelectedObject}
+                           key={pair.id}
+                           objectId={pair.id}
+                           onClick={callback}
                 />
             );
         }

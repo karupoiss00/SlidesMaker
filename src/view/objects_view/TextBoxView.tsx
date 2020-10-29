@@ -3,6 +3,9 @@ import styles from "./TextBoxView.module.css";
 import {TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {RectView} from "./RectView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
+import {Rect} from "../../model/types/Rect";
+import {Paragraph} from "../../model/types/Paragraph";
+import {Font} from "../../model/types/Font";
 
 interface TextBoxViewProps {
     textBox: TextBox;
@@ -12,10 +15,10 @@ interface TextBoxViewProps {
 }
 
 function TextBoxView(props: TextBoxViewProps) {
-    const textBox = props.textBox;
-    const rect = textBox.rect;
-    const font = textBox.font;
-    const paragraph = textBox.paragraph;
+    const textBox: TextBox = props.textBox;
+    const rect: Rect = textBox.rect;
+    const paragraph: Paragraph = textBox.paragraph;
+    const font: Font = textBox.font;
 
     return (
         <RectView rect={rect} visibility={props.isSelected}>

@@ -18,6 +18,9 @@ import {createRect} from "./model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "./model/types/Paragraph";
 import {Alignment} from "./model/types/Alignment";
 import {createFont, setFontFontColor} from "./model/types/Font";
+import {createShape, setShapeShapeType, setShapeStrokeColor} from "./model/slide/slide_objects/shape/Shape";
+import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
+import {createStyle} from "./model/types/Style";
 
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
@@ -34,6 +37,15 @@ slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBox
         setParagraphAlignment(createParagraph(), Alignment.CENTER),
         setFontFontColor(createFont('Courier', 30), Colors.GREEN)),
     'Test Text Box 1')));
+
+slidesMaker = setSelectedSlide(slidesMaker, 0);
+
+slidesMaker = addObjectOnSelectedSlide(slidesMaker,  setShapeStrokeColor(setShapeShapeType(createShape(
+    ShapeType.RECTANGLE,
+    createRect(400, 200, 300, 300),
+    createStyle(Colors.GREEN, Colors.BLUE, 20)),
+    ShapeType.TRIANGLE),
+    Colors.BLACK));
 
 ReactDOM.render(
   <React.StrictMode>

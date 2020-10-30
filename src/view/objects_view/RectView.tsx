@@ -6,15 +6,18 @@ interface RectViewProps {
     children?: ReactNode;
     rect: Rect;
     visibility: boolean;
+    scale?: number;
 }
 
 export function RectView(props: RectViewProps) {
+    const scale: number = props.scale ? props.scale : 1;
+
     return (
         <div className={styles.rect} style={{
-            left: props.rect.x,
-            top: props.rect.y,
-            width: props.rect.width,
-            height: props.rect.height,
+            left: props.rect.x * scale,
+            top: props.rect.y * scale,
+            width: props.rect.width * scale,
+            height: props.rect.height * scale,
             border: props.visibility ? "2px dashed #2C2C2C" : "none",
         }}>
             {props.visibility &&

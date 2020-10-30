@@ -4,6 +4,8 @@ import {SlideView} from "../slide/SlideView";
 import {SlidesMakerSlideType} from "../../model/SlidesMaker";
 import styles from "./SlideListView.module.css";
 
+const SLIDE_VIEW_ICON_SCALE = 0.25;
+
 interface SlideListViewProps {
     slideList: Array<SlidesMakerSlideType>;
     currentSlide: number | null;
@@ -41,6 +43,7 @@ function SlideListView(props: SlideListViewProps) {
                     return;
                 }}
                 key={props.slideList[slideNumber].id}
+                scale={SLIDE_VIEW_ICON_SCALE}
             />
             {
                 isSelectedSlide &&

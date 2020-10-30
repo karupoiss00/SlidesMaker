@@ -33,15 +33,14 @@
 
 .slideListAddButton {
     display: flex;
-    width: 35vh;
     align-items: center;
     justify-content: center;
     font-size: 100px;
-    min-width: 35vh;
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
     color: #8e8e8e;
+    width: 16vw;
+    height: 9vw;
+    min-width: 16vw;
+    margin: 10px 20px 20px;
 }
 
 .slideViewIconContainer {
@@ -57,21 +56,25 @@
 }
 
 .selectedSlideMarker {
+    position: absolute;
     width: 100%;
     height: 5%;
     background: #f24e1e;
-    position: absolute;
+
 }
 
 .slideViewIcon {
+    margin-bottom: auto;
     position: relative;
-    height: 100%;
-    width: 35vh;
+    width: 16vw;
+    height: 9vw;
 }
 
 .slideViewIconSelected {
-    height: 100%;
-    width: 35vh;
+    margin-bottom: auto;
+    width: 16vw;
+    height: 9vw;
+    margin-top: 0;
 }
 
 .slideList {
@@ -81,7 +84,7 @@
     width: 100%;
     height: 107%;
     overflow-x: scroll;
-    overflow-y: hidden;
+    //overflow-y: hidden;
 }
 
 .slideViewIconContainer {
@@ -89,8 +92,5 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    position: relative;
+    margin: 10px 20px auto;
 }

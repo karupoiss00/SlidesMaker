@@ -8,10 +8,11 @@ interface SlideViewProps {
     className: string;
     slide: Slide | null;
     selectedObject: Id | null;
+    scale?: number;
     update: (newSelectedId: Id | null) => any;
 }
 
-function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (newSelectedId: Id | null) => void): Array<ReactNode> {
+function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
     const slideObjects: Array<ReactNode> = [];
 
     slide.objects.forEach((pair) => {
@@ -30,6 +31,7 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                              key={pair.id}
                              objectId={pair.id}
                              onClick={callback}
+                             scale={scale}
                 />
             );
         }
@@ -48,6 +50,7 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                            key={pair.id}
                            objectId={pair.id}
                            onClick={callback}
+                           scale={scale}
                 />
             );
         }
@@ -78,6 +81,7 @@ function getSlideBackground(slide: Slide | null): string {
 
 function SlideView(props: SlideViewProps) {
     const currentSlide: Slide | null = props.slide;
+    const scale: number = props.scale ? props.scale : 1;
 
     return (
         <div className={props.className}
@@ -90,7 +94,7 @@ function SlideView(props: SlideViewProps) {
                  () => props.update(null)
              }
         >
-            {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update)}
+            {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}
         </div>
     )
 

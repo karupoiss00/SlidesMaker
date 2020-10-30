@@ -10,6 +10,7 @@ interface ShapeViewProps {
     shape: Shape;
     objectId: Id;
     isSelected: boolean;
+    scale?: number;
     onClick: ((newId: Id) => any) | null;
 }
 
@@ -18,9 +19,10 @@ function ShapeView(props: ShapeViewProps) {
     const shapeType: ShapeType = shape.shapeType;
     const rect: Rect = shape.rect;
     const style: Style = shape.style;
+    const scale: number = props.scale ? props.scale : 1;
 
     return (
-        <RectView rect={rect} visibility={props.isSelected}>
+        <RectView rect={rect} visibility={props.isSelected} scale={scale}>
             <svg viewBox={`0 0 ${rect.width} ${rect.height}`}
                  width="100%" height="100%"
                  xmlns="http://www.w3.org/2000/svg"

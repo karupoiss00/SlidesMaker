@@ -17,28 +17,28 @@ function Panel() {
                     onClick={() => {
                     return;
                 }} >
-                    <img src={ExportIcon} />
+                    <img src={ExportIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
                         return;
                     }} >
-                    <img src={ImportIcon} />
+                    <img src={ImportIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
                         return;
                     }} >
-                    <img src={UndoIcon} />
+                    <img src={UndoIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
                         return;
                     }} >
-                    <img src={RedoIcon} />
+                    <img src={RedoIcon} alt={"Oops!"}/>
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>

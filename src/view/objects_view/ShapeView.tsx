@@ -10,7 +10,7 @@ interface ShapeViewProps {
     shape: Shape;
     objectId: Id;
     isSelected: boolean;
-    onClick: ((nedId: Id) => any) | null;
+    onClick: ((newId: Id) => any) | null;
 }
 
 function ShapeView(props: ShapeViewProps) {
@@ -30,9 +30,9 @@ function ShapeView(props: ShapeViewProps) {
                         props.onClick(props.objectId);
                  }}>
 
-                {shapeType == 'rectangle' ? (<rect x={`${style.strokeWidth / 2}`} y={`${style.strokeWidth / 2}`} width={`${rect.width - style.strokeWidth}`} height={`${rect.height - style.strokeWidth}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
-                {shapeType == 'triangle' ? (<polygon points={`${style.strokeWidth},${rect.height - style.strokeWidth / 2} ${rect.width / 2},${style.strokeWidth * 1.5} ${rect.width - style.strokeWidth},${rect.height - style.strokeWidth / 2}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
-                {shapeType == 'ellipse' ? (<ellipse cx="50%" cy="50%" rx={`${(rect.width - style.strokeWidth) / 2}`} ry={`${(rect.height - style.strokeWidth)/ 2}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
+                {shapeType === 'rectangle' ? (<rect x={`${style.strokeWidth / 2}`} y={`${style.strokeWidth / 2}`} width={`${rect.width - style.strokeWidth}`} height={`${rect.height - style.strokeWidth}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
+                {shapeType === 'triangle' ? (<polygon points={`${style.strokeWidth},${rect.height - style.strokeWidth / 2} ${rect.width / 2},${style.strokeWidth * 1.5} ${rect.width - style.strokeWidth},${rect.height - style.strokeWidth / 2}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
+                {shapeType === 'ellipse' ? (<ellipse cx="50%" cy="50%" rx={`${(rect.width - style.strokeWidth) / 2}`} ry={`${(rect.height - style.strokeWidth)/ 2}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
             </svg>
         </RectView>
     )

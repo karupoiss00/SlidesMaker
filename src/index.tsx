@@ -41,11 +41,11 @@ slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBox
 slidesMaker = setSelectedSlide(slidesMaker, 0);
 
 slidesMaker = addObjectOnSelectedSlide(slidesMaker,  setShapeStrokeColor(setShapeShapeType(createShape(
-    ShapeType.RECTANGLE,
+    ShapeType.ELLIPSE,
     createRect(400, 200, 300, 300),
-    createStyle(Colors.GREEN, Colors.BLUE, 20)),
-    ShapeType.TRIANGLE),
-    Colors.BLACK));
+    createStyle(Colors.GREEN, Colors.GAINSBORO, 10)),
+    ShapeType.ELLIPSE),
+    Colors.GAINSBORO));
 
 ReactDOM.render(
   <React.StrictMode>

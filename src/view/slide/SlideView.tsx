@@ -3,6 +3,7 @@ import {Slide} from "../../model/slide/Slide";
 import {TextBoxView} from "../objects_view/TextBoxView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {ShapeView} from "../objects_view/ShapeView";
+import {PictureView} from "../objects_view/PictureView";
 
 interface SlideViewProps {
     className: string;
@@ -46,6 +47,25 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
             }
             slideObjects.push(
                 <ShapeView shape={pair.object}
+                           isSelected={isSelectedObject}
+                           key={pair.id}
+                           objectId={pair.id}
+                           onClick={callback}
+                           scale={scale}
+                />
+            );
+        }
+        else if ("src" in pair.object) {
+            let isSelectedObject = false;
+            if (selectedObject)
+            {
+                if (pair.id === selectedObject)
+                {
+                    isSelectedObject = true;
+                }
+            }
+            slideObjects.push(
+                <PictureView picture={pair.object}
                            isSelected={isSelectedObject}
                            key={pair.id}
                            objectId={pair.id}

@@ -8,7 +8,7 @@ export type Picture = {
 function createPicture(src: string): Picture {
     return {
         src: src,
-        rect: createRect(100, 100, 100, 100),
+        rect: createRect(100, 100, 300, 300),
     }
 }
 

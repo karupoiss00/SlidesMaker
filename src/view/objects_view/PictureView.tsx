@@ -21,8 +21,8 @@ function PictureView(props: PictureViewProps) {
         <RectView rect={rect} visibility={props.isSelected} scale={scale}>
             <img src={src}
                  alt={"picture"}
-                 width={rect.width - 17}
-                 height={rect.height - 20}
+                 width={rect.width}
+                 height={rect.height}
                  onClick={ (e) => {
                     e.stopPropagation();
                     props.onClick && props.objectId &&

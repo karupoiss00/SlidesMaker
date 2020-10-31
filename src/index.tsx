@@ -34,10 +34,10 @@ slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
 slidesMaker = setSelectedSlide(slidesMaker, 1);
 
 slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBoxText(createTextBox(
-        createRect(400, 500, 500, 300),
+        createRect(500, 400, 500, 300),
         setParagraphAlignment(createParagraph(), Alignment.CENTER),
-        setFontFontColor(createFont('Courier', 50), Colors.GREEN)),
-    'Test Text Box 1')));
+        setFontFontColor(createFont('Courier', 50), Colors.BLUE)),
+    'Test Text Box 1'   )));
 
 slidesMaker = setSelectedSlide(slidesMaker, 0);
 

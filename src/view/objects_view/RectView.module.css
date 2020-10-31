@@ -6,7 +6,7 @@
     border: 2px dashed #2C2C2C;
     background: transparent;
     cursor: move;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     padding: 7px;
 }
 

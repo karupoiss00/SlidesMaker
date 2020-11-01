@@ -3,6 +3,8 @@ import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMakerSlideType} from "../../model/SlidesMaker";
 import styles from "./SlideListView.module.css";
+import ArrowLeft from "./arrow_left.svg"
+import ArrowRight from "./arrow_right.svg"
 
 const SLIDE_VIEW_ICON_SCALE = 0.25;
 
@@ -22,6 +24,7 @@ const scrollSlideList = (className: string, deltaX: number) => {
 }
 
 function SlideListView(props: SlideListViewProps) {
+
     const listItems = props.slideList.map((value) => {
         const slideNumber = props.slideList.findIndex(value1 => value1 === value);
 
@@ -55,20 +58,23 @@ function SlideListView(props: SlideListViewProps) {
 
     return (
         <div className={styles.slideListContainer}>
-            <Button className={styles.slideListScrollButton} children="<" onClick={ () => {
+            <Button className={styles.slideListScrollButton} onClick={ () => {
                 scrollSlideList(styles.slideList, -600);
-            }}/>
+            }}>
+                <img src={ArrowLeft} alt={"Oops!"}/>
+            </Button>
             <div className={styles.slideList}
-
             >
                 {listItems}
                 <Button className={styles.slideListAddButton} children="+" onClick={() => {
                     props.onAddSlide();
                 }}/>
             </div>
-            <Button className={styles.slideListScrollButton} children=">" onClick={ () => {
+            <Button className={styles.slideListScrollButton} onClick={ () => {
                 scrollSlideList(styles.slideList, 600);
-            }}/>
+            }}>
+                <img src={ArrowRight} alt={"Oops!"}/>
+            </Button>
 
         </div>
     )

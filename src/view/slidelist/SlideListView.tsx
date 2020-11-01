@@ -1,4 +1,4 @@
-import React from "react";
+import React, {MutableRefObject, useEffect, useRef, useState} from "react";
 import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMakerSlideType} from "../../model/SlidesMaker";
@@ -58,7 +58,9 @@ function SlideListView(props: SlideListViewProps) {
             <Button className={styles.slideListScrollButton} children="<" onClick={ () => {
                 scrollSlideList(styles.slideList, -600);
             }}/>
-            <div className={styles.slideList}>
+            <div className={styles.slideList}
+
+            >
                 {listItems}
                 <Button className={styles.slideListAddButton} children="+" onClick={() => {
                     props.onAddSlide();
@@ -67,6 +69,7 @@ function SlideListView(props: SlideListViewProps) {
             <Button className={styles.slideListScrollButton} children=">" onClick={ () => {
                 scrollSlideList(styles.slideList, 600);
             }}/>
+
         </div>
     )
 }

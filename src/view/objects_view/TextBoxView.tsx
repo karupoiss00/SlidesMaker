@@ -42,7 +42,6 @@ function TextBoxView(props: TextBoxViewProps) {
                                 props.onClick(props.objectId);
                         }
                       }
-                      contentEditable={!props.isSelected}
             />
         </RectView>
     )

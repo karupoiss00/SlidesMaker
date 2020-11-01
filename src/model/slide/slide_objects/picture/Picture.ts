@@ -6,9 +6,6 @@ export type Picture = {
 }
 
 function createPicture(src: string): Picture {
-    const img: HTMLImageElement = new Image();
-    img.src = src;
-
     return {
         src: src,
         rect: createRect(100, 100, 300, 189),

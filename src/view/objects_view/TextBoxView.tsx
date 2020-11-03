@@ -24,25 +24,45 @@ function TextBoxView(props: TextBoxViewProps) {
 
     return (
         <RectView rect={rect} visibility={props.isSelected} scale={scale}>
-            <textarea className={styles.textBoxInput}
-                      style={{
-                        fontWeight: font.isBold ? "bold" : "normal",
-                        fontStyle: font.isItalic ? "italic" : "normal",
-                        textDecoration: font.isUnderlined ? "underline" : "none",
-                        fontFamily: font.fontName,
-                        fontSize: (Math.floor(font.fontSize * scale)).toString() + "px",
-                        color: font.fontColor.toString(),
-                        textAlign: paragraph.alignmentState
-                      }}
-                      defaultValue={props.textBox.text}
+            {scale === 1
+            ?<textarea className={styles.textBoxInput}
+                       style={{
+                           fontWeight: font.isBold ? "bold" : "normal",
+                           fontStyle: font.isItalic ? "italic" : "normal",
+                           textDecoration: font.isUnderlined ? "underline" : "none",
+                           fontFamily: font.fontName,
+                           fontSize: (Math.floor(font.fontSize * scale)).toString() + "px",
+                           color: font.fontColor.toString(),
+                           textAlign: paragraph.alignmentState,
+                       }}
+                       defaultValue={props.textBox.text}
 
-                      onClick={ (e) => {
-                            e.stopPropagation();
-                            props.onClick && props.objectId &&
+                       onClick={ (e) => {
+                           e.stopPropagation();
+                           props.onClick &&
                                 props.onClick(props.objectId);
-                        }
-                      }
-            />
+                            }
+                       }
+             />
+            :<p className={styles.textBoxListView}
+                style={{
+                    fontWeight: font.isBold ? "bold" : "normal",
+                    fontStyle: font.isItalic ? "italic" : "normal",
+                    textDecoration: font.isUnderlined ? "underline" : "none",
+                    fontFamily: font.fontName,
+                    fontSize: (Math.floor(font.fontSize * scale)).toString() + "px",
+                    color: font.fontColor.toString(),
+                    textAlign: paragraph.alignmentState,
+                }}
+
+                onClick={ (e) => {
+                    e.stopPropagation();
+                    props.onClick &&
+                        props.onClick(props.objectId);
+                }}
+             >
+                    {props.textBox.text}
+             </p>}
         </RectView>
     )
 }

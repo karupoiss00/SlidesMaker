@@ -28,7 +28,7 @@ function ShapeView(props: ShapeViewProps) {
                  xmlns="http://www.w3.org/2000/svg"
                  onClick={ (e) => {
                      e.stopPropagation();
-                     props.onClick && props.objectId &&
+                     props.onClick &&
                         props.onClick(props.objectId);
                  }}>
 

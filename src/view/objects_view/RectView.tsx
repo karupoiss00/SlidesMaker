@@ -19,6 +19,8 @@ export function RectView(props: RectViewProps) {
             width: props.rect.width * scale,
             height: props.rect.height * scale,
             border: props.visibility ? "2px dashed #2C2C2C" : "none",
+            cursor: scale === 1 ? "move" : "inherit",
+
         }}>
             {props.visibility &&
                 <div>

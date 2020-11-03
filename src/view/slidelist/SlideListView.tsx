@@ -24,7 +24,6 @@ const scrollSlideList = (className: string, deltaX: number) => {
 }
 
 function SlideListView(props: SlideListViewProps) {
-
     const listItems = props.slideList.map((value) => {
         const slideNumber = props.slideList.findIndex(value1 => value1 === value);
 
@@ -38,21 +37,21 @@ function SlideListView(props: SlideListViewProps) {
                 () => {
                     props.onChangeSelectedSlide(slideNumber);
                 }}>
-            <SlideView
-                className={cssStyleName}
-                slide={props.slideList[slideNumber].slide}
-                selectedObject={null}
-                update={() => {
-                    return;
-                }}
-                key={props.slideList[slideNumber].id}
-                scale={SLIDE_VIEW_ICON_SCALE}
-            />
-            {
-                isSelectedSlide &&
-                    <div className={styles.selectedSlideMarker}/>
-            }
-        </div>)
+                    <SlideView
+                        className={cssStyleName}
+                        slide={props.slideList[slideNumber].slide}
+                        selectedObject={null}
+                        update={() => {
+                            return;
+                        }}
+                        key={props.slideList[slideNumber].id}
+                        scale={SLIDE_VIEW_ICON_SCALE}
+                    />
+                    {
+                        isSelectedSlide &&
+                            <div className={styles.selectedSlideMarker}/>
+                    }
+                </div>)
 
     });
 
@@ -63,8 +62,7 @@ function SlideListView(props: SlideListViewProps) {
             }}>
                 <img src={ArrowLeft} alt={"Oops!"}/>
             </Button>
-            <div className={styles.slideList}
-            >
+            <div className={styles.slideList}>
                 {listItems}
                 <Button className={styles.slideListAddButton} children="+" onClick={() => {
                     props.onAddSlide();

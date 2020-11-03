@@ -17,15 +17,15 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
     const slideObjects: Array<ReactNode> = [];
 
     slide.objects.forEach((pair) => {
-        if ("text" in pair.object) {
-            let isSelectedObject = false;
-            if (selectedObject)
+        let isSelectedObject = false;
+        if (selectedObject)
+        {
+            if (pair.id === selectedObject)
             {
-                if (pair.id === selectedObject)
-                {
-                    isSelectedObject = true;
-                }
+                isSelectedObject = true;
             }
+        }
+        if ("text" in pair.object) {
             slideObjects.push(
                 <TextBoxView textBox={pair.object}
                              isSelected={isSelectedObject}
@@ -37,14 +37,6 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
             );
         }
         else if ("shapeType" in pair.object) {
-            let isSelectedObject = false;
-            if (selectedObject)
-            {
-                if (pair.id === selectedObject)
-                {
-                    isSelectedObject = true;
-                }
-            }
             slideObjects.push(
                 <ShapeView shape={pair.object}
                            isSelected={isSelectedObject}
@@ -56,21 +48,13 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
             );
         }
         else if ("src" in pair.object) {
-            let isSelectedObject = false;
-            if (selectedObject)
-            {
-                if (pair.id === selectedObject)
-                {
-                    isSelectedObject = true;
-                }
-            }
             slideObjects.push(
                 <PictureView picture={pair.object}
-                           isSelected={isSelectedObject}
-                           key={pair.id}
-                           objectId={pair.id}
-                           onClick={callback}
-                           scale={scale}
+                             isSelected={isSelectedObject}
+                             key={pair.id}
+                             objectId={pair.id}
+                             onClick={callback}
+                             scale={scale}
                 />
             );
         }
@@ -84,13 +68,13 @@ function getSlideBackground(slide: Slide | null): string {
 
     if (slide)
     {
-        if (typeof(slide.background) !== "string")
+        if (typeof(slide.background) === "string")
         {
-            background = `center / cover no-repeat url(${slide.background.src})`;
+            background = slide.background;
         }
         else
         {
-            background = slide.background;
+            background = `center / cover no-repeat url(${slide.background.src})`;
         }
 
     }
@@ -105,11 +89,7 @@ function SlideView(props: SlideViewProps) {
 
     return (
         <div className={props.className}
-             style={
-                 {
-                     background: getSlideBackground(currentSlide)
-                 }
-             }
+             style={{background: getSlideBackground(currentSlide)}}
              onClick={
                  () => props.update(null)
              }

@@ -26,7 +26,6 @@ function PictureView(props: PictureViewProps) {
                  width={rect.width * scale}
                  height={rect.height * scale}
                  className={styles.picture}
-                 draggable={"false"}
 
                  onClick={ (e) => {
                     e.stopPropagation();

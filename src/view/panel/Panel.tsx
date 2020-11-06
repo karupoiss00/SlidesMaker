@@ -7,6 +7,10 @@ import ExportIcon from "./res/presentation/export.svg";
 import ImportIcon from "./res/presentation/import.svg";
 import UndoIcon from "./res/presentation/undo.svg";
 import RedoIcon from "./res/presentation/redo.svg";
+import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
+import AddFigureIcon from "./res/shapes/addShape.svg";
+import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
+import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 
 function Panel() {
     return (
@@ -43,11 +47,38 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>
-
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        return;
+                    }} >
+                    <img src={AddTextBoxIcon} alt={"Oops!"}/>
+                </Button>
             </PanelSection>
             <PanelSection sectionName={"Shapes"}>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        return;
+                    }} >
+                    <img src={AddFigureIcon} alt={"Oops!"}/>
+                </Button>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        return;
+                    }} >
+                    <img src={AddWebPictureIcon} alt={"Oops!"}/>
+                </Button>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        return;
+                    }} >
+                    <img src={UploadPictureIcon} alt={"Oops!"}/>
+                </Button>
             </PanelSection>
         </div>
     )

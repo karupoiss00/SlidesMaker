@@ -5,6 +5,8 @@ import {SlidesMakerSlideType} from "../../model/SlidesMaker";
 import styles from "./SlideListView.module.css";
 import ArrowLeft from "./arrow_left.svg"
 import ArrowRight from "./arrow_right.svg"
+import Plus from "./plus.svg";
+import AddWebPictureIcon from "../panel/res/pictures/addWebPic.svg";
 
 const SLIDE_VIEW_ICON_SCALE = 0.25;
 
@@ -64,7 +66,9 @@ function SlideListView(props: SlideListViewProps) {
             </Button>
             <div className={styles.slideList}>
                 {listItems}
-                <Button className={styles.slideListAddButton} children="+" onClick={() => {
+                <Button className={styles.slideListAddButton} children={
+                    <img src={Plus} alt={"Oops!"}/>
+                } onClick={() => {
                     props.onAddSlide();
                 }}/>
             </div>

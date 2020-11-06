@@ -25,7 +25,7 @@ import {createStyle} from "./model/types/Style";
 let slidesMaker: SlidesMaker = createSlidesMaker();
 
 const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
-const testBackgroundPicture3: Picture = createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg");
+const testBackgroundPicture3: Picture = createPicture("https://image.freepik.com/free-photo/jealous-and-sad-cute-guy-complaining-as-pointing-finger-upper-left-corner_176420-18943.jpg");
 const testBackgroundColor: Colors = Colors.BROWN;
 
 slidesMaker = setBackground(slidesMaker, testBackgroundColor);

@@ -35,16 +35,16 @@ function TextBoxView(props: TextBoxViewProps) {
         <RectView rect={rect} visibility={props.isSelected} scale={scale}>
             {scale === 1
                 ?
-                 <textarea className={styles.textBoxInput}
-                           style={style}
-                           defaultValue={props.textBox.text}
-                           onClick={ (e) => {
-                                   e.stopPropagation();
-                                   props.onClick &&
-                                        props.onClick(props.objectId);
-                                }
-                           }
-                 />
+                     <textarea className={styles.textBoxInput}
+                               style={style}
+                               defaultValue={props.textBox.text}
+                               onClick={ (e) => {
+                                       e.stopPropagation();
+                                       props.onClick &&
+                                            props.onClick(props.objectId);
+                                    }
+                               }
+                     />
                 :
                     <p className={styles.textBoxListView}
                        style={style}

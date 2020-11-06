@@ -22,7 +22,7 @@ function PictureView(props: PictureViewProps) {
     return (
         <RectView rect={rect} visibility={props.isSelected} scale={scale}>
             <img src={src}
-                 alt={"picture"}
+                 alt={"oops"}
                  width={rect.width * scale}
                  height={rect.height * scale}
                  className={styles.picture}

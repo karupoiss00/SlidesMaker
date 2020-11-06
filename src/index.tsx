@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {dispatch, start} from "./EventDispatecher";
 import {
     addObjectOnSelectedSlide,
     addSlide,
-    createSlidesMaker,
     setBackground,
     setSelectedSlide,
-    SlidesMaker
 } from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
 import {createPicture, Picture} from "./model/slide/slide_objects/picture/Picture";
@@ -22,45 +17,29 @@ import {createShape, setShapeShapeType, setShapeStrokeColor} from "./model/slide
 import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "./model/types/Style";
 
-let slidesMaker: SlidesMaker = createSlidesMaker();
-
 const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
 const testBackgroundPicture3: Picture = createPicture("https://image.freepik.com/free-photo/jealous-and-sad-cute-guy-complaining-as-pointing-finger-upper-left-corner_176420-18943.jpg");
 const testBackgroundColor: Colors = Colors.BROWN;
 
-slidesMaker = setBackground(slidesMaker, testBackgroundColor);
-slidesMaker = addSlide(slidesMaker);
-slidesMaker = setBackground(slidesMaker, testBackgroundPicture2);
-slidesMaker = setSelectedSlide(slidesMaker, 1);
-
-slidesMaker = addObjectOnSelectedSlide(slidesMaker, switchTextBoxBold(setTextBoxText(createTextBox(
-        createRect(500, 400, 500, 300),
-        setParagraphAlignment(createParagraph(), Alignment.CENTER),
-        setFontFontColor(createFont('Courier', 50), Colors.BLUE)),
-    'Test Text Box 1'   )));
-
-slidesMaker = setSelectedSlide(slidesMaker, 0);
-
-slidesMaker = addObjectOnSelectedSlide(slidesMaker,  setShapeStrokeColor(setShapeShapeType(createShape(
-    ShapeType.ELLIPSE,
-    createRect(400, 200, 300, 300),
-    createStyle(Colors.GREEN, Colors.GAINSBORO, 10)),
-    ShapeType.ELLIPSE),
-    Colors.GAINSBORO));
-
-slidesMaker = addSlide(slidesMaker);
-slidesMaker = setSelectedSlide(slidesMaker, 2);
-slidesMaker = setBackground(slidesMaker, testBackgroundPicture3);
-slidesMaker = addObjectOnSelectedSlide(slidesMaker, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App
-         appModel={slidesMaker}
-    />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+start();
+dispatch(setBackground, testBackgroundColor);
+dispatch(addSlide);
+dispatch(setBackground, testBackgroundPicture2);
+dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
+            createRect(500, 400, 500, 300),
+            setParagraphAlignment(createParagraph(), Alignment.CENTER),
+            setFontFontColor(createFont('Courier', 50), Colors.BLUE)),
+            'Test Text Box 1')));
+dispatch(setSelectedSlide, 0);
+dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createShape(
+            ShapeType.ELLIPSE,
+            createRect(400, 200, 300, 300),
+            createStyle(Colors.GREEN, Colors.GAINSBORO, 10)),
+            ShapeType.ELLIPSE),
+            Colors.GAINSBORO));
+dispatch(addSlide);
+dispatch(setBackground, testBackgroundPicture3);
+dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

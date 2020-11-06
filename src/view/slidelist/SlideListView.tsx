@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useEffect, useRef, useState} from "react";
+import React from "react";
 import {Button} from "../controls/Button";
 import {SlideView} from "../slide/SlideView";
 import {SlidesMakerSlideType} from "../../model/SlidesMaker";

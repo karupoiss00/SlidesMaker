@@ -1,45 +1,44 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from "./App.module.css";
 import {addSlide, setSelectedObject, setSelectedSlide, SlidesMaker} from "./model/SlidesMaker";
 import {Panel} from "./view/panel/Panel";
 import {SlideView} from "./view/slide/SlideView";
 import {SlideListView} from "./view/slidelist/SlideListView";
 import {Id} from "./model/slide/slide_objects/id/Id";
+import {dispatch} from "./EventDispatecher";
 
 interface AppProps {
     appModel: SlidesMaker;
 }
 
 function App(props: AppProps) {
-    const [appState, setAppState] = useState(props.appModel);
-
     const updateSelectedObject = (newSelectedId: Id | null) => {
-        setAppState(setSelectedObject(appState, newSelectedId));
+        dispatch(setSelectedObject, newSelectedId);
     }
 
     const addNewSlide = () => {
-        setAppState(addSlide(appState));
+        dispatch(addSlide);
     }
 
     const updateSelectedSlide = (newSelectedSlideNumber: number) => {
-        setAppState(setSelectedSlide(appState, newSelectedSlideNumber));
+        dispatch(setSelectedSlide, newSelectedSlideNumber);
     }
 
     return (
         <div className={styles.view}>
             <Panel/>
             {
-                appState.currentSlide !== null &&
+                props.appModel.currentSlide !== null &&
                 <SlideView
                     className={styles.slideView}
-                    slide={appState.slideList[appState.currentSlide].slide}
-                    selectedObject={appState.selectedObjectId}
+                    slide={props.appModel.slideList[props.appModel.currentSlide].slide}
+                    selectedObject={props.appModel.selectedObjectId}
                     update={updateSelectedObject}
                 />
             }
             <SlideListView
-                slideList={appState.slideList}
-                currentSlide={appState.currentSlide}
+                slideList={props.appModel.slideList}
+                currentSlide={props.appModel.currentSlide}
                 onAddSlide={addNewSlide}
                 onChangeSelectedSlide={updateSelectedSlide}
             />

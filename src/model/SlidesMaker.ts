@@ -21,9 +21,9 @@ function deepFreeze(o: Record<string, any>) {
     return o;
 }
 
-let deepClone = <T>(source: T): { [k: string]: any } => {
-    let results: { [k: string]: any } = {};
-    for (let P in source) {
+function deepClone<T>(source: T): { [k: string]: any } {
+    const results: { [k: string]: any } = {};
+    for (const P in source) {
         if (typeof source[P] === 'object') {
             results[P] = deepClone(source[P]);
         } else {
@@ -31,7 +31,7 @@ let deepClone = <T>(source: T): { [k: string]: any } => {
         }
     }
     return results;
-};
+}
 
 export type SlidesMakerSlideType = {
     slide: Slide;

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Panel.module.css';
 import {PanelSection} from "./PanelSection";
 import {Button} from "../controls/Button";
-
+import AppIcon from "./res/icon.svg";
 import ExportIcon from "./res/presentation/export.svg";
 import ImportIcon from "./res/presentation/import.svg";
 import UndoIcon from "./res/presentation/undo.svg";
@@ -11,6 +11,7 @@ import RedoIcon from "./res/presentation/redo.svg";
 function Panel() {
     return (
         <div className={styles.panelBar}>
+            <img style={{marginLeft: "25px"}} src={AppIcon} alt={"Oops!"}/>
             <PanelSection sectionName={"Presentation"}>
                 <Button
                     className={styles.panelSquareButton}
@@ -42,6 +43,7 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>
+
             </PanelSection>
             <PanelSection sectionName={"Shapes"}>
             </PanelSection>

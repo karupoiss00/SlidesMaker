@@ -5,7 +5,7 @@ import {Panel} from "./view/panel/Panel";
 import {SlideView} from "./view/slide/SlideView";
 import {SlideListView} from "./view/slidelist/SlideListView";
 import {Id} from "./model/slide/slide_objects/id/Id";
-import {dispatch} from "./EventDispatecher";
+import {dispatch} from "./StateManager";
 
 interface AppProps {
     appModel: SlidesMaker;
@@ -17,7 +17,7 @@ function App(props: AppProps) {
     }
 
     const addNewSlide = () => {
-        dispatch(addSlide);
+        dispatch(addSlide, undefined);
     }
 
     const updateSelectedSlide = (newSelectedSlideNumber: number) => {

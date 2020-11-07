@@ -1,5 +1,5 @@
 import * as serviceWorker from './serviceWorker';
-import {dispatch, start} from "./EventDispatecher";
+import {dispatch, start} from "./StateManager";
 import {
     addObjectOnSelectedSlide,
     addSlide,
@@ -23,7 +23,7 @@ const testBackgroundColor: Colors = Colors.BROWN;
 
 start();
 dispatch(setBackground, testBackgroundColor);
-dispatch(addSlide);
+dispatch<undefined>(addSlide, undefined);
 dispatch(setBackground, testBackgroundPicture2);
 dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
             createRect(500, 400, 500, 300),
@@ -37,7 +37,7 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             createStyle(Colors.GREEN, Colors.GAINSBORO, 10)),
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
-dispatch(addSlide);
+dispatch(addSlide, undefined);
 dispatch(setBackground, testBackgroundPicture3);
 dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
 

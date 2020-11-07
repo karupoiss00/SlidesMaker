@@ -23,17 +23,9 @@ function start() {
     render(appState);
 }
 
-function dispatch(fn: (app: SlidesMaker, param?: any) => SlidesMaker, arg?: any) {
+function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     addToHistory(appState);
-
-    if (arg !== undefined) {
-        appState = fn(appState, arg);
-    }
-    else
-    {
-        appState = fn(appState);
-    }
-
+    appState = fn(appState, arg);
     render(appState);
 }
 

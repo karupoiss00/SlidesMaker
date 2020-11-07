@@ -49,9 +49,12 @@ function TextBoxView(props: TextBoxViewProps) {
                     <p className={styles.textBoxListView}
                        style={style}
                        onClick={ (e) => {
-                           e.stopPropagation();
-                           props.onClick &&
-                                props.onClick(props.objectId);
+                           if (scale === 1)
+                           {
+                               e.preventDefault();
+                               props.onClick &&
+                                    props.onClick(props.objectId);
+                           }
                         }
                     }
                     >

@@ -28,9 +28,12 @@ function PictureView(props: PictureViewProps) {
                  className={styles.picture}
 
                  onClick={ (e) => {
-                    e.stopPropagation();
-                    props.onClick && props.objectId &&
-                        props.onClick(props.objectId);
+                     if (scale === 1)
+                     {
+                         e.preventDefault();
+                         props.onClick &&
+                         props.onClick(props.objectId);
+                     }
                  }}
             />
         </RectView>

@@ -91,7 +91,10 @@ function SlideView(props: SlideViewProps) {
         <div className={props.className}
              style={{background: getSlideBackground(currentSlide)}}
              onClick={
-                 () => props.update(null)
+                 (e) => {
+                     if (!e.defaultPrevented)
+                        props.update(null);
+                 }
              }
         >
             {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}

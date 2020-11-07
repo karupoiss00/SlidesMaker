@@ -27,9 +27,12 @@ function ShapeView(props: ShapeViewProps) {
                  width="100%" height="100%"
                  xmlns="http://www.w3.org/2000/svg"
                  onClick={ (e) => {
-                     e.stopPropagation();
-                     props.onClick &&
-                        props.onClick(props.objectId);
+                     if (scale === 1)
+                     {
+                         e.preventDefault();
+                         props.onClick &&
+                         props.onClick(props.objectId);
+                     }
                  }}>
 
                 {shapeType === 'rectangle' ? (<rect x={`${style.strokeWidth / 2}`} y={`${style.strokeWidth / 2}`} width={`${rect.width - style.strokeWidth}`} height={`${rect.height - style.strokeWidth}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}

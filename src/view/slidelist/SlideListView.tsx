@@ -6,7 +6,6 @@ import styles from "./SlideListView.module.css";
 import ArrowLeft from "./arrow_left.svg"
 import ArrowRight from "./arrow_right.svg"
 import Plus from "./plus.svg";
-import AddWebPictureIcon from "../panel/res/pictures/addWebPic.svg";
 
 const SLIDE_VIEW_ICON_SCALE = 0.25;
 

@@ -18,9 +18,34 @@ function render(state: SlidesMaker) {
     );
 }
 
+function undoAppState() {
+    const newAppState: SlidesMaker | undefined = undo(appState);
+    if (newAppState) {
+        appState = newAppState;
+    }
+    render(appState);
+}
+
+function redoAppState() {
+    const newAppState: SlidesMaker | undefined = redo();
+    if (newAppState) {
+        appState = newAppState;
+    }
+    render(appState);
+}
+
 function start() {
     appState = createSlidesMaker();
     render(appState);
+
+    window.addEventListener('keydown', (e) => {
+        if ((e.key === 'z' || e.key === 'я') && (e.metaKey || e.ctrlKey)) {
+            undoAppState();
+        }
+        else if ((e.key === 'y' || e.key === 'н') && (e.metaKey || e.ctrlKey)) {
+            redoAppState();
+        }
+    });
 }
 
 function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
@@ -29,7 +54,10 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     render(appState);
 }
 
+
 export {
     start,
-    dispatch
+    dispatch,
+    undoAppState,
+    redoAppState
 }

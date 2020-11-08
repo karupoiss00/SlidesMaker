@@ -11,6 +11,7 @@ import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
+import {redoAppState, undoAppState} from "../../StateManager";
 
 function Panel() {
     return (
@@ -34,14 +35,14 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        undoAppState();
                     }} >
                     <img src={UndoIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        redoAppState();
                     }} >
                     <img src={RedoIcon} alt={"Oops!"}/>
                 </Button>

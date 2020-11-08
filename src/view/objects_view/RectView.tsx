@@ -30,8 +30,6 @@ export function RectView(props: RectViewProps) {
                     <div className={styles.rectDotRightBottom}/>
                 </div>
             }
-
-
             { props.children }
         </div>
     );

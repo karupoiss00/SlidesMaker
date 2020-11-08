@@ -57,80 +57,72 @@ function createSlidesMaker(): SlidesMaker {
 
 function addSlide(slidesMaker: SlidesMaker): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker)) as SlidesMaker;
 
-    slideList.push({
+    newSlidesMaker.slideList.push({
         slide: createSlide(),
         id: generateId(),
     });
+    newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
 
-    return {
-        ...slidesMaker,
-        slideList: slideList,
-        currentSlide: slideList.length - 1
-    };
+    return newSlidesMaker;
 }
 
-function deleteSlide(slidesMaker: SlidesMaker, slideNumber: number): SlidesMaker {
+function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
 
-    if (slidesMaker.currentSlide !== null) {
-        if (slideNumber < slideList.length)
-        {
-            slideList.splice(slideNumber, 1);
-        }
+    if (newSlidesMaker.currentSlide !== null) {
+        newSlidesMaker.slideList.splice(newSlidesMaker.currentSlide, 1);
+        newSlidesMaker.currentSlide = newSlidesMaker.slideList.length - 1;
     }
 
-    return {
-        ...slidesMaker,
-        slideList: slideList,
-        currentSlide: slideList.length - 1
-    };
+    return newSlidesMaker;
 }
 
 function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): SlidesMaker {
     deepFreeze(slidesMaker);
-    return {
-        ...slidesMaker,
-        currentSlide: newSelectedSlide
-    };
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
+
+    newSlidesMaker.currentSlide = newSelectedSlide;
+
+    return newSlidesMaker;
 }
 
 function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | null): SlidesMaker {
     deepFreeze(slidesMaker);
-    return {
-        ...slidesMaker,
-        selectedObjectId: newSelectedObject
-    };
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
+
+    newSlidesMaker.selectedObjectId = newSelectedObject;
+
+    return newSlidesMaker;
 }
 
 function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Shape | Picture): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
 
-    if (slidesMaker.currentSlide !== null) {
-        const currentSlide: SlidesMakerSlideType = slideList[slidesMaker.currentSlide];
+    if (newSlidesMaker.currentSlide !== null) {
+        let currentSlide: SlidesMakerSlideType = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 
-        slideList[slidesMaker.currentSlide] = {
+        currentSlide = {
             ...currentSlide,
-            slide: addObject({...currentSlide.slide}, object)
-        };
+            slide: addObject(currentSlide.slide, object),
+        }
+
+        newSlidesMaker.slideList[newSlidesMaker.currentSlide] = currentSlide;
     }
 
-    return {
-        ...slidesMaker,
-        slideList: slideList
-    };
+    return newSlidesMaker;
 }
 
 function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
 
-    if (slidesMaker.currentSlide !== null && slidesMaker.selectedObjectId) {
-        let selectedObjectId: Id | null = slidesMaker.selectedObjectId;
-        let currentSlide: SlidesMakerSlideType = {...slideList[slidesMaker.currentSlide]};
+    if (newSlidesMaker.currentSlide !== null && newSlidesMaker.selectedObjectId) {
+        let selectedObjectId: Id | null = newSlidesMaker.selectedObjectId;
+        let currentSlide: SlidesMakerSlideType = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 
         currentSlide = {
             ...currentSlide,
@@ -138,38 +130,27 @@ function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
         }
         selectedObjectId = null;
 
-        slideList[slidesMaker.currentSlide] = currentSlide;
+        newSlidesMaker.slideList[newSlidesMaker.currentSlide] = currentSlide;
+        newSlidesMaker.selectedObjectId = selectedObjectId;
     }
 
-    return {
-        ...slidesMaker,
-        slideList: slideList,
-        selectedObjectId: null
-    };
+    return newSlidesMaker;
 }
 
 function setBackground(slidesMaker: SlidesMaker, background: Background): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const newSlidesMaker: SlidesMaker = deepClone(deepFreeze(slidesMaker))  as SlidesMaker;
 
-    if (slidesMaker.currentSlide !== null)
+    if (newSlidesMaker.currentSlide !== null)
     {
-        let currentSlide: SlidesMakerSlideType = slideList[slidesMaker.currentSlide];
-        const slide: Slide = currentSlide.slide;
+        const currentSlide: SlidesMakerSlideType = newSlidesMaker.slideList[newSlidesMaker.currentSlide];
 
-        slide.background = background;
+        currentSlide.slide.background = background;
 
-        currentSlide = {
-            ...currentSlide,
-            slide: slide
-        };
-        slideList[slidesMaker.currentSlide] = currentSlide;
+        newSlidesMaker.slideList[newSlidesMaker.currentSlide] = currentSlide;
     }
 
-    return {
-        ...slidesMaker,
-        slideList: slideList
-    };
+    return newSlidesMaker;
 }
 
 export {

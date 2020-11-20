@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {addToHistory, undo, redo} from "./model/History";
 import App from "./App";
 import './index.css';
-import {createSlidesMaker, SlidesMaker} from "./model/SlidesMaker";
+import {createSlidesMaker, deleteSlide, SlidesMaker} from "./model/SlidesMaker";
 
 let appState: SlidesMaker;
 
@@ -42,7 +42,7 @@ function start() {
         if ((e.key === 'z' || e.key === 'я') && (e.metaKey || e.ctrlKey)) {
             undoAppState();
         }
-        else if ((e.key === 'y' || e.key === 'н') && (e.metaKey || e.ctrlKey)) {
+        if ((e.key === 'y' || e.key === 'н') && (e.metaKey || e.ctrlKey)) {
             redoAppState();
         }
     });

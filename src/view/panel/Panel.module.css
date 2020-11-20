@@ -53,10 +53,10 @@
 }
 
 .panelSquareButton:hover {
-    background: #0a0a0a;
+    background: #262626;
 }
 .panelSquareButton:active {
-    background: #f24e1e;
+    background: #000000;
 }
 
 .panelBlock {

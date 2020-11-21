@@ -36,8 +36,16 @@ function redoAppState() {
     render(appState);
 }
 
-function start() {
-    appState = createSlidesMaker();
+function start(state?: SlidesMaker) {
+    if (state)
+    {
+        appState = state;
+    }
+    else
+    {
+        appState = createSlidesMaker();
+    }
+
     render(appState);
 
     window.addEventListener('keydown', (e) => {
@@ -57,10 +65,36 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     console.log(appState);
 }
 
+function convertToObject<T>(source: T): { [k: string]: any } {
+    const results: { [k: string]: any } = {};
+    for (const P in source) {
+        if (typeof source[P] === 'object') {
+            results[P] = convertToObject(source[P]);
+        } else {
+            results[P] = source[P];
+        }
+    }
+    return results;
+}
+
+function exportJSON(): void {
+    console.log(convertToObject(appState));
+    const json = JSON.stringify(convertToObject(appState));
+    const a = document.createElement('a');
+    const blob = new Blob([json], {type: 'octet/stream'});
+    const url = window.URL.createObjectURL(blob);
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'YourPresentation.json';
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
 
 export {
     start,
     dispatch,
     undoAppState,
-    redoAppState
+    redoAppState,
+    exportJSON
 }

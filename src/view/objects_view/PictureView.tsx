@@ -20,12 +20,19 @@ function PictureView(props: PictureViewProps) {
     const scale: number = props.scale ? props.scale : 1;
 
     return (
-        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
+        <RectView rect={rect}
+                  visibility={props.isSelected}
+                  scale={scale}
+                  objectId={props.objectId}
+                  >
             <img src={src}
                  alt={"oops"}
                  width={rect.width * scale}
                  height={rect.height * scale}
                  className={styles.picture}
+                 style={{
+                     cursor: "inherit",
+                 }}
                  draggable={"false"}
                  onClick={ (e) => {
                      if (scale === 1)

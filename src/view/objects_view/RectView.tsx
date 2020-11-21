@@ -27,9 +27,9 @@ export function RectView(props: RectViewProps) {
             width: props.rect.width * scale,
             height: props.rect.height * scale,
             border: props.visibility ? "2px dashed #2C2C2C" : "none",
-            cursor: scale === 1 ? "move" : "inherit",
+            cursor: scale === 1 && props.visibility ? "move" : "inherit",
         }}
-            draggable={scale === 1 ? "true" : "false"}
+            draggable={scale === 1 && props.visibility ? "true" : "false"}
             onDragStart={(e) => {
                 startDragX = e.clientX;
                 startDragY = e.clientY;

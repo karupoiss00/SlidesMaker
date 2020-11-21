@@ -1,19 +1,22 @@
 import React, {ReactNode, useState} from "react";
 import styles from "./RectView.module.css";
-import {Rect, setRectX, setRectY} from "../../model/types/Rect";
+import {Rect} from "../../model/types/Rect";
 import {dispatch} from "../../StateManager";
+import {moveObject} from "../../model/SlidesMaker";
+import {Id} from "../../model/slide/slide_objects/id/Id";
 
 interface RectViewProps {
     children?: ReactNode;
     rect: Rect;
     visibility: boolean;
     scale?: number;
+    objectId: Id;
 }
 
 export function RectView(props: RectViewProps) {
     const scale: number = props.scale ? props.scale : 1;
-    let startDragX: number = 0;
-    let startDragY: number = 0;
+    let startDragX = 0;
+    let startDragY = 0;
 
     const [rectCoords, setRectCoords] = useState({x: props.rect.x, y: props.rect.y})
 
@@ -32,10 +35,23 @@ export function RectView(props: RectViewProps) {
                 startDragY = e.clientY;
             }}
             onDragOver={(e) => {
-                e.stopPropagation();
+                e.preventDefault();
             }}
             onDragEnd={(e) => {
-                setRectCoords({x: rectCoords.x - startDragX + e.clientX, y: rectCoords.y - startDragY + e.clientY});
+                const newX = rectCoords.x - startDragX + e.clientX;
+                const newY = rectCoords.y - startDragY + e.clientY;
+                setRectCoords({
+                    x: newX,
+                    y: newY
+                });
+                dispatch(moveObject, {
+                    objectId: props.objectId,
+                    newRect: {
+                        ...props.rect,
+                        x: newX,
+                        y: newY,
+                    }},
+                );
             }}
         >
             {props.visibility &&

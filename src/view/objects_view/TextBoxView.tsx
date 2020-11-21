@@ -33,7 +33,7 @@ function TextBoxView(props: TextBoxViewProps) {
     }
 
     return (
-        <RectView rect={rect} visibility={props.isSelected} scale={scale}>
+        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
             {scale === 1
                 ?
                      <textarea className={styles.textBoxInput}

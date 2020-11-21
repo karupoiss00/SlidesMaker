@@ -40,4 +40,5 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
 dispatch(addSlide, undefined);
 dispatch(setBackground, testBackgroundPicture3);
 dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
+dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
 serviceWorker.unregister();

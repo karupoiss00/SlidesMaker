@@ -33,6 +33,13 @@ function setTextBoxText(textBox: TextBox, text: string): TextBox {
     }
 }
 
+function setTextBoxRect(textBox: TextBox, newRect: Rect): TextBox {
+    return {
+        ...textBox,
+        rect: newRect
+    }
+}
+
 function setTextBoxX(textBox: TextBox, x: number): TextBox {
     const newRect: Rect = setRectX(textBox.rect, x);
 
@@ -126,6 +133,7 @@ function switchTextBoxUnderline(textBox: TextBox): TextBox {
 export {
     createTextBox,
     setTextBoxText,
+    setTextBoxRect,
     setTextBoxX,
     setTextBoxY,
     setTextBoxWidth,

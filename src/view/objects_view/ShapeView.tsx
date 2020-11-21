@@ -22,7 +22,7 @@ function ShapeView(props: ShapeViewProps) {
     const scale: number = props.scale ? props.scale : 1;
 
     return (
-        <RectView rect={rect} visibility={props.isSelected} scale={scale}>
+        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
             <svg viewBox={`0 0 ${rect.width} ${rect.height}`}
                  width="100%" height="100%"
                  xmlns="http://www.w3.org/2000/svg"

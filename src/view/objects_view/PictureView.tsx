@@ -20,7 +20,7 @@ function PictureView(props: PictureViewProps) {
     const scale: number = props.scale ? props.scale : 1;
 
     return (
-        <RectView rect={rect} visibility={props.isSelected} scale={scale}>
+        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
             <img src={src}
                  alt={"oops"}
                  width={rect.width * scale}

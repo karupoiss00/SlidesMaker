@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {addToHistory, undo, redo} from "./model/History";
 import App from "./App";
 import './index.css';
-import {createSlidesMaker, deleteSlide, SlidesMaker} from "./model/SlidesMaker";
+import {createSlidesMaker, deepClone, SlidesMaker} from "./model/SlidesMaker";
 
 let appState: SlidesMaker;
 
@@ -19,10 +19,11 @@ function render(state: SlidesMaker) {
 }
 
 function undoAppState() {
-    const newAppState: SlidesMaker | undefined = undo(appState);
+    const newAppState: SlidesMaker | undefined = undo(deepClone(appState) as SlidesMaker);
     if (newAppState) {
         appState = newAppState;
     }
+    console.log('new undo', appState);
     render(appState);
 }
 
@@ -31,6 +32,7 @@ function redoAppState() {
     if (newAppState) {
         appState = newAppState;
     }
+    console.log('new redo', appState);
     render(appState);
 }
 
@@ -52,6 +54,7 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     addToHistory(appState);
     appState = fn(appState, arg);
     render(appState);
+    console.log(appState);
 }
 
 

@@ -1,6 +1,7 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, useState} from "react";
 import styles from "./RectView.module.css";
-import {Rect} from "../../model/types/Rect";
+import {Rect, setRectX, setRectY} from "../../model/types/Rect";
+import {dispatch} from "../../StateManager";
 
 interface RectViewProps {
     children?: ReactNode;
@@ -11,17 +12,32 @@ interface RectViewProps {
 
 export function RectView(props: RectViewProps) {
     const scale: number = props.scale ? props.scale : 1;
+    let startDragX: number = 0;
+    let startDragY: number = 0;
+
+    const [rectCoords, setRectCoords] = useState({x: props.rect.x, y: props.rect.y})
 
     return (
         <div className={styles.rect} style={{
-            left: props.rect.x * scale,
-            top: props.rect.y * scale,
+            left: rectCoords.x * scale,
+            top: rectCoords.y * scale,
             width: props.rect.width * scale,
             height: props.rect.height * scale,
             border: props.visibility ? "2px dashed #2C2C2C" : "none",
             cursor: scale === 1 ? "move" : "inherit",
-
-        }}>
+        }}
+            draggable={scale === 1 ? "true" : "false"}
+            onDragStart={(e) => {
+                startDragX = e.clientX;
+                startDragY = e.clientY;
+            }}
+            onDragOver={(e) => {
+                e.stopPropagation();
+            }}
+            onDragEnd={(e) => {
+                setRectCoords({x: rectCoords.x - startDragX + e.clientX, y: rectCoords.y - startDragY + e.clientY});
+            }}
+        >
             {props.visibility &&
                 <div>
                     <div className={styles.rectDotLeftTop}/>

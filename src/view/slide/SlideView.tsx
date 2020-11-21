@@ -96,6 +96,12 @@ function SlideView(props: SlideViewProps) {
                         props.update(null);
                  }
              }
+             onDrop={(e) => {
+                 e.preventDefault();
+             }}
+             onDragOver={(e) => {
+                 e.preventDefault();
+             }}
         >
             {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}
         </div>

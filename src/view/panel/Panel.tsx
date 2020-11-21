@@ -12,6 +12,16 @@ import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, redoAppState, undoAppState} from "../../StateManager";
+import {addObjectOnSelectedSlide} from "../../model/SlidesMaker";
+import {createTextBox, setTextBoxText, switchTextBoxBold} from "../../model/slide/slide_objects/textbox/TextBox";
+import {createRect} from "../../model/types/Rect";
+import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
+import {Alignment} from "../../model/types/Alignment";
+import {createFont, setFontFontColor} from "../../model/types/Font";
+import {Colors} from "../../model/types/Colors";
+import {createShape, setShapeShapeType, setShapeStrokeColor} from "../../model/slide/slide_objects/shape/Shape";
+import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
+import {createStyle} from "../../model/types/Style";
 
 function Panel() {
     return (
@@ -52,7 +62,12 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        dispatch(addObjectOnSelectedSlide, setTextBoxText(createTextBox(
+                            createRect(200, 200, 100, 70),
+                            setParagraphAlignment(createParagraph(), Alignment.LEFT),
+                            setFontFontColor(createFont('Arial', 20), Colors.BLACK)),
+                            'Text'));
+                        console.log('added');
                     }} >
                     <img src={AddTextBoxIcon} alt={"Oops!"}/>
                 </Button>
@@ -61,7 +76,10 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        dispatch(addObjectOnSelectedSlide, createShape(
+                            ShapeType.RECTANGLE,
+                            createRect(200, 200, 100, 100),
+                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
                     }} >
                     <img src={AddFigureIcon} alt={"Oops!"}/>
                 </Button>

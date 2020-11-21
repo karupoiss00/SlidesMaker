@@ -25,7 +25,7 @@ function createSlide(): Slide {
 function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
     const newSlide = { ...slide };
 
-    newSlide.objects.unshift({
+    newSlide.objects.push({
         object: object,
         id: generateId(),
     });

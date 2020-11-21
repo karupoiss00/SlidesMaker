@@ -26,7 +26,7 @@ export function RectView(props: RectViewProps) {
             top: rectCoords.y * scale,
             width: props.rect.width * scale,
             height: props.rect.height * scale,
-            border: props.visibility ? "2px dashed #2C2C2C" : "none",
+            border: props.visibility ? "2px dashed #2C2C2C" : "2px dashed rgba(255, 255, 255, 0)",
             cursor: scale === 1 && props.visibility ? "move" : "inherit",
         }}
             draggable={scale === 1 && props.visibility ? "true" : "false"}

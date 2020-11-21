@@ -88,7 +88,6 @@ function exportJSON(): void {
     a.href = url;
     a.download = 'YourPresentation.json';
     a.click();
-    window.URL.revokeObjectURL(url);
 }
 
 export {

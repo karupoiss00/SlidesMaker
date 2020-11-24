@@ -28,7 +28,6 @@ export function useDragAndDrop(coords: Coords, setNewCoords: Function, ref: Muta
             onEnd(newX, newY);
         }
         const onDragStart = (e: MouseEvent) => {
-            console.log(e.defaultPrevented)
             if (!e.defaultPrevented && isSelected) {
                 e.preventDefault();
                 startDragX = e.clientX;

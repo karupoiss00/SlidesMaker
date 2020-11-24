@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {addToHistory, undo, redo} from "./model/History";
 import App from "./App";
 import './index.css';
-import {createSlidesMaker, deepClone, SlidesMaker} from "./model/SlidesMaker";
+import {createSlidesMaker, deepClone, removeSelectedObject, SlidesMaker} from "./model/SlidesMaker";
 
 let appState: SlidesMaker;
 
@@ -35,6 +35,12 @@ function redoAppState() {
     render(appState);
 }
 
+function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
+    addToHistory(appState);
+    appState = fn(appState, arg);
+    render(appState);
+}
+
 function start(state?: SlidesMaker) {
     if (state)
     {
@@ -54,13 +60,10 @@ function start(state?: SlidesMaker) {
         if ((e.key === 'y' || e.key === 'н') && (e.metaKey || e.ctrlKey)) {
             redoAppState();
         }
+        if (e.key === "Delete" && appState.selectedObjectId) {
+            dispatch(removeSelectedObject, undefined);
+        }
     });
-}
-
-function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
-    addToHistory(appState);
-    appState = fn(appState, arg);
-    render(appState);
 }
 
 function convertToObject<T>(source: T): { [k: string]: any } {

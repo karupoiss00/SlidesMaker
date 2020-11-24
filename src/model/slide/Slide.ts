@@ -34,17 +34,14 @@ function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
 }
 
 function removeObject(slide: Slide, selectedObjectId: Id): Slide {
-    const newSlide = { ...slide };
-
-    const objectArray: Array<SlideObjectType> = newSlide.objects;
-
-    objectArray.forEach((object, index, objectArray) => {
-        if (object.id === selectedObjectId) {
-            objectArray.slice(index);
-        }
-    })
-
-    return newSlide;
+    const newobjects = slide.objects.filter((obj) => {
+        return obj.id === selectedObjectId
+    });
+    console.log(newobjects, selectedObjectId);
+    return {
+        ...slide,
+        objects: newobjects
+    };
 }
 
 function setSlideBackgroundColor(slide: Slide, color: Colors): Slide {

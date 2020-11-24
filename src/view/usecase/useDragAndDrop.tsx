@@ -15,7 +15,6 @@ export function useDragAndDrop(coords: Coords, setNewCoords: Function, ref: Muta
 
     React.useEffect(() => {
         const onDragging = (e: MouseEvent) => {
-            console.log('dragging', e.clientX, e.clientY)
             const newX = coords.x - startDragX + e.clientX;
             const newY = coords.y - startDragY + e.clientY;
             setNewCoords({x: newX, y: newY});
@@ -24,20 +23,19 @@ export function useDragAndDrop(coords: Coords, setNewCoords: Function, ref: Muta
         const onDragEnd = (e: MouseEvent) => {
             const newX = coords.x - startDragX + e.clientX;
             const newY = coords.y - startDragY + e.clientY;
-            console.log('end dragging on', e.clientX, e.clientY)
             window.removeEventListener('mousemove', onDragging);
             setNewCoords({x: newX, y: newY});
             onEnd(newX, newY);
         }
         const onDragStart = (e: MouseEvent) => {
+            console.log(e.defaultPrevented)
             if (!e.defaultPrevented && isSelected) {
                 e.preventDefault();
-
                 startDragX = e.clientX;
                 startDragY = e.clientY;
-                console.log('start dragging from', {startDragX, startDragY})
                 window.addEventListener('mouseup', onDragEnd, {once: true});
                 window.addEventListener('mousemove', onDragging);
+                window.removeEventListener('mousedown', onDragStart);
             }
         }
 

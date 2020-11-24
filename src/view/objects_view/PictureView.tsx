@@ -18,7 +18,6 @@ function PictureView(props: PictureViewProps) {
     const rect: Rect = picture.rect;
     const src: string = picture.src;
     const scale: number = props.scale ? props.scale : 1;
-
     return (
         <RectView rect={rect}
                   visibility={props.isSelected}

@@ -40,7 +40,7 @@ function TextBoxView(props: TextBoxViewProps) {
                                style={style}
                                defaultValue={props.textBox.text}
                                onClick={ (e) => {
-                                       e.stopPropagation();
+                                       e.nativeEvent.preventDefault();
                                        props.onClick &&
                                             props.onClick(props.objectId);
                                     }

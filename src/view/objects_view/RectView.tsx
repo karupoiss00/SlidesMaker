@@ -1,4 +1,4 @@
-import React, {MutableRefObject, ReactNode, useEffect, useRef, useState} from "react";
+import React, {ReactNode, useRef, useState} from "react";
 import styles from "./RectView.module.css";
 import {Rect} from "../../model/types/Rect";
 import {dispatch} from "../../StateManager";

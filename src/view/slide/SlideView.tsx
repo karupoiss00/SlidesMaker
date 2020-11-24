@@ -92,16 +92,10 @@ function SlideView(props: SlideViewProps) {
              style={{background: getSlideBackground(currentSlide)}}
              onClick={
                  (e) => {
-                     if (!e.defaultPrevented)
+                     if (!e.defaultPrevented && props.selectedObject)
                         props.update(null);
                  }
              }
-             onDrop={(e) => {
-                 e.preventDefault();
-             }}
-             onDragOver={(e) => {
-                 e.preventDefault();
-             }}
         >
             {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}
         </div>

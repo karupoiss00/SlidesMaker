@@ -23,7 +23,6 @@ function App(props: AppProps) {
     const updateSelectedSlide = (newSelectedSlideNumber: number) => {
         dispatch(setSelectedSlide, newSelectedSlideNumber);
     }
-
     return (
         <div className={styles.view}>
             <Panel/>

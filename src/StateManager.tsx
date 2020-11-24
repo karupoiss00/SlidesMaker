@@ -16,6 +16,7 @@ function render(state: SlidesMaker) {
         </React.StrictMode>,
         document.getElementById('root')
     );
+    //console.log(appState);
 }
 
 function undoAppState() {
@@ -23,7 +24,6 @@ function undoAppState() {
     if (newAppState) {
         appState = newAppState;
     }
-    console.log('new undo', appState);
     render(appState);
 }
 
@@ -32,7 +32,6 @@ function redoAppState() {
     if (newAppState) {
         appState = newAppState;
     }
-    console.log('new redo', appState);
     render(appState);
 }
 
@@ -62,7 +61,6 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     addToHistory(appState);
     appState = fn(appState, arg);
     render(appState);
-    console.log(appState);
 }
 
 function convertToObject<T>(source: T): { [k: string]: any } {

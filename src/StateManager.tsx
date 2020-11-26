@@ -67,21 +67,8 @@ function start(state?: SlidesMaker) {
     });
 }
 
-function convertToObject<T>(source: T): { [k: string]: any } {
-    const results: { [k: string]: any } = {};
-    for (const P in source) {
-        if (typeof source[P] === 'object') {
-            results[P] = convertToObject(source[P]);
-        } else {
-            results[P] = source[P];
-        }
-    }
-    return results;
-}
-
 function exportJSON(): void {
-    console.log(convertToObject(appState));
-    const json = JSON.stringify(convertToObject(appState));
+    const json = JSON.stringify(appState);
     const a = document.createElement('a');
     const blob = new Blob([json], {type: 'octet/stream'});
     const url = window.URL.createObjectURL(blob);
@@ -103,7 +90,7 @@ function importJSON(): void {
             reader.readAsText(file);
             reader.onload = () => {
                 if (typeof reader.result === 'string')
-                    start(deepClone(JSON.parse(reader.result)) as SlidesMaker);
+                    start(JSON.parse(reader.result));
             };
         }
     };

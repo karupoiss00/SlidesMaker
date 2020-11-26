@@ -26,4 +26,9 @@ function redo(): SlidesMaker | undefined {
     return slidesState;
 }
 
-export {addToHistory, undo, redo};
+function clearHistory() {
+    undoStack.length = 0;
+    redoStack.length = 0;
+}
+
+export {addToHistory, undo, redo, clearHistory};

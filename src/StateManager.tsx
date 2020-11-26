@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {addToHistory, undo, redo} from "./model/History";
+import {addToHistory, undo, redo, clearHistory} from "./model/History";
 import App from "./App";
 import './index.css';
 import {createSlidesMaker, deepClone, removeSelectedObject, SlidesMaker} from "./model/SlidesMaker";
@@ -16,7 +16,6 @@ function render(state: SlidesMaker) {
         </React.StrictMode>,
         document.getElementById('root')
     );
-    //console.log(appState);
 }
 
 function undoAppState() {
@@ -42,6 +41,8 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
 }
 
 function start(state?: SlidesMaker) {
+    clearHistory();
+
     if (state)
     {
         appState = state;
@@ -91,10 +92,30 @@ function exportJSON(): void {
     a.click();
 }
 
+function importJSON(): void {
+    const input = document.createElement('input');
+    input.style.display = 'none';
+    input.type = 'file';
+    input.onchange = () => {
+        if (input.files) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+                if (typeof reader.result === 'string')
+                    start(deepClone(JSON.parse(reader.result)) as SlidesMaker);
+            };
+        }
+    };
+    document.body.appendChild(input);
+    input.click();
+}
+
 export {
     start,
     dispatch,
     undoAppState,
     redoAppState,
-    exportJSON
+    exportJSON,
+    importJSON
 }

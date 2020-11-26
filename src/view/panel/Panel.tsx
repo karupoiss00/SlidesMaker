@@ -11,15 +11,15 @@ import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
-import {dispatch, exportJSON, redoAppState, undoAppState} from "../../StateManager";
+import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
 import {addObjectOnSelectedSlide} from "../../model/SlidesMaker";
-import {createTextBox, setTextBoxText, switchTextBoxBold} from "../../model/slide/slide_objects/textbox/TextBox";
+import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
 import {Alignment} from "../../model/types/Alignment";
 import {createFont, setFontFontColor} from "../../model/types/Font";
 import {Colors} from "../../model/types/Colors";
-import {createShape, setShapeShapeType, setShapeStrokeColor} from "../../model/slide/slide_objects/shape/Shape";
+import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 
@@ -31,7 +31,7 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        importJSON();
                     }} >
                     <img src={ImportIcon} alt={"Oops!"}/>
                 </Button>

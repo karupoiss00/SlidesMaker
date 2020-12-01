@@ -1,8 +1,9 @@
 import React, {ReactNode, useRef, useState} from "react";
+import {CornerView} from "./CornerView";
 import styles from "./RectView.module.css";
-import {Rect} from "../../model/types/Rect";
+import {createRect, Rect} from "../../model/types/Rect";
 import {dispatch} from "../../StateManager";
-import {moveObject} from "../../model/SlidesMaker";
+import {updateObjectPosition} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {useDragAndDrop} from "../usecase/useDragAndDrop";
 
@@ -16,12 +17,18 @@ interface RectViewProps {
 
 export function RectView(props: RectViewProps) {
     const scale: number = props.scale ? props.scale : 1;
-    const [rectCoords, setRectCoords] = useState({x: props.rect.x * scale, y: props.rect.y * scale})
-    const ref = useRef<HTMLDivElement>(null);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    useDragAndDrop(rectCoords, setRectCoords, ref, props.visibility, (newX: number, newY: number) => {
-        dispatch(moveObject, {
+    const rectRef = useRef<HTMLDivElement>(null);
+    const [rectCoords, setRectCoords] = useState({x: props.rect.x * scale, y: props.rect.y * scale});
+
+    useDragAndDrop({
+        coords: rectCoords,
+        setNewCoords: setRectCoords,
+    }, {
+        ref: rectRef,
+        isSelected: props.visibility,
+        needUpdate: true,
+    }, (newX: number, newY: number) => {
+        dispatch(updateObjectPosition, {
             objectId: props.objectId,
             newRect: {
                 ...props.rect,
@@ -30,7 +37,6 @@ export function RectView(props: RectViewProps) {
             }},
         );
     });
-
 
     return (
         <div className={styles.rect} style={{
@@ -42,14 +48,54 @@ export function RectView(props: RectViewProps) {
             cursor: scale === 1 && props.visibility ? "move" : "inherit",
         }}
             draggable={"false"}
-            ref={ref}
+            ref={rectRef}
         >
             {props.visibility &&
                 <div>
-                    <div className={styles.rectDotLeftTop}/>
-                    <div className={styles.rectDotLeftBottom}/>
-                    <div className={styles.rectDotRightTop}/>
-                    <div className={styles.rectDotRightBottom}/>
+                    <CornerView
+                        rect={{
+                            ...props.rect,
+                            x: rectCoords.x,
+                            y: rectCoords.y
+                        }}
+                        objectId={props.objectId}
+                        type={"LeftTop"}
+                        visibility={props.visibility}
+                        parentRef={rectRef}
+                    />
+                    <CornerView
+                        rect={{
+                            ...props.rect,
+                            x: rectCoords.x,
+                            y: rectCoords.y
+                        }}
+                        objectId={props.objectId}
+                        type={"LeftBottom"}
+                        visibility={props.visibility}
+                        parentRef={rectRef}
+                    />
+                    <CornerView
+                        rect={{
+                            ...props.rect,
+                            x: rectCoords.x,
+                            y: rectCoords.y
+                        }}
+                        objectId={props.objectId}
+                        type={"RightTop"}
+                        visibility={props.visibility}
+                        parentRef={rectRef}
+                    />
+                    <CornerView
+                        rect={{
+                            ...props.rect,
+                            x: rectCoords.x,
+                            y: rectCoords.y
+                        }}
+                        objectId={props.objectId}
+                        type={"RightBottom"}
+                        visibility={props.visibility}
+                        parentRef={rectRef}
+                    />
                 </div>
             }
             { props.children }

@@ -137,14 +137,14 @@ interface ObjectData {
     objectId: Id;
     newRect: Rect;
 }
-function moveObject(slidesMaker: SlidesMaker, newObjectData: ObjectData): SlidesMaker {
+function updateObjectPosition(slidesMaker: SlidesMaker, newObjectData: ObjectData): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
 
     if (slidesMaker.currentSlide !== null) {
         const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
         const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newObjectData.objectId);
-        currentSlide.objects[objectNumber].object.rect = newObjectData.newRect;
+        currentSlide.objects[objectNumber].object.rect = {...newObjectData.newRect};
 
         slideList[slidesMaker.currentSlide].slide = currentSlide;
     }
@@ -204,7 +204,7 @@ export {
     deleteSlide,
     setSelectedSlide,
     setSelectedObject,
-    moveObject,
+    updateObjectPosition,
     addObjectOnSelectedSlide,
     removeSelectedObject,
     setBackground,

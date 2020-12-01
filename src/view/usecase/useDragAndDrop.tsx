@@ -1,34 +1,45 @@
 import React, {MutableRefObject} from "react";
 
-interface Coords {
+export interface Coords {
     x: number;
     y: number;
 }
-export function useDragAndDrop(coords: Coords, setNewCoords: Function, ref: MutableRefObject<HTMLDivElement>, isSelected: boolean, onEnd: Function) {
+interface PositionHook {
+    coords: Coords;
+    setNewCoords: Function;
+}
+interface ViewParams {
+    ref: MutableRefObject<HTMLDivElement | null>;
+    isSelected: boolean;
+    needUpdate: boolean;
+}
+export function useDragAndDrop(position: PositionHook, objectView: ViewParams, onEnd: Function) {
     let startDragX = 0;
     let startDragY = 0;
 
     React.useLayoutEffect(() => {
-        ref.current.style.left = `${coords.x}px`
-        ref.current.style.top = `${coords.y}px`
-    }, [coords, setNewCoords]);
+        if (objectView?.ref?.current && objectView.needUpdate) {
+            objectView.ref.current.style.left = `${position.coords.x}px`
+            objectView.ref.current.style.top = `${position.coords.y}px`
+        }
+    }, [position.coords, position.setNewCoords]);
 
     React.useEffect(() => {
         const onDragging = (e: MouseEvent) => {
-            const newX = coords.x - startDragX + e.clientX;
-            const newY = coords.y - startDragY + e.clientY;
-            setNewCoords({x: newX, y: newY});
+            const newX = position.coords.x - startDragX + e.clientX;
+            const newY = position.coords.y - startDragY + e.clientY;
+            position.setNewCoords({x: newX, y: newY});
         }
 
         const onDragEnd = (e: MouseEvent) => {
-            const newX = coords.x - startDragX + e.clientX;
-            const newY = coords.y - startDragY + e.clientY;
+            const newX = position.coords.x - startDragX + e.clientX;
+            const newY = position.coords.y - startDragY + e.clientY;
             window.removeEventListener('mousemove', onDragging);
-            setNewCoords({x: newX, y: newY});
+            position.setNewCoords({x: newX, y: newY});
             onEnd(newX, newY);
         }
         const onDragStart = (e: MouseEvent) => {
-            if (!e.defaultPrevented && isSelected) {
+            if (!e.defaultPrevented && objectView.isSelected) {
                 e.preventDefault();
                 startDragX = e.clientX;
                 startDragY = e.clientY;
@@ -38,14 +49,14 @@ export function useDragAndDrop(coords: Coords, setNewCoords: Function, ref: Muta
             }
         }
 
-        if (ref.current)
-            ref.current.addEventListener('mousedown', onDragStart, {
+        if (objectView.ref?.current)
+            objectView.ref?.current.addEventListener('mousedown', onDragStart, {
                 once: true,
             });
 
         return () => {
-            if (ref.current)
-                ref.current.removeEventListener('mousedown', onDragStart);
+            if (objectView.ref?.current)
+                objectView.ref.current.removeEventListener('mousedown', onDragStart);
         };
     })
 }

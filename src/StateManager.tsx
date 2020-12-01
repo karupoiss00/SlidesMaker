@@ -68,7 +68,7 @@ function start(state?: SlidesMaker) {
 }
 
 function exportJSON(): void {
-    const json = JSON.stringify(appState);
+    const json = JSON.stringify(deepClone(appState));
     const a = document.createElement('a');
     const blob = new Blob([json], {type: 'octet/stream'});
     const url = window.URL.createObjectURL(blob);

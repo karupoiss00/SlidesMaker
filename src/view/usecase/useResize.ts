@@ -2,7 +2,6 @@ import React, {MutableRefObject, useState} from "react";
 import {Rect} from "../../model/types/Rect";
 import {Coords, useDragAndDrop} from "./useDragAndDrop";
 import  {CornerType} from "../objects_view/CornerView";
-import styles from "../objects_view/RectView.module.css";
 
 interface ViewParams {
     cornerRef: MutableRefObject<HTMLDivElement | null>;
@@ -105,7 +104,7 @@ export function useResize(view: ViewParams, rect: Rect, onEnd: Function) {
         isSelected: view.isSelected,
         needUpdate: false,
     }, (newX: number, newY: number) => {
-        onEnd(calcFromRightBottomCorner(rect, {x: newX, y: newY}));
+        onEnd(calculateNewRect(view.cornerType, rect, {x: newX, y: newY}));
         return;
     })
 

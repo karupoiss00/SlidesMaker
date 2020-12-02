@@ -20,6 +20,13 @@ export function RectView(props: RectViewProps) {
     const rectRef = useRef<HTMLDivElement>(null);
     const [rectCoords, setRectCoords] = useState({x: props.rect.x * scale, y: props.rect.y * scale});
 
+    React.useEffect(() => {
+        setRectCoords({
+            x: props.rect.x * scale,
+            y: props.rect.y * scale,
+        })
+    }, [props.rect])
+
     useDragAndDrop({
         coords: rectCoords,
         setNewCoords: setRectCoords,

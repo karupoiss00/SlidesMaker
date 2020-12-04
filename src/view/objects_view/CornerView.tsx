@@ -2,7 +2,7 @@ import React, {MutableRefObject, useRef} from "react";
 import {Rect} from "../../model/types/Rect";
 import styles from "./RectView.module.css";
 import {dispatch} from "../../StateManager";
-import {updateObjectPosition} from "../../model/SlidesMaker";
+import {updateObjectRect} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {useResize} from "../usecase/useResize";
 
@@ -45,7 +45,7 @@ export function CornerView(props: CornerViewProps) {
         props.rect,
   (newRect: Rect) => {
             console.log(props.rect, "resized to", newRect)
-            dispatch(updateObjectPosition, {
+            dispatch(updateObjectRect, {
                     objectId: props.objectId,
                     newRect: newRect,
                 }

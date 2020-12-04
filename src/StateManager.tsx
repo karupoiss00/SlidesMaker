@@ -128,7 +128,6 @@ function getConfig(): AppConfig {
     return app.config;
 }
 
-
 function updateSlideSize(newSize: Size) {
     app.config.slideSize = newSize;
 }

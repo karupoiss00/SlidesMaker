@@ -1,4 +1,4 @@
-import {Slide, createSlide, removeObject, addObject} from './slide/Slide';
+import {Slide, createSlide, removeObject, addObject, moveObjectToForeground} from './slide/Slide';
 import {generateId, Id} from "./slide/slide_objects/id/Id";
 import {TextBox} from "./slide/slide_objects/textbox/TextBox";
 import {Shape} from "./slide/slide_objects/shape/Shape";
@@ -107,8 +107,21 @@ function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): S
 
 function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | null): SlidesMaker {
     deepFreeze(slidesMaker);
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    if (slidesMaker.currentSlide !== null && newSelectedObject) {
+        let currentSlide: SlidesMakerSlideType = deepClone(slidesMaker.slideList[slidesMaker.currentSlide]) as SlidesMakerSlideType;
+
+        currentSlide = {
+            ...currentSlide,
+            slide: moveObjectToForeground(currentSlide.slide, newSelectedObject),
+        }
+
+        slideList[slidesMaker.currentSlide] = currentSlide;
+    }
+
     return {
         ...slidesMaker,
+        slideList: slideList,
         selectedObjectId: newSelectedObject
     };
 }

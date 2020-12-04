@@ -4,6 +4,7 @@ import {Shape} from './slide_objects/shape/Shape';
 import {Background} from '../types/Background';
 import {Colors} from '../types/Colors';
 import {Id, generateId} from "./slide_objects/id/Id";
+import {deepClone} from "../SlidesMaker";
 
 type SlideObjectType = {
     object: TextBox | Shape | Picture;
@@ -33,14 +34,24 @@ function addObject(slide: Slide, object: TextBox | Shape | Picture): Slide {
     return newSlide;
 }
 
-function removeObject(slide: Slide, selectedObjectId: Id): Slide {
-    const newobjects = slide.objects.filter((obj) => {
-        return obj.id === selectedObjectId
-    });
-    console.log(newobjects, selectedObjectId);
+function moveObjectToForeground(slide: Slide, selectedObjectId: Id): Slide {
+    const newObjects = deepClone(slide.objects) as Array<SlideObjectType>;
+    newObjects.push(...newObjects.splice(newObjects.findIndex(v => v.id == selectedObjectId), 1));
+
     return {
         ...slide,
-        objects: newobjects
+        objects: newObjects
+    };
+}
+
+function removeObject(slide: Slide, selectedObjectId: Id): Slide {
+    const newObjects = slide.objects.filter((obj) => {
+        return obj.id === selectedObjectId
+    });
+    console.log(newObjects, selectedObjectId);
+    return {
+        ...slide,
+        objects: newObjects
     };
 }
 
@@ -60,4 +71,4 @@ function setSlideBackgroundPicture(slide: Slide, picture: Picture): Slide {
     return newSlide;
 }
 
-export {createSlide, addObject, removeObject, setSlideBackgroundColor, setSlideBackgroundPicture};
+export {createSlide, addObject, removeObject, moveObjectToForeground, setSlideBackgroundColor, setSlideBackgroundPicture};

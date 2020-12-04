@@ -95,6 +95,12 @@ function SlideView(props: SlideViewProps) {
         width: 0,
         height: 0,
     });
+    const [adaptiveScale, setAdaptiveScale] = useState({
+        adScale: 1,
+    });
+    const [firstWidth, setFirstWidth] = useState({
+        width: 1,
+    })
 
     useLayoutEffect(() => {
         if (props.onResize)
@@ -104,20 +110,37 @@ function SlideView(props: SlideViewProps) {
     }, [slideSize])
 
     useEffect(() => {
+        if (ref && ref.current) {
+            setSlideSize({
+                width: ref.current.clientWidth,
+                height: ref.current.clientHeight,
+            });
+            setFirstWidth({
+                width: ref.current.clientWidth,
+            })
+        }
+    }, [])
+
+    useEffect(() => {
         const onResize = () => {
-            if (ref && ref.current) {
+            if (ref && ref.current && slideSize.width) {
+                console.log(">>", firstWidth.width);
+                setAdaptiveScale({
+                    adScale: ref.current.clientWidth / firstWidth.width,
+                });
                 setSlideSize({
                     width: ref.current.clientWidth,
                     height: ref.current.clientHeight,
                 });
                 window.removeEventListener("resize", onResize);
+                console.log(adaptiveScale.adScale);
             }
         }
         if (ref && ref.current && props.onResize)
         {
             window.addEventListener("resize", onResize);
         }
-    });
+    }, [setSlideSize, slideSize]);
 
     useEffect(() => {
         if (ref && ref.current) {
@@ -139,7 +162,7 @@ function SlideView(props: SlideViewProps) {
              }
              ref={ref}
         >
-            {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}
+            {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale * adaptiveScale.adScale)}
         </div>
     )
 

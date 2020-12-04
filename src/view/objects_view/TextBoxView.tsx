@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import styles from "./TextBoxView.module.css";
 import {TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {RectView} from "./RectView";
@@ -6,6 +6,8 @@ import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
 import {Paragraph} from "../../model/types/Paragraph";
 import {Font} from "../../model/types/Font";
+import {dispatch} from "../../StateManager";
+import {updateTextBoxText} from "../../model/SlidesMaker";
 
 interface TextBoxViewProps {
     textBox: TextBox;
@@ -31,12 +33,25 @@ function TextBoxView(props: TextBoxViewProps) {
         textAlign: paragraph.alignmentState,
     }
 
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
     return (
         <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
             {scale === 1
                 ?
                      <textarea className={styles.textBoxInput}
                                style={style}
+                               onChange={() =>{
+                                   if (textAreaRef.current)
+                                   {
+                                       let newText: string = textAreaRef.current.value;
+                                       dispatch(updateTextBoxText, {
+                                           objectId: props.objectId,
+                                           newText: newText,
+                                       })
+                                   }
+                               }}
+                               ref={textAreaRef}
                                defaultValue={props.textBox.text}
                                onClick={ (e) => {
                                        e.nativeEvent.preventDefault();

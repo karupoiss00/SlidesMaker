@@ -3,7 +3,7 @@ import {CornerView} from "./CornerView";
 import styles from "./RectView.module.css";
 import {Rect} from "../../model/types/Rect";
 import {dispatch} from "../../StateManager";
-import {updateObjectPosition} from "../../model/SlidesMaker";
+import {updateObjectRect} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {useDragAndDrop} from "../usecase/useDragAndDrop";
 
@@ -25,7 +25,7 @@ export function RectView(props: RectViewProps) {
             x: props.rect.x * scale,
             y: props.rect.y * scale,
         })
-    }, [props.rect])
+    }, [props.rect]);
 
     useDragAndDrop({
         coords: rectCoords,
@@ -35,7 +35,7 @@ export function RectView(props: RectViewProps) {
         isSelected: props.visibility,
         needUpdate: true,
     }, (newX: number, newY: number) => {
-        dispatch(updateObjectPosition, {
+        dispatch(updateObjectRect, {
             objectId: props.objectId,
             newRect: {
                 ...props.rect,

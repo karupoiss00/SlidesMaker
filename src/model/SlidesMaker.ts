@@ -150,7 +150,7 @@ interface ObjectData {
     objectId: Id;
     newRect: Rect;
 }
-function updateObjectPosition(slidesMaker: SlidesMaker, newObjectData: ObjectData): SlidesMaker {
+function updateObjectRect(slidesMaker: SlidesMaker, newObjectData: ObjectData): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
 
@@ -158,6 +158,30 @@ function updateObjectPosition(slidesMaker: SlidesMaker, newObjectData: ObjectDat
         const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
         const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newObjectData.objectId);
         currentSlide.objects[objectNumber].object.rect = {...newObjectData.newRect};
+
+        slideList[slidesMaker.currentSlide].slide = currentSlide;
+    }
+
+    return {
+        ...slidesMaker,
+        slideList: slideList,
+    };
+}
+
+interface TextBoxData {
+    objectId: Id;
+    newText: string;
+}
+
+function updateTextBoxText(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData): SlidesMaker {
+    deepFreeze(slidesMaker);
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+
+    if (slidesMaker.currentSlide !== null) {
+        const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
+        const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newTextBoxData.objectId);
+        // @ts-ignore
+        currentSlide.objects[objectNumber].object.text = newTextBoxData.newText;
 
         slideList[slidesMaker.currentSlide].slide = currentSlide;
     }
@@ -217,7 +241,8 @@ export {
     deleteSlide,
     setSelectedSlide,
     setSelectedObject,
-    updateObjectPosition,
+    updateObjectRect,
+    updateTextBoxText,
     addObjectOnSelectedSlide,
     removeSelectedObject,
     setBackground,

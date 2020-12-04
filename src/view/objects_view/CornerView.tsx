@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useRef, useState} from "react";
+import React, {MutableRefObject, useRef} from "react";
 import {Rect} from "../../model/types/Rect";
 import styles from "./RectView.module.css";
 import {dispatch} from "../../StateManager";
@@ -19,19 +19,19 @@ interface CornerViewProps {
 export function CornerView(props: CornerViewProps) {
     const cornerRef = useRef<HTMLDivElement>(HTMLDivElement.prototype);
     let style;
-    if (props.type == 'LeftTop')
+    if (props.type === 'LeftTop')
     {
         style = styles.rectDotLeftTop;
     }
-    else if (props.type == 'LeftBottom')
+    else if (props.type === 'LeftBottom')
     {
         style = styles.rectDotLeftBottom;
     }
-    else if (props.type == 'RightTop')
+    else if (props.type === 'RightTop')
     {
         style = styles.rectDotRightTop;
     }
-    else if (props.type == 'RightBottom')
+    else if (props.type === 'RightBottom')
     {
         style = styles.rectDotRightBottom;
     }

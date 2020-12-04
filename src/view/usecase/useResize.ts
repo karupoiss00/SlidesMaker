@@ -16,22 +16,22 @@ export function useResize(view: ViewParams, rect: Rect, onEnd: Function) {
 
     const updateCornerStyle = (ref: MutableRefObject<HTMLDivElement | null>, cornerType: CornerType) => {
         if (ref.current)
-            if (cornerType == 'LeftTop')
+            if (cornerType === 'LeftTop')
             {
                 ref.current.style.left = "-8px";
                 ref.current.style.top = "-8px";
             }
-            else if (cornerType == 'LeftBottom')
+            else if (cornerType === 'LeftBottom')
             {
                 ref.current.style.left = "-8px";
                 ref.current.style.bottom = "-8px";
             }
-            else if (cornerType == 'RightTop')
+            else if (cornerType === 'RightTop')
             {
                 ref.current.style.right = "-8px";
                 ref.current.style.top = "-8px";
             }
-            else if (cornerType == 'RightBottom')
+            else if (cornerType === 'RightBottom')
             {
                 ref.current.style.right = "-8px";
                 ref.current.style.bottom = "-8px";
@@ -74,19 +74,19 @@ export function useResize(view: ViewParams, rect: Rect, onEnd: Function) {
     }
 
     const calculateNewRect = (cornerType: CornerType, oldRect: Rect, delta: Coords): Rect => {
-        if (cornerType == 'LeftTop')
+        if (cornerType === 'LeftTop')
         {
             return calcFromLeftTopCorner(oldRect, delta);
         }
-        else if (cornerType == 'LeftBottom')
+        else if (cornerType === 'LeftBottom')
         {
             return calcFromLeftBottomCorner(oldRect, delta);
         }
-        else if (cornerType == 'RightTop')
+        else if (cornerType === 'RightTop')
         {
             return calcFromRightTopCorner(oldRect, delta);
         }
-        else if (cornerType == 'RightBottom')
+        else if (cornerType === 'RightBottom')
         {
             return calcFromRightBottomCorner(oldRect, delta);
         }

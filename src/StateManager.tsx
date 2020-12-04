@@ -1,11 +1,33 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {addToHistory, undo, redo, clearHistory} from "./model/History";
 import App from "./App";
 import './index.css';
+import ReactDOM from "react-dom";
+import {addToHistory, undo, redo, clearHistory} from "./model/History";
 import {createSlidesMaker, deepClone, removeSelectedObject, SlidesMaker} from "./model/SlidesMaker";
 
-let appState: SlidesMaker;
+type Size = {
+    width: number;
+    height: number;
+}
+
+type AppConfig = {
+    slideSize: Size;
+}
+
+type AppState = {
+    state: SlidesMaker;
+    config: AppConfig;
+}
+
+const app: AppState = {
+    state: createSlidesMaker(),
+    config: {
+        slideSize: {
+            width: 0,
+            height: 0,
+        }
+    }
+}
 
 function render(state: SlidesMaker) {
     ReactDOM.render(
@@ -19,40 +41,40 @@ function render(state: SlidesMaker) {
 }
 
 function undoAppState() {
-    const newAppState: SlidesMaker | undefined = undo(deepClone(appState) as SlidesMaker);
+    const newAppState: SlidesMaker | undefined = undo(deepClone(app) as SlidesMaker);
     if (newAppState) {
-        appState = newAppState;
+        app.state = newAppState;
     }
-    render(appState);
+    render(app.state);
 }
 
 function redoAppState() {
     const newAppState: SlidesMaker | undefined = redo();
     if (newAppState) {
-        appState = newAppState;
+        app.state = newAppState;
     }
-    render(appState);
+    render(app.state);
 }
 
 function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
-    addToHistory(appState);
-    appState = fn(appState, arg);
-    render(appState);
+    addToHistory(app.state);
+    app.state = fn(app.state, arg);
+    render(app.state);
 }
 
-function start(state?: SlidesMaker) {
+function start(newState?: SlidesMaker) {
     clearHistory();
 
-    if (state)
+    if (newState)
     {
-        appState = state;
+        app.state = newState;
     }
     else
     {
-        appState = createSlidesMaker();
+        app.state = createSlidesMaker();
     }
 
-    render(appState);
+    render(app.state);
 
     window.addEventListener('keydown', (e) => {
         if ((e.key === 'z' || e.key === 'я') && (e.metaKey || e.ctrlKey)) {
@@ -61,14 +83,14 @@ function start(state?: SlidesMaker) {
         if ((e.key === 'y' || e.key === 'н') && (e.metaKey || e.ctrlKey)) {
             redoAppState();
         }
-        if (e.key === "Delete" && appState.selectedObjectId) {
+        if (e.key === "Delete" && app.state.selectedObjectId) {
             dispatch(removeSelectedObject, undefined);
         }
     });
 }
 
 function exportJSON(): void {
-    const json = JSON.stringify(deepClone(appState));
+    const json = JSON.stringify(deepClone(app));
     const a = document.createElement('a');
     const blob = new Blob([json], {type: 'octet/stream'});
     const url = window.URL.createObjectURL(blob);
@@ -98,11 +120,26 @@ function importJSON(): void {
     input.click();
 }
 
+function getAppState(): SlidesMaker {
+    return deepClone(app.state) as SlidesMaker;
+}
+
+function getConfig(): AppConfig {
+    return app.config;
+}
+
+
+function updateSlideSize(newSize: Size) {
+    app.config.slideSize = newSize;
+}
+
 export {
     start,
     dispatch,
     undoAppState,
     redoAppState,
     exportJSON,
-    importJSON
+    importJSON,
+    getConfig,
+    updateSlideSize,
 }

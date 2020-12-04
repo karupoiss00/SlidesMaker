@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React, {ReactNode, useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {Slide} from "../../model/slide/Slide";
 import {TextBoxView} from "../objects_view/TextBoxView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
@@ -11,6 +11,10 @@ interface SlideViewProps {
     selectedObject: Id | null;
     scale?: number;
     update: (newSelectedId: Id | null) => any;
+    onResize?: (newSize: {
+        width: number;
+        height: number;
+    }) => any;
 }
 
 function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
@@ -86,6 +90,34 @@ function getSlideBackground(slide: Slide | null): string {
 function SlideView(props: SlideViewProps) {
     const currentSlide: Slide | null = props.slide;
     const scale: number = props.scale ? props.scale : 1;
+    const ref = useRef<HTMLDivElement>(null);
+    const [slideSize, setSlideSize] = useState({
+        width: 0,
+        height: 0,
+    });
+
+    useLayoutEffect(() => {
+        if (props.onResize)
+        {
+            props.onResize(slideSize);
+        }
+    }, [slideSize])
+
+    useEffect(() => {
+        const onResize = () => {
+            if (ref && ref.current) {
+                setSlideSize({
+                    width: ref.current.clientWidth,
+                    height: ref.current.clientHeight,
+                });
+                window.removeEventListener("resize", onResize);
+            }
+        }
+        if (ref && ref.current && props.onResize)
+        {
+            window.addEventListener("resize", onResize);
+        }
+    });
 
     return (
         <div className={props.className}
@@ -96,6 +128,7 @@ function SlideView(props: SlideViewProps) {
                         props.update(null);
                  }
              }
+             ref={ref}
         >
             {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale)}
         </div>

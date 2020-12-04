@@ -22,7 +22,7 @@ export function useDragAndDrop(position: PositionHook, objectView: ViewParams, o
             objectView.ref.current.style.left = `${position.coords.x}px`
             objectView.ref.current.style.top = `${position.coords.y}px`
         }
-    }, [position.coords, position.setNewCoords]);
+    }, [objectView, position.coords, position.setNewCoords]);
 
     React.useEffect(() => {
         const onDragging = (e: MouseEvent) => {

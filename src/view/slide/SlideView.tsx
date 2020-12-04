@@ -124,7 +124,6 @@ function SlideView(props: SlideViewProps) {
     useEffect(() => {
         const onResize = () => {
             if (ref && ref.current && slideSize.width) {
-                console.log(">>", firstWidth.width);
                 setAdaptiveScale({
                     adScale: ref.current.clientWidth / firstWidth.width,
                 });
@@ -133,7 +132,6 @@ function SlideView(props: SlideViewProps) {
                     height: ref.current.clientHeight,
                 });
                 window.removeEventListener("resize", onResize);
-                console.log(adaptiveScale.adScale);
             }
         }
         if (ref && ref.current && props.onResize)

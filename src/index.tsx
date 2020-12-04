@@ -18,7 +18,7 @@ import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "./model/types/Style";
 
 const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
-//const testBackgroundPicture3: Picture = createPicture("https://image.freepik.com/free-photo/jealous-and-sad-cute-guy-complaining-as-pointing-finger-upper-left-corner_176420-18943.jpg");
+const testBackgroundPicture3: Picture = createPicture("https://i.imgur.com/VhDpTGG.png");
 const testBackgroundColor: Colors = Colors.BROWN;
 
 start();
@@ -38,7 +38,7 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
 dispatch(addSlide, undefined);
-//dispatch(setBackground, testBackgroundPicture3);
+dispatch(setBackground, testBackgroundPicture3);
 dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
 dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
 serviceWorker.unregister();

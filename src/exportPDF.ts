@@ -17,8 +17,8 @@ function getBase64FromPicture(image: Picture): Promise<string> {
         img.onload = () => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            canvas.width = image.rect.width;
-            canvas.height = image.rect.height;
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
             if (ctx)
                 ctx.drawImage(img, 0, 0);
             const uri = canvas.toDataURL('image/png');
@@ -92,14 +92,13 @@ async function setBackgroundImage(doc: jsPDF, image: Picture) {
     image.rect.width = 1500;
     image.rect.height = 800;
     const base64 = await getBase64FromPicture(image);
-    console.log(image.rect);
     doc.addImage (
         base64,
         'jpg',
         0,
         0,
-        1500,
-        800,
+        getConfig().slideSize.width,
+        getConfig().slideSize.height,
     );
 }
 
@@ -120,6 +119,7 @@ async function addSlides(doc: jsPDF, slides: Array<SlidesMakerSlideType>) {
         else
         {
             await setBackgroundImage(doc, slide.background);
+            console.log('213');
         }
         await addObjectsOnPage(doc, slide.objects);
         doc.addPage();
@@ -135,7 +135,7 @@ export async function exportPDF() {
         orientation: 'l',
         format: slideSize,
     });
-    await addSlides(doc, slidesMaker.slideList)
+    await addSlides(doc, slidesMaker.slideList);
     doc.deletePage(doc.getNumberOfPages());
     doc.save('test.pdf');
 }

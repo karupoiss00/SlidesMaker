@@ -6,7 +6,7 @@ import {Colors} from '../types/Colors';
 import {Id, generateId} from "./slide_objects/id/Id";
 import {deepClone} from "../SlidesMaker";
 
-type SlideObjectType = {
+export type SlideObjectType = {
     object: TextBox | Shape | Picture;
     id: Id;
 }

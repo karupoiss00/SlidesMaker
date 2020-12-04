@@ -22,6 +22,7 @@ import {Colors} from "../../model/types/Colors";
 import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
+import {exportPDF} from "../../exportPDF";
 
 function Panel() {
     return (
@@ -39,6 +40,19 @@ function Panel() {
                     className={styles.panelSquareButton}
                     onClick={() => {
                         exportJSON();
+                    }}
+                >
+                    <img src={ExportIcon} alt={"Oops!"}/>
+                </Button>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        exportPDF().then(() => {
+                            //alert("Successful export!");
+                            return;
+                        }, () => {
+                            throw new Error("oops! export not possible");
+                        });
                     }}
                 >
                     <img src={ExportIcon} alt={"Oops!"}/>

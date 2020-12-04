@@ -119,6 +119,15 @@ function SlideView(props: SlideViewProps) {
         }
     });
 
+    useEffect(() => {
+        if (ref && ref.current) {
+            setSlideSize({
+                width: ref.current.clientWidth,
+                height: ref.current.clientHeight,
+            });
+        }
+    }, []);
+
     return (
         <div className={props.className}
              style={{background: getSlideBackground(currentSlide)}}

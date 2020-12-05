@@ -5,6 +5,7 @@ import {Button} from "../controls/Button";
 import AppIcon from "./res/icon.svg";
 import ImportIcon from "./res/presentation/import.svg";
 import ExportIcon from "./res/presentation/export.svg";
+import ExportPdfIcon from "./res/presentation/exportpdf.svg";
 import UndoIcon from "./res/presentation/undo.svg";
 import RedoIcon from "./res/presentation/redo.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
@@ -55,7 +56,7 @@ function Panel() {
                         });
                     }}
                 >
-                    <img src={ExportIcon} alt={"Oops!"}/>
+                    <img src={ExportPdfIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
                     className={styles.panelSquareButton}

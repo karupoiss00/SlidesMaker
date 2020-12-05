@@ -119,7 +119,6 @@ async function addSlides(doc: jsPDF, slides: Array<SlidesMakerSlideType>) {
         else
         {
             await setBackgroundImage(doc, slide.background);
-            console.log('213');
         }
         await addObjectsOnPage(doc, slide.objects);
         doc.addPage();

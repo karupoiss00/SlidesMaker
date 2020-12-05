@@ -65,7 +65,7 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
 
 function start(newState?: SlidesMaker) {
     clearHistory();
-
+    console.log(newState);
     if (newState)
     {
         app.state = newState;
@@ -91,7 +91,7 @@ function start(newState?: SlidesMaker) {
 }
 
 function exportJSON(): void {
-    const json = JSON.stringify(deepClone(app));
+    const json = JSON.stringify(deepClone(app.state));
     const a = document.createElement('a');
     const blob = new Blob([json], {type: 'octet/stream'});
     const url = window.URL.createObjectURL(blob);
@@ -113,7 +113,7 @@ function importJSON(): void {
             reader.readAsText(file);
             reader.onload = () => {
                 if (typeof reader.result === 'string')
-                    start(JSON.parse(reader.result));
+                    start(deepClone(JSON.parse(reader.result)) as SlidesMaker);
             };
         }
     };

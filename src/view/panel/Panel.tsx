@@ -73,6 +73,8 @@ function Panel() {
                     <img src={RedoIcon} alt={"Oops!"}/>
                 </Button>
             </PanelSection>
+            <PanelSection sectionName={"Slide"}>
+            </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>
                 <Button
                     className={styles.panelSquareButton}

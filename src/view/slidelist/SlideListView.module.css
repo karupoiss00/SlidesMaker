@@ -55,6 +55,10 @@
 .slideViewIconContainer {
     position: relative;
     display: flex;
+    width: 16vw;
+    height: 9vw;
+    min-width: 16vw;
+    min-height: 9vw;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;

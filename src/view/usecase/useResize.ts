@@ -116,7 +116,7 @@ export function useResize(view: ViewParams, rect: Rect, onEnd: Function) {
             view.objectRef.current.style.width = `${newRect.width}px`;
             view.objectRef.current.style.height = `${newRect.height}px`;
         }
-    }, [newRect, setNewRect, view]);
+    }, [newRect, setNewRect]);
 
     React.useEffect(() => {
         setNewRect(calculateNewRect(view.cornerType, rect, cornerCoords));

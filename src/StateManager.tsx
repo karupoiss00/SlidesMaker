@@ -4,7 +4,6 @@ import './index.css';
 import ReactDOM from "react-dom";
 import {addToHistory, undo, redo, clearHistory} from "./model/History";
 import {createSlidesMaker, deepClone, removeSelectedObject, SlidesMaker} from "./model/SlidesMaker";
-import {exportPDF} from "./exportPDF";
 
 type Size = {
     width: number;

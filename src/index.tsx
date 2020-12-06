@@ -2,7 +2,7 @@ import * as serviceWorker from './serviceWorker';
 import {dispatch, start} from "./StateManager";
 import {
     addObjectOnSelectedSlide,
-    addSlide, deleteSlide, removeSelectedObject,
+    addSlide,
     setBackground,
     setSelectedSlide,
 } from "./model/SlidesMaker";

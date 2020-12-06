@@ -25,7 +25,7 @@ export function RectView(props: RectViewProps) {
             x: props.rect.x * scale,
             y: props.rect.y * scale,
         })
-    }, [props.rect]);
+    }, [props.rect, scale]);
 
     useDragAndDrop({
         coords: rectCoords,

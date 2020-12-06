@@ -107,7 +107,7 @@ function SlideView(props: SlideViewProps) {
         {
             props.onResize(slideSize);
         }
-    }, [slideSize])
+    }, [slideSize, props])
 
     useEffect(() => {
         if (ref && ref.current) {
@@ -138,7 +138,7 @@ function SlideView(props: SlideViewProps) {
         {
             window.addEventListener("resize", onResize);
         }
-    }, [setSlideSize, slideSize]);
+    }, [setSlideSize, slideSize, props, firstWidth]);
 
     useEffect(() => {
         if (ref && ref.current) {

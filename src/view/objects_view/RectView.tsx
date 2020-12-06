@@ -9,15 +9,15 @@ import {useDragAndDrop} from "../usecase/useDragAndDrop";
 
 interface RectViewProps {
     children?: ReactNode;
+    scale?: number;
     rect: Rect;
     visibility: boolean;
-    scale?: number;
     objectId: Id;
 }
 
 export function RectView(props: RectViewProps) {
     const scale: number = props.scale ? props.scale : 1;
-    const rectRef = useRef<HTMLDivElement>(null);
+    const rectRef =  useRef<HTMLDivElement>(null);
     const [rectCoords, setRectCoords] = useState({x: props.rect.x * scale, y: props.rect.y * scale});
 
     React.useEffect(() => {

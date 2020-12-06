@@ -41,7 +41,7 @@ function render(state: SlidesMaker) {
 }
 
 function undoAppState() {
-    const newAppState: SlidesMaker | undefined = undo(deepClone(app) as SlidesMaker);
+    const newAppState: SlidesMaker | undefined = undo(deepClone(app.state) as SlidesMaker);
     if (newAppState) {
         app.state = newAppState;
     }
@@ -53,6 +53,7 @@ function redoAppState() {
     if (newAppState) {
         app.state = newAppState;
     }
+    console.log(newAppState);
     render(app.state);
 }
 
@@ -64,7 +65,7 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
 
 function start(newState?: SlidesMaker) {
     clearHistory();
-    console.log(newState);
+
     if (newState)
     {
         app.state = newState;

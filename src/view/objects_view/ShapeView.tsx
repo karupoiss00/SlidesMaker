@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import {Shape} from "../../model/slide/slide_objects/shape/Shape";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
@@ -33,7 +33,8 @@ function ShapeView(props: ShapeViewProps) {
                          props.onClick &&
                          props.onClick(props.objectId);
                      }
-                 }}>
+                 }}
+            >
 
                 {shapeType === 'rectangle' ? (<rect x={`${style.strokeWidth / 2}`} y={`${style.strokeWidth / 2}`} width={`${rect.width - style.strokeWidth}`} height={`${rect.height - style.strokeWidth}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}
                 {shapeType === 'triangle' ? (<polygon points={`${style.strokeWidth},${rect.height - style.strokeWidth / 2} ${rect.width / 2},${style.strokeWidth * 1.5} ${rect.width - style.strokeWidth},${rect.height - style.strokeWidth / 2}`} stroke={style.strokeColor} strokeWidth={style.strokeWidth} fill={style.backgroundColor} />) : null}

@@ -27,43 +27,64 @@ function getBase64FromPicture(image: Picture): Promise<string> {
     });
 }
 
+function addTextBox(doc: jsPDF, object: TextBox) {
+    doc.setFontSize(object.font.fontSize);
+    doc.setTextColor(object.font.fontColor);
+    doc.setFont(object.font.fontName, object.font.isBold ? "bold" : "normal");
+    doc.text(object.text, object.rect.x, object.rect.y);
+}
+
+function addRect(doc: jsPDF, object: Shape, mode: string) {
+    doc.rect(
+        object.rect.x,
+        object.rect.y,
+        object.rect.width,
+        object.rect.height,
+        mode);
+}
+
+function addTriangle(doc: jsPDF, object: Shape, mode: string) {
+    doc.triangle(object.rect.x + object.rect.width / 2,
+        object.rect.y,
+        object.rect.x,
+        object.rect.y + object.rect.height,
+        object.rect.x + object.rect.width,
+        object.rect.y + object.rect.height,
+        mode);
+}
+
+function addEllipse(doc: jsPDF, object: Shape, mode: string) {
+    doc.ellipse(
+        object.rect.x + object.rect.width / 2,
+        object.rect.y + object.rect.height / 2,
+        object.rect.width / 2,
+        object.rect.height / 2,
+        mode);
+}
+
+function addShape(doc: jsPDF, object: Shape) {
+    doc.setDrawColor(object.style.strokeColor);
+    doc.setFillColor(object.style.backgroundColor)
+    doc.setLineWidth(object.style.strokeWidth);
+    const drawingMode = 'FD'; //DrawFill
+
+    if (object.shapeType === ShapeType.RECTANGLE) {
+        addRect(doc, object, drawingMode);
+    } else if (object.shapeType === ShapeType.TRIANGLE) {
+        addTriangle(doc, object, drawingMode);
+    } else if (object.shapeType === ShapeType.ELLIPSE) {
+        addEllipse(doc, object, drawingMode);
+    }
+}
+
 async function addObjectOnPage(doc: jsPDF, object: TextBox | Shape | Picture) {
     // eslint-disable-next-line no-undef,no-async-promise-executor
     return new Promise(async (resolve) => {
         if ('text' in object) {
-            doc.setFontSize(object.font.fontSize);
-            doc.setTextColor(object.font.fontColor);
-            doc.setFont(object.font.fontName, object.font.isBold ? "bold" : "normal");
-            doc.text(object.text, object.rect.x, object.rect.y);
+            addTextBox(doc, object);
         }
         if ('shapeType' in object) {
-            doc.setDrawColor(object.style.strokeColor);
-            doc.setFillColor(object.style.backgroundColor)
-            doc.setLineWidth(object.style.strokeWidth);
-            const drawingMode = 'FD'; //DrawFill
-            if (object.shapeType == ShapeType.RECTANGLE) {
-                doc.rect(
-                    object.rect.x,
-                    object.rect.y,
-                    object.rect.width,
-                    object.rect.height,
-                    drawingMode);
-            } else if (object.shapeType == ShapeType.TRIANGLE) {
-                doc.triangle(object.rect.x + object.rect.width / 2,
-                    object.rect.y,
-                    object.rect.x,
-                    object.rect.y + object.rect.height,
-                    object.rect.x + object.rect.width,
-                    object.rect.y + object.rect.height,
-                    drawingMode);
-            } else if (object.shapeType == ShapeType.ELLIPSE) {
-                doc.ellipse(
-                    object.rect.x + object.rect.width / 2,
-                    object.rect.y + object.rect.height / 2,
-                    object.rect.width / 2,
-                    object.rect.height / 2,
-                    drawingMode);
-            }
+            addShape(doc, object);
         } else if ('src' in object) {
             const base64 = await getBase64FromPicture(object);
 

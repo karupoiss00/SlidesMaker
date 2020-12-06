@@ -4,7 +4,7 @@ import {TextBox} from "./model/slide/slide_objects/textbox/TextBox";
 import {Shape} from "./model/slide/slide_objects/shape/Shape";
 import {Picture} from "./model/slide/slide_objects/picture/Picture";
 import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
-import {SlideObjectType} from "./model/slide/Slide";
+import {Slide, SlideObjectType} from "./model/slide/Slide";
 import {SlidesMakerSlideType} from "./model/SlidesMaker";
 
 function getBase64FromPicture(image: Picture): Promise<string> {
@@ -77,6 +77,17 @@ function addShape(doc: jsPDF, object: Shape) {
     }
 }
 
+function addImage(doc: jsPDF, object: Picture, base64: string) {
+    doc.addImage(
+        base64,
+        'PNG',
+        object.rect.x,
+        object.rect.y,
+        object.rect.width,
+        object.rect.height
+    );
+}
+
 async function addObjectOnPage(doc: jsPDF, object: TextBox | Shape | Picture) {
     // eslint-disable-next-line no-undef,no-async-promise-executor
     return new Promise(async (resolve) => {
@@ -87,15 +98,7 @@ async function addObjectOnPage(doc: jsPDF, object: TextBox | Shape | Picture) {
             addShape(doc, object);
         } else if ('src' in object) {
             const base64 = await getBase64FromPicture(object);
-
-            doc.addImage(
-                base64,
-                'PNG',
-                object.rect.x,
-                object.rect.y,
-                object.rect.width,
-                object.rect.height
-            );
+            addImage(doc, object, base64);
         }
         resolve();
     });
@@ -123,19 +126,23 @@ async function setBackgroundImage(doc: jsPDF, image: Picture) {
     );
 }
 
+function setBackgroundColor(doc: jsPDF, color: string) {
+    doc.setFillColor(color);
+    doc.rect(
+        0,
+        0,
+        getConfig().slideSize.width,
+        getConfig().slideSize.height,
+        'F'
+    );
+}
+
 async function addSlides(doc: jsPDF, slides: Array<SlidesMakerSlideType>) {
     for (let i = 0; i < slides.length; i++) {
         const slide = slides[i].slide;
         if (typeof(slide.background) == 'string')
         {
-            doc.setFillColor(slide.background);
-            doc.rect(
-                0,
-                0,
-                getConfig().slideSize.width,
-                getConfig().slideSize.height,
-                'F'
-            );
+            setBackgroundColor(doc, slide.background)
         }
         else
         {

@@ -24,6 +24,7 @@ import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
+import {uploadPictureFromLocalStorage} from "../../model/slide/slide_objects/picture/Picture";
 
 function Panel() {
     return (
@@ -74,6 +75,13 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        uploadPictureFromLocalStorage(true);
+                    }} >
+                    <img src={UploadPictureIcon} alt={"Oops!"}/>
+                </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>
                 <Button
@@ -112,7 +120,7 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        uploadPictureFromLocalStorage(false);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>

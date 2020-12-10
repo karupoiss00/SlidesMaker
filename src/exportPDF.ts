@@ -4,7 +4,7 @@ import {TextBox} from "./model/slide/slide_objects/textbox/TextBox";
 import {Shape} from "./model/slide/slide_objects/shape/Shape";
 import {Picture} from "./model/slide/slide_objects/picture/Picture";
 import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
-import {Slide, SlideObjectType} from "./model/slide/Slide";
+import {SlideObjectType} from "./model/slide/Slide";
 import {SlidesMakerSlideType} from "./model/SlidesMaker";
 
 function getBase64FromPicture(image: Picture): Promise<string> {

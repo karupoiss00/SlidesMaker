@@ -139,7 +139,7 @@ function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Sh
 
         slideList[slidesMaker.currentSlide] = currentSlide;
     }
-
+    console.log(slidesMaker.currentSlide);
     return {
         ...slidesMaker,
         slideList: slideList,
@@ -180,6 +180,7 @@ function updateTextBoxText(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData
     if (slidesMaker.currentSlide !== null) {
         const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
         const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newTextBoxData.objectId);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         currentSlide.objects[objectNumber].object.text = newTextBoxData.newText;
 

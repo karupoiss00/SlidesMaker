@@ -7,7 +7,7 @@ import {
     setSelectedSlide,
 } from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
-import {createPicture, Picture} from "./model/slide/slide_objects/picture/Picture";
+import {uploadPictureFromUrl} from "./model/slide/slide_objects/picture/Picture";
 import {createTextBox, setTextBoxText, switchTextBoxBold} from "./model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "./model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "./model/types/Paragraph";
@@ -17,14 +17,12 @@ import {createShape, setShapeShapeType, setShapeStrokeColor} from "./model/slide
 import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "./model/types/Style";
 
-const testBackgroundPicture2: Picture = createPicture("https://i.imgur.com/eob00g2.png");
-const testBackgroundPicture3: Picture = createPicture("https://i.imgur.com/VhDpTGG.png");
 const testBackgroundColor: Colors = Colors.BROWN;
 
 start();
 dispatch(setBackground, testBackgroundColor);
-dispatch<undefined>(addSlide, undefined);
-dispatch(setBackground, testBackgroundPicture2);
+dispatch(addSlide, undefined);
+//uploadPictureFromUrl("https://i.imgur.com/eob00g2.png", true);
 dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
             createRect(500, 400, 500, 300),
             setParagraphAlignment(createParagraph(), Alignment.CENTER),
@@ -38,7 +36,8 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
 dispatch(addSlide, undefined);
-dispatch(setBackground, testBackgroundPicture3);
-dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
-dispatch(addObjectOnSelectedSlide, createPicture("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg"));
+//uploadPictureFromUrl("https://i.imgur.com/VhDpTGG.png", true);
+
+uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", false);
+uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", false);
 serviceWorker.unregister();

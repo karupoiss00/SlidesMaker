@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styles from './Panel.module.css';
 import {PanelSection} from "./PanelSection";
 import {Button} from "../controls/Button";
@@ -24,9 +24,11 @@ import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
-import {uploadPictureFromLocalStorage} from "../../model/slide/slide_objects/picture/Picture";
+import {uploadPictureFromLocalStorage, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
 
 function Panel() {
+    const pictureInputRef = useRef<HTMLInputElement>(null);
+    const backgroundPictureInputRef = useRef<HTMLInputElement>(null);
     return (
         <div className={styles.panelBar}>
             <img style={{marginLeft: "25px"}} src={AppIcon} alt={"Oops!"}/>
@@ -75,6 +77,20 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
+                <input type="text" ref={backgroundPictureInputRef} value={"https://i.imgur.com/eob00g2.png"} style={{
+                    height: "50%"
+                }}/>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        if (backgroundPictureInputRef
+                            && backgroundPictureInputRef.current)
+                        {
+                            uploadPictureFromUrl(backgroundPictureInputRef.current.value,true);
+                        }
+                    }} >
+                    <img src={AddWebPictureIcon} alt={"Oops!"}/>
+                </Button>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
@@ -110,10 +126,17 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
+                <input type="text" ref={pictureInputRef} value={"https://i.imgur.com/eob00g2.png"} style={{
+                    height: "50%"
+                }}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        return;
+                        if (pictureInputRef
+                            && pictureInputRef.current)
+                        {
+                            uploadPictureFromUrl(pictureInputRef.current.value,false);
+                        }
                     }} >
                     <img src={AddWebPictureIcon} alt={"Oops!"}/>
                 </Button>

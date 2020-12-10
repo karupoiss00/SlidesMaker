@@ -8,12 +8,13 @@ import ExportIcon from "./res/presentation/export.svg";
 import ExportPdfIcon from "./res/presentation/exportpdf.svg";
 import UndoIcon from "./res/presentation/undo.svg";
 import RedoIcon from "./res/presentation/redo.svg";
+import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
-import {addObjectOnSelectedSlide} from "../../model/SlidesMaker";
+import {addObjectOnSelectedSlide, deleteSlide} from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
@@ -97,6 +98,13 @@ function Panel() {
                         uploadPictureFromLocalStorage(true);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
+                </Button>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        dispatch(deleteSlide, undefined);
+                    }} >
+                    <img src={DeleteSlideIcon} alt={"Oops!"}/>
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>

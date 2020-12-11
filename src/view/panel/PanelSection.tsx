@@ -9,6 +9,7 @@ interface PanelSectionProps {
 
 function PanelSection(props: PanelSectionProps) {
     const [sectionContentVisibility, setSectionContentVisibility] = useState(false);
+
     return (
         <div className={styles.panelSection}>
             <Button className={styles.panelButton}
@@ -21,6 +22,7 @@ function PanelSection(props: PanelSectionProps) {
             />
             <div className={styles.panelBlock} style={{display: sectionContentVisibility ? "flex" : "none"}}>
                 {props.children}
+                <span className={styles.panelButtonBorder}/>
             </div>
         </div>
     )

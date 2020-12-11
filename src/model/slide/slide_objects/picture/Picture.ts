@@ -9,15 +9,15 @@ export type Picture = {
 
 function getImageSize(url: string) {
     // eslint-disable-next-line no-undef
-    return new Promise<{w: number; h: number}>( (resolved, rejected) => {
-        const img = new Image()
+    return new Promise<{w: number; h: number}>( (resolved) => {
+        const img = new Image();
+        img.src = url;
         img.onload = () => {
             resolved({
                 w: img.naturalWidth,
-                h: img.naturalHeight
+                h: img.naturalHeight,
             })
         };
-        img.src = url
     })
 }
 
@@ -35,6 +35,7 @@ function uploadPictureFromLocalStorage(onBackground: boolean): void {
     input.onchange = () => {
         if (input.files && input.files[0].type.match('image.*')) {
             const reader = new FileReader();
+            reader.readAsDataURL(input.files[0]);
             reader.onload = (e) => {
                 if (e.target && e.target.result)
                 {
@@ -52,7 +53,6 @@ function uploadPictureFromLocalStorage(onBackground: boolean): void {
 
                 }
             };
-            reader.readAsDataURL(input.files[0]);
         }
     };
     document.body.appendChild(input);

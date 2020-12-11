@@ -67,3 +67,10 @@
     font-size: 14px;
     color: white;
 }
+
+.panelButtonBorder {
+    width: 22px;
+    height: 0;
+    border: 1px solid #FFFFFF;
+    transform: rotate(90deg);
+}

@@ -26,6 +26,7 @@ import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
 import {uploadPictureFromLocalStorage, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
+import {TextInput} from "./TextInput";
 
 function Panel() {
     const pictureInputRef = useRef<HTMLInputElement>(null);
@@ -78,9 +79,7 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
-                <input type="text" ref={backgroundPictureInputRef} value={"https://i.imgur.com/eob00g2.png"} style={{
-                    height: "50%"
-                }}/>
+                <TextInput ref={backgroundPictureInputRef} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
@@ -134,9 +133,7 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
-                <input type="text" ref={pictureInputRef} value={"https://i.imgur.com/eob00g2.png"} style={{
-                    height: "50%"
-                }}/>
+                <TextInput ref={pictureInputRef} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {

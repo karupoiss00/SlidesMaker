@@ -17,6 +17,7 @@ type AppConfig = {
 type AppState = {
     state: SlidesMaker;
     config: AppConfig;
+    isWaiting: boolean;
 }
 
 const app: AppState = {
@@ -26,7 +27,8 @@ const app: AppState = {
             width: 0,
             height: 0,
         }
-    }
+    },
+    isWaiting: false
 }
 
 function render(state: SlidesMaker) {

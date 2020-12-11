@@ -22,7 +22,7 @@ const testBackgroundColor: Colors = Colors.BROWN;
 start();
 dispatch(setBackground, testBackgroundColor);
 dispatch(addSlide, undefined);
-//uploadPictureFromUrl("https://i.imgur.com/eob00g2.png", true);
+uploadPictureFromUrl("https://i.imgur.com/eob00g2.png", true);
 dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
             createRect(500, 400, 500, 300),
             setParagraphAlignment(createParagraph(), Alignment.CENTER),
@@ -36,7 +36,7 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
 dispatch(addSlide, undefined);
-//uploadPictureFromUrl("https://i.imgur.com/VhDpTGG.png", true);
+uploadPictureFromUrl("https://i.imgur.com/VhDpTGG.png", true);
 
 uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", false);
 uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", false);

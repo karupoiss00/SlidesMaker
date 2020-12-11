@@ -1,11 +1,12 @@
 .textBoxInput {
     resize: none;
     width: 100%;
-    height: 100%;
+    height: 600px;
     outline: none;
     border: none;
     background-color: transparent;
     overflow: visible;
+    position: absolute;
 }
 
 .textBoxListView {
@@ -16,6 +17,7 @@
     border: none;
     background-color: transparent;
     overflow: visible;
+    position: absolute;
     white-space: pre-wrap;
     -moz-user-select: none;
     -webkit-user-select: none;

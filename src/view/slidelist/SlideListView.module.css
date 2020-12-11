@@ -8,7 +8,7 @@
     padding-bottom: 20px;
     margin-top: 20px;
     transition: height 1s;
-
+    z-index: 1;
 }
 
 .slideListContainer:hover {

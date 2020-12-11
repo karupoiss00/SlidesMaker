@@ -44,6 +44,7 @@ function TextBoxView(props: TextBoxViewProps) {
                                onChange={() =>{
                                    if (textAreaRef.current)
                                    {
+                                       textAreaRef.current.style.height =  `${textAreaRef.current.scrollTop + textAreaRef.current.offsetHeight + 40}px`;
                                        let newText: string = textAreaRef.current.value;
                                        dispatch(updateTextBoxText, {
                                            objectId: props.objectId,

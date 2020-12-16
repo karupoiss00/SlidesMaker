@@ -14,7 +14,7 @@ import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
-import {addObjectOnSelectedSlide, deleteSlide} from "../../model/SlidesMaker";
+import {addObjectOnSelectedSlide, deleteSlide, setBackground} from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
@@ -79,22 +79,11 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
-                <TextInput ref={backgroundPictureInputRef} value={"https://i.imgur.com/eob00g2.png"}/>
+                <TextInput fnToPayloadPicture={setBackground} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        if (backgroundPictureInputRef
-                            && backgroundPictureInputRef.current)
-                        {
-                            uploadPictureFromUrl(backgroundPictureInputRef.current.value,true);
-                        }
-                    }} >
-                    <img src={AddWebPictureIcon} alt={"Oops!"}/>
-                </Button>
-                <Button
-                    className={styles.panelSquareButton}
-                    onClick={() => {
-                        uploadPictureFromLocalStorage(true);
+                        uploadPictureFromLocalStorage(setBackground);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>
@@ -133,22 +122,11 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
-                <TextInput ref={pictureInputRef} value={"https://i.imgur.com/eob00g2.png"}/>
+                <TextInput fnToPayloadPicture={addObjectOnSelectedSlide} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        if (pictureInputRef
-                            && pictureInputRef.current)
-                        {
-                            uploadPictureFromUrl(pictureInputRef.current.value,false);
-                        }
-                    }} >
-                    <img src={AddWebPictureIcon} alt={"Oops!"}/>
-                </Button>
-                <Button
-                    className={styles.panelSquareButton}
-                    onClick={() => {
-                        uploadPictureFromLocalStorage(false);
+                        uploadPictureFromLocalStorage(addObjectOnSelectedSlide);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>

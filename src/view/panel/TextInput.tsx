@@ -1,23 +1,55 @@
-import React, {RefObject, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
+import {SlidesMaker} from "../../model/SlidesMaker";
+import {Picture, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
+import styles from "./Panel.module.css";
+import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
+import {Button} from "../controls/Button";
 
 interface TextInputProps {
-    ref: RefObject<HTMLInputElement>;
+    fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker;
     value: string;
 }
 
 function TextInput(props: TextInputProps) {
     const [text, setText] = useState(props.value);
+    const ref = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if(ref.current)
+        {
+            ref.current.value = text;
+        }
+
+    }, [text, setText]);
+
     return (
-        <input type="text"
-               ref={props.ref}
-               onChange={(e) => {
-                   setText(e.target.value)
-               }}
-               value={text}
-               style={{
-                   height: "50%"
-               }}
-        />
+        <div style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center"
+        }}>
+            <input type="text"
+                   ref={ref}
+                   onChange={(e) => {
+                       setText(e.target.value)
+                   }}
+                   value={text}
+                   style={{
+                       height: "50%"
+                   }}
+            />
+            <Button
+                className={styles.panelSquareButton}
+                onClick={() => {
+                    if (ref
+                        && ref.current)
+                    {
+                        uploadPictureFromUrl(ref.current.value, props.fnToPayloadPicture);
+                    }
+                }} >
+                <img src={AddWebPictureIcon} alt={"Oops!"}/>
+            </Button>
+        </div>
     )
 }
 

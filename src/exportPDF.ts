@@ -8,7 +8,6 @@ import {SlideObjectType} from "./model/slide/Slide";
 import {SlidesMakerSlideType} from "./model/SlidesMaker";
 
 function getBase64FromPicture(image: Picture): Promise<string> {
-    // eslint-disable-next-line no-undef
     return new Promise((resolve) => {
         const img: HTMLImageElement = new Image(image.rect.width, image.rect.height);
         img.src = image.src;
@@ -89,7 +88,7 @@ function addImage(doc: jsPDF, object: Picture, base64: string) {
 }
 
 async function addObjectOnPage(doc: jsPDF, object: TextBox | Shape | Picture) {
-    // eslint-disable-next-line no-undef,no-async-promise-executor
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve) => {
         if ('text' in object) {
             addTextBox(doc, object);
@@ -108,7 +107,6 @@ async function addObjectsOnPage(doc: jsPDF, objects: Array<SlideObjectType>) {
     const promises = objects.map(async (slideObject) => {
         return addObjectOnPage(doc, slideObject.object);
     });
-    // eslint-disable-next-line no-undef
     await Promise.all(promises);
 }
 

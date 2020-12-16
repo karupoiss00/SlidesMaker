@@ -1,5 +1,5 @@
 import {createRect, Rect, setRectHeight, setRectWidth, setRectX, setRectY} from '../../../types/Rect';
-import {addObjectOnSelectedSlide, setBackground} from "../../../SlidesMaker";
+import {SlidesMaker} from "../../../SlidesMaker";
 import {dispatch} from "../../../../StateManager";
 
 export type Picture = {
@@ -8,7 +8,6 @@ export type Picture = {
 }
 
 function getImageSize(url: string) {
-    // eslint-disable-next-line no-undef
     return new Promise<{w: number; h: number}>( (resolved) => {
         const img = new Image();
         img.src = url;
@@ -28,7 +27,14 @@ function createPicture(url: string, rect: Rect): Picture {
     }
 }
 
-function uploadPictureFromLocalStorage(onBackground: boolean): void {
+function uploadPictureFromUrl(url: string, fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker): void {
+    getImageSize(url).then((result) => {
+        const picRect = createRect(100, 100, result.w,  result.h);
+        dispatch(fnToPayloadPicture, createPicture(url, picRect))
+    });
+}
+
+function uploadPictureFromLocalStorage(fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker): void {
     const input = document.createElement('input');
     input.style.display = 'none';
     input.type = 'file';
@@ -37,39 +43,13 @@ function uploadPictureFromLocalStorage(onBackground: boolean): void {
             const reader = new FileReader();
             reader.readAsDataURL(input.files[0]);
             reader.onload = (e) => {
-                if (e.target && e.target.result)
-                {
-                    const pictureURL = e.target.result.toString();
-                    getImageSize(pictureURL).then((result) => {
-                        const picRect = createRect(100, 100, result.w,  result.h);
-                        if (onBackground) {
-                            dispatch(setBackground, createPicture(pictureURL, picRect));
-                        }
-                        else
-                        {
-                            dispatch(addObjectOnSelectedSlide, createPicture(pictureURL, picRect));
-                        }
-                    });
-
-                }
-            };
+                e.target && e.target.result &&
+                    uploadPictureFromUrl(e.target.result.toString(), fnToPayloadPicture);
+            }
         }
-    };
+    }
     document.body.appendChild(input);
     input.click();
-}
-
-function uploadPictureFromUrl(url: string, onBackground: boolean): void {
-    getImageSize(url).then((result) => {
-        const picRect = createRect(100, 100, result.w,  result.h);
-        if (onBackground) {
-            dispatch(setBackground, createPicture(url, picRect));
-        }
-        else
-        {
-            dispatch(addObjectOnSelectedSlide, createPicture(url, picRect));
-        }
-    });
 }
 
 function setPictureSrc(picture: Picture, src: string): Picture {

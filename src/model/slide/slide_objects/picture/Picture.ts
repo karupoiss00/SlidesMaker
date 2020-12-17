@@ -1,6 +1,6 @@
 import {createRect, Rect, setRectHeight, setRectWidth, setRectX, setRectY} from '../../../types/Rect';
-import {SlidesMaker} from "../../../SlidesMaker";
-import {dispatch} from "../../../../StateManager";
+import {SlidePictureData, SlidesMaker} from "../../../SlidesMaker";
+import {dispatch, getAppState} from "../../../../StateManager";
 
 export type Picture = {
     src: string;
@@ -27,14 +27,18 @@ function createPicture(url: string, rect: Rect): Picture {
     }
 }
 
-function uploadPictureFromUrl(url: string, fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker): void {
+function uploadPictureFromUrl(url: string, fnToPayloadPicture: (slidesMaker: SlidesMaker, data: SlidePictureData) => SlidesMaker): void {
+    const currentSlide =  getAppState().currentSlide;
     getImageSize(url).then((result) => {
         const picRect = createRect(100, 100, result.w,  result.h);
-        dispatch(fnToPayloadPicture, createPicture(url, picRect))
+        if (currentSlide !== null)
+        {
+            dispatch(fnToPayloadPicture, { picture: createPicture(url, picRect), slideNumber: currentSlide })
+        }
     });
 }
 
-function uploadPictureFromLocalStorage(fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker): void {
+function uploadPictureFromLocalStorage(fnToPayloadPicture: (slidesMaker: SlidesMaker, data: SlidePictureData) => SlidesMaker): void {
     const input = document.createElement('input');
     input.style.display = 'none';
     input.type = 'file';

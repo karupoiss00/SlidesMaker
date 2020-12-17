@@ -14,7 +14,12 @@ import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
-import {addObjectOnSelectedSlide, deleteSlide, setBackground} from "../../model/SlidesMaker";
+import {
+    addObjectOnSelectedSlide,
+    addPictureOnSlide,
+    deleteSlide,
+    setBackground,
+} from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
@@ -29,8 +34,6 @@ import {uploadPictureFromLocalStorage, uploadPictureFromUrl} from "../../model/s
 import {TextInput} from "./TextInput";
 
 function Panel() {
-    const pictureInputRef = useRef<HTMLInputElement>(null);
-    const backgroundPictureInputRef = useRef<HTMLInputElement>(null);
     return (
         <div className={styles.panelBar}>
             <img style={{marginLeft: "25px"}} src={AppIcon} alt={"Oops!"}/>
@@ -83,7 +86,7 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        uploadPictureFromLocalStorage(setBackground);
+                       uploadPictureFromLocalStorage(setBackground);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>
@@ -122,11 +125,11 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
-                <TextInput fnToPayloadPicture={addObjectOnSelectedSlide} value={"https://i.imgur.com/eob00g2.png"}/>
+                <TextInput fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        uploadPictureFromLocalStorage(addObjectOnSelectedSlide);
+                        uploadPictureFromLocalStorage(addPictureOnSlide);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>

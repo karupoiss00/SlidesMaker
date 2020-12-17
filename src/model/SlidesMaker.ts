@@ -126,6 +126,30 @@ function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | nul
     };
 }
 
+export interface SlidePictureData {
+    picture: Picture;
+    slideNumber: number;
+}
+
+function addPictureOnSlide(slidesMaker: SlidesMaker, data: SlidePictureData): SlidesMaker {
+    deepFreeze(slidesMaker);
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    if (slidesMaker.currentSlide !== null) {
+        let currentSlide: SlidesMakerSlideType = deepClone(slidesMaker.slideList[data.slideNumber]) as SlidesMakerSlideType;
+
+        currentSlide = {
+            ...currentSlide,
+            slide: addObject(currentSlide.slide, data.picture),
+        }
+
+        slideList[data.slideNumber] = currentSlide;
+    }
+    return {
+        ...slidesMaker,
+        slideList: slideList,
+    };
+}
+
 function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Shape | Picture): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
@@ -139,7 +163,6 @@ function addObjectOnSelectedSlide(slidesMaker: SlidesMaker, object: TextBox | Sh
 
         slideList[slidesMaker.currentSlide] = currentSlide;
     }
-    console.log(slidesMaker.currentSlide);
     return {
         ...slidesMaker,
         slideList: slideList,
@@ -217,7 +240,26 @@ function removeSelectedObject(slidesMaker: SlidesMaker): SlidesMaker {
     };
 }
 
-function setBackground(slidesMaker: SlidesMaker, background: Background): SlidesMaker {
+function setBackground(slidesMaker: SlidesMaker, data: SlidePictureData): SlidesMaker {
+    deepFreeze(slidesMaker);
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+
+    if (slidesMaker.currentSlide !== null)
+    {
+        const currentSlide: SlidesMakerSlideType = deepClone(slidesMaker.slideList[data.slideNumber]) as SlidesMakerSlideType;
+
+        currentSlide.slide.background = data.picture;
+
+        slideList[data.slideNumber] = currentSlide;
+    }
+
+    return {
+        ...slidesMaker,
+        slideList: slideList,
+    };
+}
+
+function setCurrentSlideBackground(slidesMaker: SlidesMaker, background: Background): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
 
@@ -245,7 +287,9 @@ export {
     updateObjectRect,
     updateTextBoxText,
     addObjectOnSelectedSlide,
+    addPictureOnSlide,
     removeSelectedObject,
     setBackground,
+    setCurrentSlideBackground,
     deepClone
 };

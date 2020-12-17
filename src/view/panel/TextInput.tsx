@@ -1,12 +1,12 @@
 import React, {useEffect, useRef, useState} from "react";
-import {SlidesMaker} from "../../model/SlidesMaker";
+import {SlidePictureData, SlidesMaker} from "../../model/SlidesMaker";
 import {Picture, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
 import styles from "./Panel.module.css";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import {Button} from "../controls/Button";
 
 interface TextInputProps {
-    fnToPayloadPicture: (slidesMaker: SlidesMaker, picture: Picture) => SlidesMaker;
+    fnToPayloadPicture: (slidesMaker: SlidesMaker, data: SlidePictureData) => SlidesMaker;
     value: string;
 }
 

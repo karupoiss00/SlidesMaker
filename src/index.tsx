@@ -1,9 +1,9 @@
 import * as serviceWorker from './serviceWorker';
 import {dispatch, start} from "./StateManager";
 import {
-    addObjectOnSelectedSlide,
-    addSlide,
-    setBackground,
+    addObjectOnSelectedSlide, addPictureOnSlide,
+    addSlide, setBackground,
+    setCurrentSlideBackground,
     setSelectedSlide,
 } from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
@@ -20,7 +20,7 @@ import {createStyle} from "./model/types/Style";
 const testBackgroundColor: Colors = Colors.BROWN;
 
 start();
-dispatch(setBackground, testBackgroundColor);
+dispatch(setCurrentSlideBackground, testBackgroundColor);
 dispatch(addSlide, undefined);
 uploadPictureFromUrl("https://i.imgur.com/eob00g2.png", setBackground);
 dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
@@ -35,9 +35,10 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             createStyle(Colors.GREEN, Colors.GAINSBORO, 10)),
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
+
+uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
 dispatch(addSlide, undefined);
 uploadPictureFromUrl("https://i.imgur.com/VhDpTGG.png", setBackground);
 
-uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addObjectOnSelectedSlide);
-uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addObjectOnSelectedSlide);
+uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
 serviceWorker.unregister();

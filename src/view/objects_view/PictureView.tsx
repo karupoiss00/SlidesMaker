@@ -10,7 +10,7 @@ interface PictureViewProps {
     objectId: Id;
     isSelected: boolean;
     scale?: number;
-    onClick: ((newId: Id) => any) | null;
+    onSelectionClick: ((newId: Id) => any) | null;
 }
 
 function PictureView(props: PictureViewProps) {
@@ -37,8 +37,8 @@ function PictureView(props: PictureViewProps) {
                      if (scale === 1)
                      {
                          e.preventDefault();
-                         props.onClick &&
-                         props.onClick(props.objectId);
+                         props.onSelectionClick &&
+                            props.onSelectionClick(props.objectId);
                      }
                  }}
             />

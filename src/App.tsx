@@ -5,7 +5,7 @@ import {Panel} from "./view/panel/Panel";
 import {SlideView} from "./view/slide/SlideView";
 import {SlideListView} from "./view/slidelist/SlideListView";
 import {Id} from "./model/slide/slide_objects/id/Id";
-import {dispatch, updateSlideSize} from "./StateManager";
+import {dispatch, updateSlideSize} from "./controls/StateManager";
 
 interface AppProps {
     appModel: SlidesMaker;

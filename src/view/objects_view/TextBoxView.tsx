@@ -6,7 +6,7 @@ import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
 import {Paragraph} from "../../model/types/Paragraph";
 import {Font} from "../../model/types/Font";
-import {dispatch} from "../../StateManager";
+import {dispatch} from "../../controls/StateManager";
 import {updateTextBoxText} from "../../model/SlidesMaker";
 
 interface TextBoxViewProps {
@@ -14,7 +14,7 @@ interface TextBoxViewProps {
     objectId: Id;
     isSelected: boolean;
     scale?: number;
-    onClick: ((newId: Id) => any) | null;
+    onSelectionClick: ((newId: Id) => any) | null;
 }
 
 function TextBoxView(props: TextBoxViewProps) {
@@ -45,7 +45,7 @@ function TextBoxView(props: TextBoxViewProps) {
                                    if (textAreaRef.current)
                                    {
                                        textAreaRef.current.style.height =  `${textAreaRef.current.scrollTop + textAreaRef.current.offsetHeight + 40}px`;
-                                       let newText: string = textAreaRef.current.value;
+                                       const newText: string = textAreaRef.current.value;
                                        dispatch(updateTextBoxText, {
                                            objectId: props.objectId,
                                            newText: newText,
@@ -56,8 +56,8 @@ function TextBoxView(props: TextBoxViewProps) {
                                defaultValue={props.textBox.text}
                                onClick={ (e) => {
                                        e.nativeEvent.preventDefault();
-                                       props.onClick &&
-                                            props.onClick(props.objectId);
+                                       props.onSelectionClick &&
+                                            props.onSelectionClick(props.objectId);
                                     }
                                }
                      />
@@ -68,8 +68,8 @@ function TextBoxView(props: TextBoxViewProps) {
                            if (scale === 1)
                            {
                                e.preventDefault();
-                               props.onClick &&
-                                    props.onClick(props.objectId);
+                               props.onSelectionClick &&
+                                    props.onSelectionClick(props.objectId);
                            }
                         }
                     }

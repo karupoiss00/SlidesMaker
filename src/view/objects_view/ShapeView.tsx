@@ -11,7 +11,7 @@ interface ShapeViewProps {
     objectId: Id;
     isSelected: boolean;
     scale?: number;
-    onClick: ((newId: Id) => any) | null;
+    onSelectionClick: ((newId: Id) => any) | null;
 }
 
 function ShapeView(props: ShapeViewProps) {
@@ -30,8 +30,8 @@ function ShapeView(props: ShapeViewProps) {
                      if (scale === 1)
                      {
                          e.preventDefault();
-                         props.onClick &&
-                         props.onClick(props.objectId);
+                         props.onSelectionClick &&
+                         props.onSelectionClick(props.objectId);
                      }
                  }}
             >

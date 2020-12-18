@@ -2,7 +2,7 @@ import React, {ReactNode, useRef, useState} from "react";
 import {CornerView} from "./CornerView";
 import styles from "./RectView.module.css";
 import {Rect} from "../../model/types/Rect";
-import {dispatch} from "../../StateManager";
+import {dispatch} from "../../controls/StateManager";
 import {updateObjectRect} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {useDragAndDrop} from "../../usecase/useDragAndDrop";

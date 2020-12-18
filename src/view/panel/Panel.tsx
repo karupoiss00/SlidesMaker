@@ -12,7 +12,7 @@ import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
-import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
+import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
 import {
     addObjectOnSelectedSlide,
     addPictureOnSlide,

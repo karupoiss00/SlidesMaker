@@ -17,7 +17,7 @@ interface SlideViewProps {
     }) => any;
 }
 
-function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
+function getSlideObjects(slide: Slide, selectedObject: Id | null, setSelected:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
     const slideObjects: Array<ReactNode> = [];
 
     slide.objects.forEach((pair) => {
@@ -35,7 +35,7 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                              isSelected={isSelectedObject}
                              key={pair.id}
                              objectId={pair.id}
-                             onClick={callback}
+                             onSelectionClick={setSelected}
                              scale={scale}
                 />
             );
@@ -46,7 +46,7 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                            isSelected={isSelectedObject}
                            key={pair.id}
                            objectId={pair.id}
-                           onClick={callback}
+                           onSelectionClick={setSelected}
                            scale={scale}
                 />
             );
@@ -57,7 +57,7 @@ function getSlideObjects(slide: Slide, selectedObject: Id | null, callback:  (ne
                              isSelected={isSelectedObject}
                              key={pair.id}
                              objectId={pair.id}
-                             onClick={callback}
+                             onSelectionClick={setSelected}
                              scale={scale}
                 />
             );

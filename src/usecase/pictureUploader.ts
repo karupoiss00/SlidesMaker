@@ -1,5 +1,5 @@
 import {SlidePictureData, SlidesMaker} from "../model/SlidesMaker";
-import {dispatch, getAppState} from "../StateManager";
+import {dispatch, getAppState} from "../controls/StateManager";
 import {createRect} from "../model/types/Rect";
 import {createPicture} from "../model/slide/slide_objects/picture/Picture";
 

@@ -1,5 +1,5 @@
 import {jsPDF} from 'jspdf';
-import {getAppState, getConfig} from "./StateManager";
+import {getAppState, getConfig} from "./controls/StateManager";
 import {TextBox} from "./model/slide/slide_objects/textbox/TextBox";
 import {Shape} from "./model/slide/slide_objects/shape/Shape";
 import {Picture} from "./model/slide/slide_objects/picture/Picture";

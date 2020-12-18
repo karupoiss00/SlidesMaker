@@ -1,9 +1,10 @@
 import React from "react";
-import App from "./App";
-import './index.css';
+import App from "../App";
+import '../index.css';
 import ReactDOM from "react-dom";
-import {addToHistory, undo, redo, clearHistory} from "./model/History";
-import {createSlidesMaker, deepClone, removeSelectedObject, SlidesMaker} from "./model/SlidesMaker";
+import {addToHistory, undo, redo, clearHistory} from "../model/History";
+import {createSlidesMaker, deepClone, getSelectedObject, removeSelectedObject, SlidesMaker} from "../model/SlidesMaker";
+import {addToClipboard, pasteFromClipboard} from "./Clipboard";
 
 type Size = {
     width: number;
@@ -88,6 +89,14 @@ function start(newState?: SlidesMaker) {
         }
         if (e.key === "Delete" && app.state.selectedObjectId) {
             dispatch(removeSelectedObject, undefined);
+        }
+        if ((e.key === 'c' || e.key === 'с')  && (e.metaKey || e.ctrlKey))
+        {
+            addToClipboard(getSelectedObject(app.state));
+        }
+        if ((e.key === 'v' || e.key === 'м')  && (e.metaKey || e.ctrlKey))
+        {
+            pasteFromClipboard(getSelectedObject(app.state));
         }
     });
 }

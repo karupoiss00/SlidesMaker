@@ -2,12 +2,12 @@ import * as serviceWorker from './serviceWorker';
 import {dispatch, start} from "./StateManager";
 import {
     addObjectOnSelectedSlide, addPictureOnSlide,
-    addSlide, setBackground,
-    setCurrentSlideBackground,
+    addSlide, setBackgroundPicture,
+    setBackground,
     setSelectedSlide,
 } from "./model/SlidesMaker";
 import {Colors} from "./model/types/Colors";
-import {uploadPictureFromUrl} from "./model/slide/slide_objects/picture/Picture";
+import {addPictureFromUrl} from "./usecase/pictureUploader";
 import {createTextBox, setTextBoxText, switchTextBoxBold} from "./model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "./model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "./model/types/Paragraph";
@@ -20,9 +20,9 @@ import {createStyle} from "./model/types/Style";
 const testBackgroundColor: Colors = Colors.BROWN;
 
 start();
-dispatch(setCurrentSlideBackground, testBackgroundColor);
+dispatch(setBackground, testBackgroundColor);
 dispatch(addSlide, undefined);
-uploadPictureFromUrl("https://i.imgur.com/eob00g2.png", setBackground);
+addPictureFromUrl("https://i.imgur.com/eob00g2.png", setBackgroundPicture);
 dispatch(addObjectOnSelectedSlide, switchTextBoxBold(setTextBoxText(createTextBox(
             createRect(500, 400, 500, 300),
             setParagraphAlignment(createParagraph(), Alignment.CENTER),
@@ -36,9 +36,9 @@ dispatch(addObjectOnSelectedSlide, setShapeStrokeColor(setShapeShapeType(createS
             ShapeType.ELLIPSE),
             Colors.GAINSBORO));
 
-uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
+addPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
 dispatch(addSlide, undefined);
-uploadPictureFromUrl("https://i.imgur.com/VhDpTGG.png", setBackground);
+addPictureFromUrl("https://i.imgur.com/VhDpTGG.png", setBackgroundPicture);
 
-uploadPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
+addPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
 serviceWorker.unregister();

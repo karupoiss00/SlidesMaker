@@ -1,7 +1,7 @@
 import React, {MutableRefObject, useState} from "react";
-import {Rect} from "../../model/types/Rect";
+import {Rect} from "../model/types/Rect";
 import {Coords, useDragAndDrop} from "./useDragAndDrop";
-import  {CornerType} from "../objects_view/CornerView";
+import  {CornerType} from "../view/objects_view/CornerView";
 
 interface ViewParams {
     cornerRef: MutableRefObject<HTMLDivElement | null>;

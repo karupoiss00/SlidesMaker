@@ -5,7 +5,7 @@ import {Rect} from "../../model/types/Rect";
 import {dispatch} from "../../StateManager";
 import {updateObjectRect} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
-import {useDragAndDrop} from "../usecase/useDragAndDrop";
+import {useDragAndDrop} from "../../usecase/useDragAndDrop";
 
 interface RectViewProps {
     children?: ReactNode;

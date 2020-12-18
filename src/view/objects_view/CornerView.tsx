@@ -4,7 +4,7 @@ import styles from "./RectView.module.css";
 import {dispatch} from "../../StateManager";
 import {updateObjectRect} from "../../model/SlidesMaker";
 import {Id} from "../../model/slide/slide_objects/id/Id";
-import {useResize} from "../usecase/useResize";
+import {useResize} from "../../usecase/useResize";
 
 export type CornerType = "LeftTop" | "LeftBottom" | "RightTop" | "RightBottom";
 

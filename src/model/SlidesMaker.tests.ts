@@ -1,5 +1,5 @@
 import {createSlide} from "./slide/Slide";
-import {addSlide, createSlidesMaker, deleteSlide, setSelectedSlide, setCurrentSlideBackground, SlidesMaker} from "./SlidesMaker";
+import {addSlide, createSlidesMaker, deleteSlide, setSelectedSlide, setBackground, SlidesMaker} from "./SlidesMaker";
 import {Colors} from "./types/Colors";
 /*
 describe('SlidesMaker.ts', () => {

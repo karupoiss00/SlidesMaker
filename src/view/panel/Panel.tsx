@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React    from 'react';
 import styles from './Panel.module.css';
 import {PanelSection} from "./PanelSection";
 import {Button} from "../controls/Button";
@@ -11,14 +11,13 @@ import RedoIcon from "./res/presentation/redo.svg";
 import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
-import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../StateManager";
 import {
     addObjectOnSelectedSlide,
     addPictureOnSlide,
     deleteSlide,
-    setBackground,
+    setBackgroundPicture,
 } from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
@@ -30,7 +29,7 @@ import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
-import {uploadPictureFromLocalStorage, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
+import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {TextInput} from "./TextInput";
 
 function Panel() {
@@ -82,11 +81,11 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
-                <TextInput fnToPayloadPicture={setBackground} value={"https://i.imgur.com/eob00g2.png"}/>
+                <TextInput fnToPayloadPicture={setBackgroundPicture} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                       uploadPictureFromLocalStorage(setBackground);
+                       addPictureFromLocalStorage(setBackgroundPicture);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>
@@ -129,7 +128,7 @@ function Panel() {
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
-                        uploadPictureFromLocalStorage(addPictureOnSlide);
+                        addPictureFromLocalStorage(addPictureOnSlide);
                     }} >
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>

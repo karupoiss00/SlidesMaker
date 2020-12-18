@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {SlidePictureData, SlidesMaker} from "../../model/SlidesMaker";
-import {Picture, uploadPictureFromUrl} from "../../model/slide/slide_objects/picture/Picture";
+import {addPictureFromUrl} from "../../usecase/pictureUploader";
 import styles from "./Panel.module.css";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import {Button} from "../controls/Button";
@@ -44,7 +44,7 @@ function TextInput(props: TextInputProps) {
                     if (ref
                         && ref.current)
                     {
-                        uploadPictureFromUrl(ref.current.value, props.fnToPayloadPicture);
+                        addPictureFromUrl(ref.current.value, props.fnToPayloadPicture);
                     }
                 }} >
                 <img src={AddWebPictureIcon} alt={"Oops!"}/>

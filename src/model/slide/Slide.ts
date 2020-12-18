@@ -45,13 +45,13 @@ function moveObjectToForeground(slide: Slide, selectedObjectId: Id): Slide {
 }
 
 function removeObject(slide: Slide, selectedObjectId: Id): Slide {
-    const newObjects = slide.objects.filter((obj) => {
-        return obj.id === selectedObjectId
-    });
-    console.log(newObjects, selectedObjectId);
+    slide.objects.splice(slide.objects.findIndex(function(obj){
+        return obj.id === selectedObjectId;
+    }), 1);
+
     return {
         ...slide,
-        objects: newObjects
+        objects: slide.objects
     };
 }
 

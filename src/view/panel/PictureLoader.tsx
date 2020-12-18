@@ -5,12 +5,12 @@ import styles from "./Panel.module.css";
 import AddWebPictureIcon from "./res/pictures/addWebPic.svg";
 import {Button} from "../controls/Button";
 
-interface TextInputProps {
+interface PictureLoaderProps {
     fnToPayloadPicture: (slidesMaker: SlidesMaker, data: SlidePictureData) => SlidesMaker;
     value: string;
 }
 
-function TextInput(props: TextInputProps) {
+function PictureLoader(props: PictureLoaderProps) {
     const [text, setText] = useState(props.value);
     const ref = useRef<HTMLInputElement>(null);
 
@@ -53,4 +53,4 @@ function TextInput(props: TextInputProps) {
     )
 }
 
-export  {TextInput}
+export  {PictureLoader}

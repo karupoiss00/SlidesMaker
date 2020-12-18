@@ -31,7 +31,7 @@ import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
-import {TextInput} from "./TextInput";
+import {PictureLoader} from "./PictureLoader";
 import {StrokeWidthInput} from "./StrokeWidthInput";
 
 function Panel() {
@@ -83,7 +83,7 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
-                <TextInput fnToPayloadPicture={setBackgroundPicture} value={"https://i.imgur.com/eob00g2.png"}/>
+                <PictureLoader fnToPayloadPicture={setBackgroundPicture} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
@@ -127,7 +127,7 @@ function Panel() {
                 <StrokeWidthInput value={"0"}/>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
-                <TextInput fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>
+                <PictureLoader fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {

@@ -29,6 +29,8 @@ function StrokeWidthInput(props: StrokeWidthProps) {
                    style={{
                        height: "50%",
                        width: "40px",
+                       marginLeft: "10px",
+                       marginRight: "10px",
                    }}>
                 {options}
             </select>

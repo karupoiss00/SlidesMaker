@@ -253,6 +253,31 @@ function updateTextBoxText(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData
     };
 }
 
+interface ShapeWidthData {
+    objectId: Id;
+    newShapeWidth: number;
+}
+
+function updateShapeWidth(slidesMaker: SlidesMaker, newShapeWidth: ShapeWidthData): SlidesMaker {
+    deepFreeze(slidesMaker);
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+
+    if (slidesMaker.currentSlide !== null) {
+        const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
+        const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newShapeWidth.objectId);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        currentSlide.objects[objectNumber].object.style.strokeWidth = newShapeWidth.newShapeWidth;
+
+        slideList[slidesMaker.currentSlide].slide = currentSlide;
+    }
+
+    return {
+        ...slidesMaker,
+        slideList: slideList,
+    };
+}
+
 function setBackgroundPicture(slidesMaker: SlidesMaker, data: SlidePictureData): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
@@ -300,6 +325,7 @@ export {
     getSelectedObject,
     updateObjectRect,
     updateTextBoxText,
+    updateShapeWidth,
     addObjectOnSelectedSlide,
     addPictureOnSlide,
     removeSelectedObject,

@@ -11,6 +11,7 @@ import RedoIcon from "./res/presentation/redo.svg";
 import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
+import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
 import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
 import {
@@ -31,6 +32,7 @@ import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {TextInput} from "./TextInput";
+import {StrokeWidthInput} from "./StrokeWidthInput";
 
 function Panel() {
     return (
@@ -122,6 +124,7 @@ function Panel() {
                     }} >
                     <img src={AddFigureIcon} alt={"Oops!"}/>
                 </Button>
+                <StrokeWidthInput value={"0"}/>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
                 <TextInput fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>

@@ -44,7 +44,6 @@ export function CornerView(props: CornerViewProps) {
         },
         props.rect,
   (newRect: Rect) => {
-            console.log(props.rect, "resized to", newRect)
             dispatch(updateObjectRect, {
                     objectId: props.objectId,
                     newRect: newRect,

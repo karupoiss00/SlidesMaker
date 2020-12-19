@@ -230,19 +230,17 @@ function updateObjectRect(slidesMaker: SlidesMaker, newObjectData: ObjectData): 
 
 interface TextBoxData {
     objectId: Id;
-    newText: string;
+    newTextBox: TextBox;
 }
 
-function updateTextBoxText(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData): SlidesMaker {
+function updateTextBox(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
 
     if (slidesMaker.currentSlide !== null) {
         const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
         const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newTextBoxData.objectId);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        currentSlide.objects[objectNumber].object.text = newTextBoxData.newText;
+        currentSlide.objects[objectNumber].object = newTextBoxData.newTextBox;
 
         slideList[slidesMaker.currentSlide].slide = currentSlide;
     }
@@ -324,7 +322,7 @@ export {
     setSelectedObject,
     getSelectedObject,
     updateObjectRect,
-    updateTextBoxText,
+    updateTextBox,
     updateShapeWidth,
     addObjectOnSelectedSlide,
     addPictureOnSlide,

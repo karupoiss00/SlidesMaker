@@ -7,7 +7,7 @@ import {Rect} from "../../model/types/Rect";
 import {Paragraph} from "../../model/types/Paragraph";
 import {Font} from "../../model/types/Font";
 import {dispatch} from "../../controls/StateManager";
-import {updateTextBoxText} from "../../model/SlidesMaker";
+import {updateTextBox} from "../../model/SlidesMaker";
 
 interface TextBoxViewProps {
     textBox: TextBox;
@@ -41,14 +41,17 @@ function TextBoxView(props: TextBoxViewProps) {
                 ?
                      <textarea className={styles.textBoxInput}
                                style={style}
-                               onChange={() =>{
+                               onInput={() =>{
                                    if (textAreaRef.current)
                                    {
                                        textAreaRef.current.style.height =  `${textAreaRef.current.scrollTop + textAreaRef.current.offsetHeight + 40}px`;
                                        const newText: string = textAreaRef.current.value;
-                                       dispatch(updateTextBoxText, {
+                                       dispatch(updateTextBox, {
                                            objectId: props.objectId,
-                                           newText: newText,
+                                           newTextBox: {
+                                               ...textBox,
+                                               text: newText,
+                                           },
                                        })
                                    }
                                }}

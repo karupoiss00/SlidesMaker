@@ -3,7 +3,7 @@ import {Shape} from "../model/slide/slide_objects/shape/Shape";
 import {Picture} from "../model/slide/slide_objects/picture/Picture";
 import {SlideObjectType} from "../model/slide/Slide";
 import {dispatch} from "./StateManager";
-import {addObjectOnSelectedSlide, setSelectedObject, updateTextBoxText} from "../model/SlidesMaker";
+import {addObjectOnSelectedSlide, setSelectedObject, updateTextBox} from "../model/SlidesMaker";
 
 let clipboardState: TextBox | Shape | Picture | null = null;
 
@@ -23,9 +23,12 @@ function pasteFromClipboard(object: SlideObjectType | null) {
         {
             if (object?.object && "text" in object?.object)
             {
-                dispatch(updateTextBoxText, {
+                dispatch(updateTextBox, {
                     objectId: object.id,
-                    newText: object.object.text + clipboardState.text
+                    newTextBox: {
+                        ...object.object,
+                        text: object.object.text + clipboardState.text,
+                    },
                 });
             }
             else

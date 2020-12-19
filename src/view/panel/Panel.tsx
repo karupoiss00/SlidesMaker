@@ -10,17 +10,18 @@ import UndoIcon from "./res/presentation/undo.svg";
 import RedoIcon from "./res/presentation/redo.svg";
 import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
+import BoldIcon from "./res/textboxes/boldIcon.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
 import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
-import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
+import {dispatch, exportJSON, getAppState, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
 import {
     addObjectOnSelectedSlide,
     addPictureOnSlide,
-    deleteSlide,
+    deleteSlide, getSelectedObject,
     setBackgroundPicture,
 } from "../../model/SlidesMaker";
-import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
+import {createTextBox, setTextBoxText, TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
 import {Alignment} from "../../model/types/Alignment";
@@ -33,6 +34,7 @@ import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {PictureLoader} from "./PictureLoader";
 import {StrokeWidthInput} from "./StrokeWidthInput";
+import {SwitchButton} from "./buttons/textboxes/SwitchTextBoxBoldButton";
 
 function Panel() {
     return (
@@ -108,10 +110,12 @@ function Panel() {
                             setParagraphAlignment(createParagraph(), Alignment.LEFT),
                             setFontFontColor(createFont('Arial', 20), Colors.BLACK)),
                             'Text'));
-                        console.log('added');
                     }} >
                     <img src={AddTextBoxIcon} alt={"Oops!"}/>
                 </Button>
+                <SwitchButton switchType={"bold"}></SwitchButton>
+                <SwitchButton switchType={"italic"}></SwitchButton>
+                <SwitchButton switchType={"underlined"}></SwitchButton>
             </PanelSection>
             <PanelSection sectionName={"Shapes"}>
                 <Button

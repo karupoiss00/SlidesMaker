@@ -34,7 +34,7 @@ import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {PictureLoader} from "./PictureLoader";
 import {StrokeWidthInput} from "./StrokeWidthInput";
-import {SwitchButton} from "./buttons/textboxes/SwitchTextBoxBoldButton";
+import {SwitchButton} from "./buttons/textboxes/SwitchTextBoxButton";
 
 function Panel() {
     return (

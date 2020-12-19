@@ -6,7 +6,7 @@ import BoldIcon from "../../res/textboxes/boldIcon.svg";
 import ItalicIcon from "../../res/textboxes/italicIcon.svg";
 import UnderlinedIcon from "../../res/textboxes/underlinedIcon.svg";
 import {Button} from "../../../controls/Button";
-import React, {ReactSVG, useEffect, useRef, useState} from "react";
+import React, {ReactSVG, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {Font} from "../../../../model/types/Font";
 
 interface SwitchButtonProps {
@@ -32,6 +32,7 @@ export function SwitchButton(props: SwitchButtonProps) {
 
     if (selectedObject && "text" in selectedObject.object)
     {
+        console.log(selectedObject.object)
         switch (props.switchType) {
             case "bold":
                 isSwitched = selectedObject.object.font.isBold;
@@ -47,15 +48,27 @@ export function SwitchButton(props: SwitchButtonProps) {
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [buttonState, setButtonState] = useState(isSwitched);
+    useLayoutEffect(() => {
+        if (buttonRef && buttonRef.current) {
+            if (isSwitched)
+            {
+                buttonRef.current.style.background = "#2c2c2c";
+            }
+            else
+            {
+                buttonRef.current.style.background = "#4f4f4f";
+            }
+        }
+    }, [buttonState, buttonRef]);
     useEffect(() => {
         if (buttonRef && buttonRef.current) {
             if (buttonState)
             {
-                buttonRef.current.style.background = "#4f4f4f";
+                buttonRef.current.style.background = "#2c2c2c";
             }
             else
             {
-                buttonRef.current.style.background = "#2c2c2c";
+                buttonRef.current.style.background = "#4f4f4f";
             }
         }
     }, [buttonState, buttonRef]);

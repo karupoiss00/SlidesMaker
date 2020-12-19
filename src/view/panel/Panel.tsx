@@ -10,18 +10,16 @@ import UndoIcon from "./res/presentation/undo.svg";
 import RedoIcon from "./res/presentation/redo.svg";
 import DeleteSlideIcon from "./res/slide/deleteSlide.svg";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
-import BoldIcon from "./res/textboxes/boldIcon.svg";
 import AddFigureIcon from "./res/shapes/addShape.svg";
-import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import UploadPictureIcon from "./res/pictures/uploadPic.svg";
-import {dispatch, exportJSON, getAppState, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
+import {dispatch, exportJSON, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
 import {
     addObjectOnSelectedSlide,
     addPictureOnSlide,
-    deleteSlide, getSelectedObject,
+    deleteSlide,
     setBackgroundPicture,
 } from "../../model/SlidesMaker";
-import {createTextBox, setTextBoxText, TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
+import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
 import {Alignment} from "../../model/types/Alignment";
@@ -94,11 +92,11 @@ function Panel() {
                     <img src={UploadPictureIcon} alt={"Oops!"}/>
                 </Button>
                 <Button
-                    className={styles.panelSquareButton}
+                    className={styles.panelDeleteSlideButton}
                     onClick={() => {
                         dispatch(deleteSlide, undefined);
                     }} >
-                    <img src={DeleteSlideIcon} alt={"Oops!"}/>
+                    <img  src={DeleteSlideIcon} alt={"Oops!"}/>
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"TextBoxes"}>

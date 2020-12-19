@@ -49,10 +49,13 @@ function getSelectedObject(slidesMaker: SlidesMaker): SlideObjectType | null {
     deepFreeze(slidesMaker);
     let selectedObject: SlideObjectType | null = null;
 
-    if (slidesMaker.currentSlide !== null) {
-        const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
-        const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === slidesMaker.selectedObjectId);
-        selectedObject = currentSlide.objects[objectNumber];
+    if (slidesMaker.slideList.length > 0) {
+        if (slidesMaker.currentSlide !== null)
+        {
+            const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
+            const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === slidesMaker.selectedObjectId);
+            selectedObject = currentSlide.objects[objectNumber];
+        }
     }
 
     return selectedObject;
@@ -100,7 +103,8 @@ function deleteSlide(slidesMaker: SlidesMaker): SlidesMaker {
     }
     else
     {
-        newCurrentSlide = null;
+        newCurrentSlide = 0;
+        slideList.push({slide: createSlide(), id: generateId()});
     }
 
     return {

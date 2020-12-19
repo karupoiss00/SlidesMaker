@@ -32,7 +32,6 @@ export function SwitchButton(props: SwitchButtonProps) {
 
     if (selectedObject && "text" in selectedObject.object)
     {
-        console.log(selectedObject.object)
         switch (props.switchType) {
             case "bold":
                 isSwitched = selectedObject.object.font.isBold;

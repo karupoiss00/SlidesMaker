@@ -10,7 +10,7 @@ interface PictureLoaderProps {
     value: string;
 }
 
-function PictureLoader(props: PictureLoaderProps) {
+function WebPictureUploader(props: PictureLoaderProps) {
     const [text, setText] = useState(props.value);
     const ref = useRef<HTMLInputElement>(null);
 
@@ -53,4 +53,4 @@ function PictureLoader(props: PictureLoaderProps) {
     )
 }
 
-export  {PictureLoader}
+export  {WebPictureUploader}

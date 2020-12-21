@@ -30,7 +30,7 @@ import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
-import {PictureLoader} from "./PictureLoader";
+import {WebPictureUploader} from "./WebPictureUploader";
 import {StrokeWidthInput} from "./StrokeWidthInput";
 import {SwitchButton} from "./buttons/textboxes/SwitchButton";
 import {FontSelector} from "./buttons/textboxes/FontSelector";
@@ -84,7 +84,7 @@ function Panel() {
                 </Button>
             </PanelSection>
             <PanelSection sectionName={"Slide"}>
-                <PictureLoader fnToPayloadPicture={setBackgroundPicture} value={"https://i.imgur.com/eob00g2.png"}/>
+                <WebPictureUploader fnToPayloadPicture={setBackgroundPicture} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {
@@ -131,7 +131,7 @@ function Panel() {
                 <StrokeWidthInput value={"0"}/>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
-                <PictureLoader fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>
+                <WebPictureUploader fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>
                 <Button
                     className={styles.panelSquareButton}
                     onClick={() => {

@@ -32,7 +32,8 @@ import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {PictureLoader} from "./PictureLoader";
 import {StrokeWidthInput} from "./StrokeWidthInput";
-import {SwitchButton} from "./buttons/textboxes/SwitchTextBoxButton";
+import {SwitchButton} from "./buttons/textboxes/SwitchButton";
+import {FontSelector} from "./buttons/textboxes/FontSelector";
 
 function Panel() {
     return (
@@ -106,11 +107,12 @@ function Panel() {
                         dispatch(addObjectOnSelectedSlide, setTextBoxText(createTextBox(
                             createRect(200, 200, 100, 70),
                             setParagraphAlignment(createParagraph(), Alignment.LEFT),
-                            setFontFontColor(createFont('Arial', 20), Colors.BLACK)),
+                            setFontFontColor(createFont("Arial", 20), Colors.BLACK)),
                             'Text'));
                     }} >
                     <img src={AddTextBoxIcon} alt={"Oops!"}/>
                 </Button>
+                <FontSelector></FontSelector>
                 <SwitchButton switchType={"bold"}></SwitchButton>
                 <SwitchButton switchType={"italic"}></SwitchButton>
                 <SwitchButton switchType={"underlined"}></SwitchButton>

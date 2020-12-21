@@ -3,7 +3,14 @@ import App from "../App";
 import '../index.css';
 import ReactDOM from "react-dom";
 import {addToHistory, undo, redo, clearHistory} from "../model/History";
-import {createSlidesMaker, deepClone, getSelectedObject, removeSelectedObject, SlidesMaker} from "../model/SlidesMaker";
+import {
+    createSlidesMaker,
+    deepClone,
+    getSelectedObject,
+    removeSelectedObject,
+    setSelectedObject,
+    SlidesMaker
+} from "../model/SlidesMaker";
 import {addToClipboard, pasteFromClipboard} from "./Clipboard";
 
 type Size = {
@@ -61,7 +68,11 @@ function redoAppState() {
 }
 
 function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
-    addToHistory(app.state);
+    // @ts-ignore
+    if (fn !== setSelectedObject)
+    {
+        addToHistory(app.state);
+    }
     app.state = fn(app.state, arg);
     render(app.state);
 }

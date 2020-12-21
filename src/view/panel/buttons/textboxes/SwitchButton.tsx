@@ -16,7 +16,7 @@ interface SwitchButtonProps {
 export function SwitchButton(props: SwitchButtonProps) {
     const selectedObject: SlideObjectType | null = getSelectedObject(getAppState());
     let isSwitched: boolean = false;
-    let icon: string = BoldIcon;
+    let icon: string;
 
     switch (props.switchType) {
         case "bold":
@@ -43,24 +43,15 @@ export function SwitchButton(props: SwitchButtonProps) {
                 isSwitched = selectedObject.object.font.isUnderlined;
                 break;
         }
+
     }
 
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [buttonState, setButtonState] = useState(isSwitched);
-    useLayoutEffect(() => {
-        if (buttonRef && buttonRef.current) {
-            if (isSwitched)
-            {
-                buttonRef.current.style.background = "#2c2c2c";
-            }
-            else
-            {
-                buttonRef.current.style.background = "#4f4f4f";
-            }
-        }
-    }, [buttonState, buttonRef]);
+
     useEffect(() => {
-        if (buttonRef && buttonRef.current) {
+        if (buttonRef && buttonRef.current)
+        {
             if (buttonState)
             {
                 buttonRef.current.style.background = "#2c2c2c";
@@ -70,7 +61,7 @@ export function SwitchButton(props: SwitchButtonProps) {
                 buttonRef.current.style.background = "#4f4f4f";
             }
         }
-    }, [buttonState, buttonRef]);
+    }, [buttonState]);
 
     return (
         <button

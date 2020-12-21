@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import styles from "./TextBoxView.module.css";
-import {TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
+import {setTextBoxRect, TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {RectView} from "./RectView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
@@ -22,12 +22,24 @@ function TextBoxView(props: TextBoxViewProps) {
     const rect: Rect = textBox.rect;
     const paragraph: Paragraph = textBox.paragraph;
     const font: Font = textBox.font;
+    let fontFamily: string = textBox.font.fontName;
+    switch (textBox.font.fontName) {
+        case "Arial" || "Arial Black" || "Times New Roman" || "Verdana" || "Tahoma" || "Trebuchet MS" || "Impact" || "Comic Sans MS":
+            fontFamily += ", sans-serif";
+            break;
+        case "Courier New" || "Courier":
+            fontFamily += ", monospace";
+            break;
+        case "Georgia" || "Palatino" || "Garamond" || "Bookman":
+            fontFamily += ", serif";
+            break;
+    }
     const scale: number = props.scale ? props.scale : 1;
     const style: Record<string, string> = {
         fontWeight: font.isBold ? "bold" : "normal",
         fontStyle: font.isItalic ? "italic" : "normal",
         textDecoration: font.isUnderlined ? "underline" : "none",
-        fontFamily: font.fontName,
+        fontFamily: fontFamily,
         fontSize: (Math.floor(font.fontSize * scale)).toString() + "px",
         color: font.fontColor.toString(),
         textAlign: paragraph.alignmentState,
@@ -44,7 +56,9 @@ function TextBoxView(props: TextBoxViewProps) {
                                onInput={() =>{
                                    if (textAreaRef.current)
                                    {
-                                       textAreaRef.current.style.height =  `${textAreaRef.current.scrollTop + textAreaRef.current.offsetHeight + 40}px`;
+                                       textAreaRef.current.style.height = "auto";
+                                       textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+
                                        const newText: string = textAreaRef.current.value;
                                        dispatch(updateTextBox, {
                                            objectId: props.objectId,

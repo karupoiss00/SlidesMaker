@@ -8,7 +8,6 @@ import {
     deepClone,
     getSelectedObject,
     removeSelectedObject,
-    setSelectedObject,
     SlidesMaker
 } from "../model/SlidesMaker";
 import {addToClipboard, pasteFromClipboard} from "./Clipboard";

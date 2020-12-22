@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import styles from "./TextBoxView.module.css";
-import {setTextBoxRect, TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
+import {TextBox} from "../../model/slide/slide_objects/textbox/TextBox";
 import {RectView} from "./RectView";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
@@ -73,24 +73,14 @@ function TextBoxView(props: TextBoxViewProps) {
                                defaultValue={props.textBox.text}
                                onClick={ (e) => {
                                        e.nativeEvent.preventDefault();
+                                       console.log(e.defaultPrevented);
                                        props.onSelectionClick &&
                                             props.onSelectionClick(props.objectId);
                                     }
                                }
                      />
                 :
-                    <p className={styles.textBoxListView}
-                       style={style}
-                       onClick={ (e) => {
-                           if (scale === 1)
-                           {
-                               e.preventDefault();
-                               props.onSelectionClick &&
-                                    props.onSelectionClick(props.objectId);
-                           }
-                        }
-                    }
-                    >
+                    <p className={styles.textBoxListView} style={style}>
                         {props.textBox.text}
                     </p>
             }

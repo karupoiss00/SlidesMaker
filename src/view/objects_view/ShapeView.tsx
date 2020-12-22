@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import {Shape} from "../../model/slide/slide_objects/shape/Shape";
 import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";

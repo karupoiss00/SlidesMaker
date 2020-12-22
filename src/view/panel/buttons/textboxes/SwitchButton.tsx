@@ -5,8 +5,7 @@ import {dispatch, getAppState} from "../../../../controls/StateManager";
 import BoldIcon from "../../res/textboxes/boldIcon.svg";
 import ItalicIcon from "../../res/textboxes/italicIcon.svg";
 import UnderlinedIcon from "../../res/textboxes/underlinedIcon.svg";
-import {Button} from "../../../controls/Button";
-import React, {ReactSVG, useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Font} from "../../../../model/types/Font";
 
 interface SwitchButtonProps {
@@ -15,7 +14,7 @@ interface SwitchButtonProps {
 
 export function SwitchButton(props: SwitchButtonProps) {
     const selectedObject: SlideObjectType | null = getSelectedObject(getAppState());
-    let isSwitched: boolean = false;
+    let isSwitched = false;
     let icon: string;
 
     switch (props.switchType) {
@@ -71,7 +70,7 @@ export function SwitchButton(props: SwitchButtonProps) {
                 setButtonState(!buttonState);
                 if (selectedObject && selectedObject.id && "text" in selectedObject.object)
                 {
-                    let newFont: Font = selectedObject.object.font;
+                    const newFont: Font = selectedObject.object.font;
 
                     switch (props.switchType) {
                         case "bold":

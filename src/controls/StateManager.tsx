@@ -63,13 +63,11 @@ function redoAppState() {
     if (newAppState) {
         app.state = newAppState;
     }
-    console.log(newAppState);
     render(app.state);
 }
 
 function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
-    // @ts-ignore
-    if (fn !== setSelectedObject)
+    if (fn.name !== "setSelectedObject")
     {
         addToHistory(app.state);
     }
@@ -77,20 +75,7 @@ function dispatch<T>(fn: (app: SlidesMaker, param: T) => SlidesMaker, arg: T) {
     render(app.state);
 }
 
-function start(newState?: SlidesMaker) {
-    clearHistory();
-
-    if (newState)
-    {
-        app.state = newState;
-    }
-    else
-    {
-        app.state = createSlidesMaker();
-    }
-
-    render(app.state);
-
+function initListeners() {
     window.addEventListener('keydown', (e) => {
         if ((e.key === 'z' || e.key === 'я') && (e.metaKey || e.ctrlKey)) {
             undoAppState();
@@ -110,6 +95,22 @@ function start(newState?: SlidesMaker) {
             pasteFromClipboard(getSelectedObject(app.state));
         }
     });
+}
+
+function start(newState?: SlidesMaker) {
+    initListeners();
+    clearHistory();
+
+    if (newState)
+    {
+        app.state = newState;
+    }
+    else
+    {
+        app.state = createSlidesMaker();
+    }
+
+    render(app.state);
 }
 
 function exportJSON(): void {

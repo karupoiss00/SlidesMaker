@@ -25,6 +25,17 @@ export function useDragAndDrop(position: PositionHook, objectView: ViewParams, o
     }, [objectView, position.coords, position.setNewCoords]);
 
     React.useEffect(() => {
+        const onDragStart = (e: MouseEvent) => {
+            if (!e.defaultPrevented && objectView.isSelected) {
+                e.preventDefault();
+                startDragX = e.clientX;
+                startDragY = e.clientY;
+                window.addEventListener('mouseup', onDragEnd, {once: true});
+                window.addEventListener('mousemove', onDragging);
+                window.removeEventListener('mousedown', onDragStart);
+            }
+        }
+
         const onDragging = (e: MouseEvent) => {
             const newX = position.coords.x - startDragX + e.clientX;
             const newY = position.coords.y - startDragY + e.clientY;
@@ -37,16 +48,6 @@ export function useDragAndDrop(position: PositionHook, objectView: ViewParams, o
             window.removeEventListener('mousemove', onDragging);
             position.setNewCoords({x: newX, y: newY});
             onEnd(newX, newY);
-        }
-        const onDragStart = (e: MouseEvent) => {
-            if (!e.defaultPrevented && objectView.isSelected) {
-                e.preventDefault();
-                startDragX = e.clientX;
-                startDragY = e.clientY;
-                window.addEventListener('mouseup', onDragEnd, {once: true});
-                window.addEventListener('mousemove', onDragging);
-                window.removeEventListener('mousedown', onDragStart);
-            }
         }
 
         if (objectView.ref?.current)

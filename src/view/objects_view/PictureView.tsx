@@ -23,6 +23,7 @@ function PictureView(props: PictureViewProps) {
                   visibility={props.isSelected}
                   scale={scale}
                   objectId={props.objectId}
+                  onSelectionClick={props.onSelectionClick}
                   >
             <img src={src}
                  alt={"oops"}

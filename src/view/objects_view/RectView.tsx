@@ -13,6 +13,7 @@ interface RectViewProps {
     rect: Rect;
     visibility: boolean;
     objectId: Id;
+    onSelectionClick: ((newId: Id) => any) | null;
 }
 
 export function RectView(props: RectViewProps) {
@@ -56,6 +57,14 @@ export function RectView(props: RectViewProps) {
         }}
             draggable={"false"}
             ref={rectRef}
+            onClick={ (e) => {
+                if (scale === 1)
+                {
+                    e.preventDefault();
+                    props.onSelectionClick &&
+                    props.onSelectionClick(props.objectId);
+                }
+            }}
         >
             {props.visibility &&
                 <div>

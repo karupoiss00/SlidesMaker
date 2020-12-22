@@ -48,7 +48,7 @@ function TextBoxView(props: TextBoxViewProps) {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
-        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId}>
+        <RectView rect={rect} visibility={props.isSelected} scale={scale} objectId={props.objectId} onSelectionClick={props.onSelectionClick}>
             {scale === 1
                 ?
                      <textarea className={styles.textBoxInput}
@@ -73,9 +73,8 @@ function TextBoxView(props: TextBoxViewProps) {
                                defaultValue={props.textBox.text}
                                onClick={ (e) => {
                                        e.nativeEvent.preventDefault();
-                                       console.log(e.defaultPrevented);
                                        props.onSelectionClick &&
-                                            props.onSelectionClick(props.objectId);
+                                       props.onSelectionClick(props.objectId);
                                     }
                                }
                      />

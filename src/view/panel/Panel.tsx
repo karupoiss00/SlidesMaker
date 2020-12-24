@@ -1,4 +1,4 @@
-import React    from 'react';
+import React, {ReactNode} from 'react';
 import styles from './Panel.module.css';
 import {PanelSection} from "./PanelSection";
 import {Button} from "../controls/Button";
@@ -31,9 +31,15 @@ import {createStyle} from "../../model/types/Style";
 import {exportPDF} from "../../exportPDF";
 import {addPictureFromLocalStorage} from "../../usecase/pictureUploader";
 import {WebPictureUploader} from "./WebPictureUploader";
-import {StrokeWidthInput} from "./StrokeWidthInput";
+import {Selector} from "./Selector";
 import {SwitchButton} from "./buttons/textboxes/SwitchButton";
 import {FontSelector} from "./buttons/textboxes/FontSelector";
+import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
+
+const strokeOptions: Array<number> = [];
+for(let i = 0; i < 50; i += 2) {
+    strokeOptions.push(i)
+}
 
 function Panel() {
     return (
@@ -128,7 +134,8 @@ function Panel() {
                     }} >
                     <img src={AddFigureIcon} alt={"Oops!"}/>
                 </Button>
-                <StrokeWidthInput value={"0"}/>
+                <Selector value={"0"} optionsData={strokeOptions}/>
+                <img  src={AddStrokeWidth} alt={"Oops!"} style={{marginLeft: "10px"}}/>
             </PanelSection>
             <PanelSection sectionName={"Pictures"}>
                 <WebPictureUploader fnToPayloadPicture={addPictureOnSlide} value={"https://i.imgur.com/eob00g2.png"}/>

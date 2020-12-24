@@ -1,18 +1,29 @@
 import React, {ReactNode} from "react";
 import {getSelectedObject, updateShapeWidth} from "../../model/SlidesMaker";
-import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import {dispatch, getAppState} from "../../controls/StateManager";
 import {SlideObjectType} from "../../model/slide/Slide";
 
-interface StrokeWidthProps {
+interface SelectorProps {
     value: string;
+    optionsData: Array<number> | Array<string>;
 }
 
-function StrokeWidthInput(props: StrokeWidthProps) {
+function Selector(props: SelectorProps) {
     const options: Array<ReactNode> = [];
-    for(let i = 0; i < 50; i += 2) {
-        options.push(<option value={i} key={i}>{i}</option>)
+    for(let i = 0; i < props.optionsData.length; i++) {
+        options.push(<option value={props.optionsData[i]} key={i}>{props.optionsData[i]}</option>);
     }
+
+    let maxLength: number = 0;
+    props.optionsData.forEach((element: number | string) => {
+        if (element.toString.length > maxLength) {
+            maxLength = element.toString.length;
+        }
+    });
+    const rightBorder: number = 15;
+    const charLength: number = 15;
+    maxLength = maxLength * charLength + rightBorder;
+
     return (
         <div style={{
             display: "flex",
@@ -28,15 +39,14 @@ function StrokeWidthInput(props: StrokeWidthProps) {
                    }}
                    style={{
                        height: "50%",
-                       width: "40px",
+                       width: {maxLength} + "px",
                        marginLeft: "10px",
                        marginRight: "10px",
                    }}>
                 {options}
             </select>
-            <img  src={AddStrokeWidth} alt={"Oops!"} style={{marginLeft: "10px"}}/>
         </div>
     )
 }
 
-export  {StrokeWidthInput}
+export  {Selector}

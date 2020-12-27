@@ -6,6 +6,7 @@ import {SlideObjectType} from "../../model/slide/Slide";
 interface SelectorProps {
     value: string;
     optionsData: Array<number> | Array<string>;
+    selectedObject: SlideObjectType | null;
 }
 
 function Selector(props: SelectorProps) {
@@ -32,9 +33,8 @@ function Selector(props: SelectorProps) {
         }}>
             <select
                    onInput={(e) => {
-                           const selectedObject: SlideObjectType | null = getSelectedObject(getAppState());
-                           if (selectedObject && "shapeType" in selectedObject.object) {
-                               dispatch(updateShapeWidth, {objectId: selectedObject.id, newShapeWidth: Number(e.currentTarget.value)})
+                           if (props.selectedObject && "shapeType" in props.selectedObject.object) {
+                               dispatch(updateShapeWidth, {objectId: props.selectedObject.id, newShapeWidth: Number(e.currentTarget.value)})
                            }
                    }}
                    style={{

@@ -57,14 +57,14 @@ export function RectView(props: RectViewProps) {
         }}
             draggable={"false"}
             ref={rectRef}
-            onClick={ (e) => {
+            /*onClick={ (e) => {
                 if (scale === 1)
                 {
                     e.preventDefault();
                     props.onSelectionClick &&
                     props.onSelectionClick(props.objectId);
                 }
-            }}
+            }}*/
         >
             {props.visibility &&
                 <div>

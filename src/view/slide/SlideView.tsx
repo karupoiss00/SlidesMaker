@@ -8,7 +8,7 @@ import {PictureView} from "../objects_view/PictureView";
 interface SlideViewProps {
     className: string;
     slide: Slide | null;
-    selectedObject: Id | null;
+    selectedObjectId: Id | null;
     scale?: number;
     update: (newSelectedId: Id | null) => any;
     onResize?: (newSize: {
@@ -17,14 +17,14 @@ interface SlideViewProps {
     }) => any;
 }
 
-function getSlideObjects(slide: Slide, selectedObject: Id | null, setSelected:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
+function getSlideObjects(slide: Slide, selectedObjectId: Id | null, setSelected:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
     const slideObjects: Array<ReactNode> = [];
 
     slide.objects.forEach((pair) => {
         let isSelectedObject = false;
-        if (selectedObject)
+        if (selectedObjectId)
         {
-            if (pair.id === selectedObject)
+            if (pair.id === selectedObjectId)
             {
                 isSelectedObject = true;
             }
@@ -154,13 +154,13 @@ function SlideView(props: SlideViewProps) {
              style={{background: getSlideBackground(currentSlide)}}
              onClick={
                  (e) => {
-                     if (!e.defaultPrevented && props.selectedObject)
+                     if (!e.defaultPrevented && props.selectedObjectId)
                         props.update(null);
                  }
              }
              ref={ref}
         >
-            {currentSlide && getSlideObjects(currentSlide, props.selectedObject, props.update, scale * adaptiveScale.adScale)}
+            {currentSlide && getSlideObjects(currentSlide, props.selectedObjectId, props.update, scale * adaptiveScale.adScale)}
         </div>
     )
 

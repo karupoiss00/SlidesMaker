@@ -9,91 +9,62 @@ import React, {useEffect, useRef, useState} from "react";
 import {Font} from "../../../../model/types/Font";
 
 interface SwitchButtonProps {
+    selectedObject: SlideObjectType | null;
     switchType: "bold" | "italic" | "underlined";
+    icon: string;
 }
 
 export function SwitchButton(props: SwitchButtonProps) {
-    const selectedObject: SlideObjectType | null = getSelectedObject(getAppState());
     let isSwitched = false;
-    let icon: string;
 
-    switch (props.switchType) {
-        case "bold":
-            icon = BoldIcon;
-            break;
-        case "italic":
-            icon = ItalicIcon;
-            break;
-        case "underlined":
-            icon = UnderlinedIcon;
-            break;
-    }
-
-    if (selectedObject && "text" in selectedObject.object)
+    if (props.selectedObject && "text" in props.selectedObject.object)
     {
         switch (props.switchType) {
             case "bold":
-                isSwitched = selectedObject.object.font.isBold;
+                isSwitched = props.selectedObject.object.font.isBold;
                 break;
             case "italic":
-                isSwitched = selectedObject.object.font.isItalic;
+                isSwitched = props.selectedObject.object.font.isItalic;
                 break;
             case "underlined":
-                isSwitched = selectedObject.object.font.isUnderlined;
+                isSwitched = props.selectedObject.object.font.isUnderlined;
                 break;
         }
 
     }
 
-    const buttonRef = useRef<HTMLButtonElement>(null);
-    const [buttonState, setButtonState] = useState(isSwitched);
-
-    useEffect(() => {
-        if (buttonRef && buttonRef.current)
-        {
-            if (buttonState)
-            {
-                buttonRef.current.style.background = "#2c2c2c";
-            }
-            else
-            {
-                buttonRef.current.style.background = "#4f4f4f";
-            }
-        }
-    }, [buttonState]);
+    const buttonStyle = isSwitched ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton
 
     return (
         <button
-            className={styles.panelSquareButton}
-            ref={buttonRef}
+            className={buttonStyle}
             onClick={() => {
-                setButtonState(!buttonState);
-                if (selectedObject && selectedObject.id && "text" in selectedObject.object)
+                if (props.selectedObject && props.selectedObject.id && "text" in props.selectedObject.object)
                 {
-                    const newFont: Font = selectedObject.object.font;
+                    const newFont: Font = props.selectedObject.object.font;
 
                     switch (props.switchType) {
                         case "bold":
-                            newFont.isBold = buttonState;
+                            newFont.isBold = !isSwitched;
                             break;
                         case "italic":
-                            newFont.isItalic = buttonState;
+                            newFont.isItalic = !isSwitched;
                             break;
                         case "underlined":
-                            newFont.isUnderlined= buttonState;
+                            newFont.isUnderlined= !isSwitched;
                             break;
                     }
 
                     dispatch(updateTextBox, {
-                        objectId: selectedObject.id,
+                        objectId: props.selectedObject.id,
                         newTextBox: {
-                            ...selectedObject.object,
+                            ...props.selectedObject.object,
                             font: newFont,
                         },
                     });
                 }
             }} >
-            <img src={icon} alt={"Oops!"}/>
+            <img src={props.icon} alt={"Oops!"}/>
         </button>
     )
 }

@@ -3,7 +3,7 @@ import {Colors} from "./Colors";
 export type Font = {
     fontName: string;
     fontSize: number;
-    fontColor: Colors;
+    fontColor: string;
     isBold: boolean;
     isItalic: boolean;
     isUnderlined: boolean;

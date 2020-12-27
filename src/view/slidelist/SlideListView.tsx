@@ -40,7 +40,7 @@ function SlideListView(props: SlideListViewProps) {
                     <SlideView
                         className={cssStyleName}
                         slide={props.slideList[slideNumber].slide}
-                        selectedObject={null}
+                        selectedObjectId={null}
                         update={() => {
                             return;
                         }}

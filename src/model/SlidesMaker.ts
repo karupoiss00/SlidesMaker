@@ -255,21 +255,19 @@ function updateTextBox(slidesMaker: SlidesMaker, newTextBoxData: TextBoxData): S
     };
 }
 
-interface ShapeWidthData {
+interface ShapeData {
     objectId: Id;
-    newShapeWidth: number;
+    newShape: Shape;
 }
 
-function updateShapeWidth(slidesMaker: SlidesMaker, newShapeWidth: ShapeWidthData): SlidesMaker {
+function updateShape(slidesMaker: SlidesMaker, newShapeData: ShapeData): SlidesMaker {
     deepFreeze(slidesMaker);
     const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
 
     if (slidesMaker.currentSlide !== null) {
         const currentSlide: Slide = deepClone(slidesMaker.slideList[slidesMaker.currentSlide].slide) as Slide;
-        const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newShapeWidth.objectId);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        currentSlide.objects[objectNumber].object.style.strokeWidth = newShapeWidth.newShapeWidth;
+        const objectNumber: number = currentSlide.objects.findIndex(obj => obj.id === newShapeData.objectId);
+        currentSlide.objects[objectNumber].object = newShapeData.newShape;
 
         slideList[slidesMaker.currentSlide].slide = currentSlide;
     }
@@ -327,7 +325,7 @@ export {
     getSelectedObject,
     updateObjectRect,
     updateTextBox,
-    updateShapeWidth,
+    updateShape,
     addObjectOnSelectedSlide,
     addPictureOnSlide,
     removeSelectedObject,

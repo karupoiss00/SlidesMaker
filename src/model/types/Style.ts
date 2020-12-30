@@ -1,8 +1,8 @@
 import {Colors} from './Colors';
 
 export type Style = {
-    backgroundColor: Colors;
-    strokeColor: Colors;
+    backgroundColor: string;
+    strokeColor: string;
     strokeWidth: number;
 }
 

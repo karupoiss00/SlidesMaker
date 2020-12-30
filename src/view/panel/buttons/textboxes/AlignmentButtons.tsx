@@ -1,17 +1,15 @@
-import {Font} from "../../../../model/types/Font";
-import {dispatch, getAppState} from "../../../../controls/StateManager";
-import {getSelectedObject, updateTextBox} from "../../../../model/SlidesMaker";
+import {dispatch} from "../../../../controls/StateManager";
+import {updateTextBox} from "../../../../model/SlidesMaker";
 import styles from "../../Panel.module.css";
 import LeftAlignmentIcon from "../../res/textboxes/leftAlignmentIcon.svg";
 import CenterAlignmentIcon from "../../res/textboxes/centerAlignmentIcon.svg";
 import RightAlignmentIcon from "../../res/textboxes/rightAlignmentIcon.svg";
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 import {SlideObjectType} from "../../../../model/slide/Slide";
 import {Alignment} from "../../../../model/types/Alignment";
 
 interface AlignmentButtonsProps {
     selectedObject: SlideObjectType | null;
-    isDisabled: boolean;
 }
 
 export function AlignmentButtons(props: AlignmentButtonsProps) {
@@ -45,7 +43,7 @@ export function AlignmentButtons(props: AlignmentButtonsProps) {
             <button
                 className={leftButtonStyle}
                 onClick={() => {
-                    if (props.selectedObject && props.selectedObject.id && "text" in props.selectedObject.object)
+                    if (props.selectedObject && props.selectedObject.id && "paragraph" in props.selectedObject.object)
                     {
                         const newAlignment: Alignment = Alignment.LEFT;
 
@@ -60,14 +58,13 @@ export function AlignmentButtons(props: AlignmentButtonsProps) {
                         });
                     }
                 }}
-                disabled={props.isDisabled}
             >
                 <img src={LeftAlignmentIcon} alt={"Oops!"}/>
             </button>
             <button
                 className={centerButtonStyle}
                 onClick={() => {
-                    if (props.selectedObject && props.selectedObject.id && "text" in props.selectedObject.object)
+                    if (props.selectedObject && props.selectedObject.id && "paragraph" in props.selectedObject.object)
                     {
                         const newAlignment: Alignment = Alignment.CENTER;
 
@@ -82,14 +79,13 @@ export function AlignmentButtons(props: AlignmentButtonsProps) {
                         });
                     }
                 }}
-                disabled={props.isDisabled}
             >
                 <img src={CenterAlignmentIcon} alt={"Oops!"}/>
             </button>
             <button
                 className={rightButtonStyle}
                 onClick={() => {
-                    if (props.selectedObject && props.selectedObject.id && "text" in props.selectedObject.object)
+                    if (props.selectedObject && props.selectedObject.id && "paragraph" in props.selectedObject.object)
                     {
                         const newAlignment: Alignment = Alignment.RIGHT;
 
@@ -104,7 +100,6 @@ export function AlignmentButtons(props: AlignmentButtonsProps) {
                         });
                     }
                 }}
-                disabled={props.isDisabled}
             >
                 <img src={RightAlignmentIcon} alt={"Oops!"}/>
             </button>

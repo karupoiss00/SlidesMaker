@@ -1,7 +1,7 @@
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
 import {dispatch} from "../../controls/StateManager";
-import {addObjectOnSelectedSlide} from "../../model/SlidesMaker";
+import {addObjectOnSelectedSlide, updateTextBox} from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";
 import {createParagraph, setParagraphAlignment} from "../../model/types/Paragraph";
@@ -10,22 +10,42 @@ import {createFont, setFontFontColor} from "../../model/types/Font";
 import {Colors} from "../../model/types/Colors";
 import AddTextBoxIcon from "./res/textboxes/addTextBox.svg";
 import {FontSelector} from "./buttons/textboxes/FontSelector";
-import {SwitchButton} from "./buttons/textboxes/SwitchButton";
-import BoldIcon from "./res/textboxes/boldIcon.svg";
-import ItalicIcon from "./res/textboxes/italicIcon.svg";
-import UnderlinedIcon from "./res/textboxes/underlinedIcon.svg";
 import {ColorPicker} from "./buttons/ColorPicker";
-import {AlignmentButtons} from "./buttons/textboxes/AlignmentButton";
+import {AlignmentButtons} from "./buttons/textboxes/AlignmentButtons";
 import {PanelSection} from "./PanelSection";
 import React from "react";
 import {SlideObjectType} from "../../model/slide/Slide";
+import {EmphasisButtons} from "./buttons/textboxes/EmphasisButtons";
+import {NumberSelector} from "./buttons/NumberSelector";
 
 interface TextBoxPanelProps {
     selectedObject: SlideObjectType | null;
 }
 
 export function TextBoxPanel(props: TextBoxPanelProps) {
-    let textBoxPanelIsDisabled: boolean = !(props.selectedObject && "text" in props.selectedObject.object);
+    const textBoxPanelIsDisabled = !(props.selectedObject && "text" in props.selectedObject.object);
+
+    const fontSizeOptions: Array<number> = [];
+    for (let i = 10; i < 41; i += 2)
+    {
+        fontSizeOptions.push(i)
+    }
+    for (let i = 50; i < 91; i += 20)
+    {
+        fontSizeOptions.push(i)
+    }
+
+    let defaultFontSize = 24;
+    if (props.selectedObject && "font" in props.selectedObject.object)
+    {
+        defaultFontSize = props.selectedObject.object.font.fontSize;
+    }
+
+    let defaultFontColor = "#000000";
+    if (props.selectedObject && "font" in props.selectedObject.object)
+    {
+        defaultFontColor = props.selectedObject.object.font.fontColor;
+    }
 
     return (
         <PanelSection sectionName={"TextBoxes"}>
@@ -40,13 +60,26 @@ export function TextBoxPanel(props: TextBoxPanelProps) {
                 }} >
                 <img src={AddTextBoxIcon} alt={"Oops!"}/>
             </Button>
-            <div style={{display: textBoxPanelIsDisabled ? "none" : "flex"}}>
-                <FontSelector/>
-                <SwitchButton selectedObject={props.selectedObject} switchType={"bold"} icon={BoldIcon}/>
-                <SwitchButton selectedObject={props.selectedObject} switchType={"italic"} icon={ItalicIcon}/>
-                <SwitchButton selectedObject={props.selectedObject} switchType={"underlined"} icon={UnderlinedIcon}/>
-                <ColorPicker selectedObject={props.selectedObject} isDisabled={textBoxPanelIsDisabled}/>
-                <AlignmentButtons selectedObject={props.selectedObject} isDisabled={textBoxPanelIsDisabled}/>
+            <div style={{display: textBoxPanelIsDisabled ? "none" : "inline-flex"}}>
+                <FontSelector selectedObject={props.selectedObject}/>
+                <NumberSelector
+                    optionsData={fontSizeOptions}
+                    defaultNum={defaultFontSize}
+                    dispatchPickedOption={(pickedOption: string) => {
+                        props.selectedObject && "font" in props.selectedObject.object &&
+                        dispatch(updateTextBox, {objectId: props.selectedObject.id, newTextBox: {...props.selectedObject.object, font: {...props.selectedObject.object.font, fontSize: Number(pickedOption)}}})
+                    }}
+                />
+                <EmphasisButtons selectedObject={props.selectedObject}/>
+                <ColorPicker
+                    selectedObject={props.selectedObject}
+                    defaultColor={defaultFontColor}
+                    dispatchPickedColor={(pickedColor: string) => {
+                    props.selectedObject && "font" in props.selectedObject.object &&
+                        dispatch(updateTextBox, {objectId: props.selectedObject.id, newTextBox: {...props.selectedObject.object, font: {...props.selectedObject.object.font, fontColor: pickedColor}}})
+                    }}
+                />
+                <AlignmentButtons selectedObject={props.selectedObject}/>
             </div>
         </PanelSection>
     )

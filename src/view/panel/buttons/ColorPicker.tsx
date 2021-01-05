@@ -30,7 +30,7 @@ export function ColorPicker(props: ColorPickerProps) {
                 style={{
                     opacity: "0",
                     display: "block",
-                    height: "26px",
+                    height: "28px",
                     width: "26px",
                     border: "none",
                 }}

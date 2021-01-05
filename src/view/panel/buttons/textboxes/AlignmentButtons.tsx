@@ -30,9 +30,9 @@ export function AlignmentButtons(props: AlignmentButtonsProps) {
         }
     }
 
-    const leftButtonStyle = buttonsState.left ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
-    const centerButtonStyle = buttonsState.center ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
-    const rightButtonStyle = buttonsState.right ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
+    const leftButtonStyle = buttonsState.left ? styles.panelSquareButtonActive : styles.panelSquareButton;
+    const centerButtonStyle = buttonsState.center ? styles.panelSquareButtonActive : styles.panelSquareButton;
+    const rightButtonStyle = buttonsState.right ? styles.panelSquareButtonActive : styles.panelSquareButton;
 
     return (
         <div

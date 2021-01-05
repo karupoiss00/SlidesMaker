@@ -24,13 +24,13 @@ export function EmphasisButtons(props: EmphasisButtonsProps) {
         isUnderlined = props.selectedObject.object.font.isUnderlined;
     }
 
-    const boldButtonStyle = isBold ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
-    const italicButtonStyle = isItalic ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
-    const underlinedButtonStyle = isUnderlined ? styles.panelSquareButton + styles.panelSquareButtonActive : styles.panelSquareButton;
+    const boldButtonStyle = isBold ? styles.panelSquareButtonBoldAndItalicActive : styles.panelSquareButtonBoldAndItalic;
+    const italicButtonStyle = isItalic ? styles.panelSquareButtonBoldAndItalicActive : styles.panelSquareButtonBoldAndItalic;
+    const underlinedButtonStyle = isUnderlined ? styles.panelSquareButtonActive : styles.panelSquareButton;
 
     return (
         <div
-            style={{display: "inline-block"}}
+            style={{display: "flex", height: "30px"}}
         >
             <button
                 className={boldButtonStyle}

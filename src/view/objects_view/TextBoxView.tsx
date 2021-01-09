@@ -6,7 +6,7 @@ import {Id} from "../../model/slide/slide_objects/id/Id";
 import {Rect} from "../../model/types/Rect";
 import {Paragraph} from "../../model/types/Paragraph";
 import {Font} from "../../model/types/Font";
-import {dispatch} from "../../controls/StateManager";
+import {dispatch} from "../../state/StateManager";
 import {updateTextBox} from "../../model/SlidesMaker";
 
 interface TextBoxViewProps {

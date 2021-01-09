@@ -1,4 +1,4 @@
-import {dispatch} from "../../../../controls/StateManager";
+import {dispatch} from "../../../../state/StateManager";
 import {updateTextBox} from "../../../../model/SlidesMaker";
 import styles from "../../Panel.module.css";
 import LeftAlignmentIcon from "../../res/textboxes/leftAlignmentIcon.svg";

@@ -3,7 +3,7 @@ import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
 import {PanelSection} from "./PanelSection";
 import React from "react";
-import {dispatch} from "../../controls/StateManager";
+import {dispatch} from "../../state/StateManager";
 import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
 import {createRect} from "../../model/types/Rect";

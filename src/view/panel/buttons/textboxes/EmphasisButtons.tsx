@@ -4,7 +4,7 @@ import ItalicIcon from "../../res/textboxes/italicIcon.svg";
 import UnderlinedIcon from "../../res/textboxes/underlinedIcon.svg";
 import React from "react";
 import {Font} from "../../../../model/types/Font";
-import {dispatch} from "../../../../controls/StateManager";
+import {dispatch} from "../../../../state/StateManager";
 import {updateTextBox} from "../../../../model/SlidesMaker";
 import styles from "../../Panel.module.css";
 

@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import {SlideObjectType} from "../../../../model/slide/Slide";
 import {updateTextBox} from "../../../../model/SlidesMaker";
-import {dispatch} from "../../../../controls/StateManager";
+import {dispatch} from "../../../../state/StateManager";
 
 interface FontSelectorProps {
     selectedObject: SlideObjectType | null;

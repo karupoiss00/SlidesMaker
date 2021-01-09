@@ -1,6 +1,6 @@
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
-import {exportJSON, importJSON, redoAppState, undoAppState} from "../../controls/StateManager";
+import {exportJSON, importJSON, redoAppState, undoAppState} from "../../state/StateManager";
 import ImportIcon from "./res/presentation/import.svg";
 import ExportIcon from "./res/presentation/export.svg";
 import {exportPDF} from "../../exportPDF";

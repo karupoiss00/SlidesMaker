@@ -1,5 +1,5 @@
 import * as serviceWorker from './serviceWorker';
-import {dispatch, start} from "./controls/StateManager";
+import {dispatch, start} from "./state/StateManager";
 import {
     addObjectOnSelectedSlide, addPictureOnSlide,
     addSlide, setBackgroundPicture,

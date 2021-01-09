@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "canvas-text-wrapper": "^0.10.2",
     "jspdf": "^2.1.1"
   }
 }

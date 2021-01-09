@@ -1,18 +1,18 @@
 import {jsPDF} from 'jspdf';
-import {getAppState, getConfig} from "./controls/StateManager";
+import {getAppState, getConfig} from "./state/StateManager";
 import {TextBox} from "./model/slide/slide_objects/textbox/TextBox";
 import {Shape} from "./model/slide/slide_objects/shape/Shape";
 import {Picture} from "./model/slide/slide_objects/picture/Picture";
 import {ShapeType} from "./model/slide/slide_objects/shape/ShapeType";
 import {SlideObjectType} from "./model/slide/Slide";
 import {SlidesMakerSlideType} from "./model/SlidesMaker";
+import CanvasTextWrapper from 'canvas-text-wrapper';
 
 function getBase64FromPicture(image: Picture): Promise<string> {
     return new Promise((resolve) => {
         const img: HTMLImageElement = new Image(image.rect.width, image.rect.height);
         img.src = image.src;
         img.crossOrigin = 'Anonymous';
-
         img.onload = () => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -27,10 +27,34 @@ function getBase64FromPicture(image: Picture): Promise<string> {
 }
 
 function addTextBox(doc: jsPDF, object: TextBox) {
-    doc.setFontSize(object.font.fontSize);
-    doc.setTextColor(object.font.fontColor);
-    doc.setFont(object.font.fontName, object.font.isBold ? "bold" : "normal");
-    doc.text(object.text, object.rect.x, object.rect.y);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+        const text = object.text;
+        const width = object.rect.width;
+        const height = object.rect.height;
+        const font = object.font;
+        canvas.width = width;
+        canvas.height = height;
+        ctx.fillStyle = font.fontColor;
+        ctx.strokeStyle = ctx.fillStyle;
+        ctx.lineWidth = 4;
+        CanvasTextWrapper.CanvasTextWrapper(canvas, text, {
+            font: `${font.isItalic ? 'italic' : ''} ${font.isBold ? 'bold' : ''} ${font.fontSize}px ${font.fontName}`,
+            textDecoration: font.isUnderlined ? 'underline' : 'none',
+            textAlign: object.paragraph.alignmentState,
+            paddingY: font.isUnderlined ? 12 : 0
+        });
+        const base64 = canvas.toDataURL();
+        doc.addImage(
+            base64,
+            'PNG',
+            object.rect.x,
+            object.rect.y,
+            width,
+            height
+        )
+    }
 }
 
 function addRect(doc: jsPDF, object: Shape, mode: string) {

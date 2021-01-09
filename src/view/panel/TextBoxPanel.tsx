@@ -1,6 +1,6 @@
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
-import {dispatch} from "../../controls/StateManager";
+import {dispatch} from "../../state/StateManager";
 import {addObjectOnSelectedSlide, updateTextBox} from "../../model/SlidesMaker";
 import {createTextBox, setTextBoxText} from "../../model/slide/slide_objects/textbox/TextBox";
 import {createRect} from "../../model/types/Rect";

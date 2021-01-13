@@ -2,7 +2,7 @@ import {addObjectOnSelectedSlide, updateShape} from "../../model/SlidesMaker";
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
 import {PanelSection} from "./PanelSection";
-import React from "react";
+import React, {useState} from "react";
 import {dispatch} from "../../state/StateManager";
 import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
@@ -10,10 +10,14 @@ import {createRect} from "../../model/types/Rect";
 import {createStyle} from "../../model/types/Style";
 import {Colors} from "../../model/types/Colors";
 import AddFigureIcon from "./res/shapes/addShape.svg";
+import AddTriangle from "./res/shapes/addTriangle.svg";
+import AddEllipse from "./res/shapes/addEllipse.svg";
+import AddRectangle from "./res/shapes/addRectangle.svg";
 import {NumberSelector} from "./buttons/NumberSelector";
 import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import {SlideObjectType} from "../../model/slide/Slide";
 import {ColorPicker} from "./buttons/ColorPicker";
+import {ShapeSelector} from "./buttons/ShapeSelector";
 
 interface ShapePanelProps {
     selectedObject: SlideObjectType | null;
@@ -21,6 +25,7 @@ interface ShapePanelProps {
 
 export function ShapePanel(props: ShapePanelProps) {
     const shapePanelIsDisabled = !(props.selectedObject && "shapeType" in props.selectedObject.object);
+    const [isShapeTypesVisibile, setShapeTypesVisibility] = useState(false);
 
     let defaultBackgroundColor = "#f24e1e";
     if (props.selectedObject && "style" in props.selectedObject.object)
@@ -50,13 +55,42 @@ export function ShapePanel(props: ShapePanelProps) {
             <Button
                 className={styles.panelSquareButton}
                 onClick={() => {
-                    dispatch(addObjectOnSelectedSlide, createShape(
-                        ShapeType.RECTANGLE,
-                        createRect(200, 200, 100, 100),
-                        createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                    setShapeTypesVisibility(!isShapeTypesVisibile);
                 }} >
                 <img src={AddFigureIcon} alt={"Oops!"}/>
             </Button>
+            <ShapeSelector visibility={isShapeTypesVisibile}>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        dispatch(addObjectOnSelectedSlide, createShape(
+                            ShapeType.ELLIPSE,
+                            createRect(200, 200, 100, 100),
+                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                    }} >
+                    <img src={AddEllipse} alt={"Oops!"}/>
+                </Button>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        dispatch(addObjectOnSelectedSlide, createShape(
+                            ShapeType.TRIANGLE,
+                            createRect(200, 200, 100, 100),
+                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                    }} >
+                    <img src={AddTriangle} alt={"Oops!"}/>
+                </Button>
+                <Button
+                    className={styles.panelSquareButton}
+                    onClick={() => {
+                        dispatch(addObjectOnSelectedSlide, createShape(
+                            ShapeType.RECTANGLE,
+                            createRect(200, 200, 100, 100),
+                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                    }} >
+                    <img src={AddRectangle} alt={"Oops!"}/>
+                </Button>
+            </ShapeSelector>
             <div style={{display: shapePanelIsDisabled ? "none" : "inline-flex"}}>
                 <ColorPicker
                     selectedObject={props.selectedObject}

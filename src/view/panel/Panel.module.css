@@ -11,6 +11,7 @@
 
 .panelSection {
     display: flex;
+    position: relative;
     flex-direction: row;
     background: #2c2c2c;
     align-items: center;

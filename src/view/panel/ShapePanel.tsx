@@ -2,7 +2,7 @@ import {addObjectOnSelectedSlide, updateShape} from "../../model/SlidesMaker";
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
 import {PanelSection} from "./PanelSection";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {dispatch} from "../../state/StateManager";
 import {createShape} from "../../model/slide/slide_objects/shape/Shape";
 import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
@@ -25,7 +25,7 @@ interface ShapePanelProps {
 
 export function ShapePanel(props: ShapePanelProps) {
     const shapePanelIsDisabled = !(props.selectedObject && "shapeType" in props.selectedObject.object);
-    const [isShapeTypesVisibile, setShapeTypesVisibility] = useState(false);
+    const [isShapeTypesVisible, setShapeTypesVisibility] = useState(false);
 
     let defaultBackgroundColor = "#f24e1e";
     if (props.selectedObject && "style" in props.selectedObject.object)
@@ -55,47 +55,14 @@ export function ShapePanel(props: ShapePanelProps) {
             <Button
                 className={styles.panelSquareButton}
                 onClick={() => {
-                    setShapeTypesVisibility(!isShapeTypesVisibile);
-                }} >
+                    setShapeTypesVisibility(!isShapeTypesVisible);
+                }}>
                 <img src={AddFigureIcon} alt={"Oops!"}/>
             </Button>
-            <ShapeSelector visibility={isShapeTypesVisibile}>
-                <Button
-                    className={styles.panelSquareButton}
-                    onClick={() => {
-                        dispatch(addObjectOnSelectedSlide, createShape(
-                            ShapeType.ELLIPSE,
-                            createRect(200, 200, 100, 100),
-                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
-                        setShapeTypesVisibility(false);
-                    }} >
-                    <img src={AddEllipse} alt={"Oops!"}/>
-                </Button>
-                <Button
-                    className={styles.panelSquareButton}
-                    onClick={() => {
-                        dispatch(addObjectOnSelectedSlide, createShape(
-                            ShapeType.TRIANGLE,
-                            createRect(200, 200, 100, 100),
-                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
-                        setShapeTypesVisibility(false);
-                    }} >
-                    <img src={AddTriangle} alt={"Oops!"}/>
-                </Button>
-                <Button
-                    className={styles.panelSquareButton}
-                    onClick={() => {
-                        dispatch(addObjectOnSelectedSlide, createShape(
-                            ShapeType.RECTANGLE,
-                            createRect(200, 200, 100, 100),
-                            createStyle(Colors.BLACK, Colors.WHITE, 2)));
-                        setShapeTypesVisibility(false);
-                    }} >
-                    <img src={AddRectangle} alt={"Oops!"}/>
-                </Button>
-            </ShapeSelector>
+            <ShapeSelector visibility={isShapeTypesVisible} setVisibilityFn={setShapeTypesVisibility}></ShapeSelector>
             <div style={{display: shapePanelIsDisabled ? "none" : "inline-flex"}}>
                 <ColorPicker
+                    selectedObject={props.selectedObject}
                     defaultColor={defaultBackgroundColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&
@@ -112,6 +79,7 @@ export function ShapePanel(props: ShapePanelProps) {
                     }}
                 />
                 <ColorPicker
+                    selectedObject={props.selectedObject}
                     defaultColor={defaultStrokeColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&

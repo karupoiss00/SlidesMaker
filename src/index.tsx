@@ -19,7 +19,7 @@ import {createStyle} from "./model/types/Style";
 
 const testBackgroundColor: Colors = Colors.BROWN;
 
-start();
+start();/*
 dispatch(setBackground, testBackgroundColor);
 dispatch(addSlide, undefined);
 addPictureFromUrl("https://i.imgur.com/eob00g2.png", setBackgroundPicture);
@@ -42,3 +42,4 @@ addPictureFromUrl("https://i.imgur.com/VhDpTGG.png", setBackgroundPicture);
 
 addPictureFromUrl("https://www.meme-arsenal.com/memes/c145873e48b8c164274a3770cf3b5f18.jpg", addPictureOnSlide);
 serviceWorker.unregister();
+*/

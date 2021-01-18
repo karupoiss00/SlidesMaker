@@ -19,7 +19,6 @@ interface SlideViewProps {
 
 function getSlideObjects(slide: Slide, selectedObjectId: Id | null, setSelected:  (newSelectedId: Id | null) => void, scale: number): Array<ReactNode> {
     const slideObjects: Array<ReactNode> = [];
-
     slide.objects.forEach((pair) => {
         let isSelectedObject = false;
         if (selectedObjectId)

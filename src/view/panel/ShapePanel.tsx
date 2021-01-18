@@ -67,6 +67,7 @@ export function ShapePanel(props: ShapePanelProps) {
                             ShapeType.ELLIPSE,
                             createRect(200, 200, 100, 100),
                             createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                        setShapeTypesVisibility(false);
                     }} >
                     <img src={AddEllipse} alt={"Oops!"}/>
                 </Button>
@@ -77,6 +78,7 @@ export function ShapePanel(props: ShapePanelProps) {
                             ShapeType.TRIANGLE,
                             createRect(200, 200, 100, 100),
                             createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                        setShapeTypesVisibility(false);
                     }} >
                     <img src={AddTriangle} alt={"Oops!"}/>
                 </Button>
@@ -87,13 +89,13 @@ export function ShapePanel(props: ShapePanelProps) {
                             ShapeType.RECTANGLE,
                             createRect(200, 200, 100, 100),
                             createStyle(Colors.BLACK, Colors.WHITE, 2)));
+                        setShapeTypesVisibility(false);
                     }} >
                     <img src={AddRectangle} alt={"Oops!"}/>
                 </Button>
             </ShapeSelector>
             <div style={{display: shapePanelIsDisabled ? "none" : "inline-flex"}}>
                 <ColorPicker
-                    selectedObject={props.selectedObject}
                     defaultColor={defaultBackgroundColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&
@@ -110,7 +112,6 @@ export function ShapePanel(props: ShapePanelProps) {
                     }}
                 />
                 <ColorPicker
-                    selectedObject={props.selectedObject}
                     defaultColor={defaultStrokeColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&

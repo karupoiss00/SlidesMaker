@@ -1,8 +1,6 @@
 import React from "react";
-import {SlideObjectType} from "../../../model/slide/Slide";
 
 interface ColorPickerProps {
-    selectedObject: SlideObjectType | null;
     defaultColor: string;
     dispatchPickedColor: Function;
 }
@@ -17,7 +15,7 @@ export function ColorPicker(props: ColorPickerProps) {
                 background: `${props.defaultColor}`,
             }}
         >
-            <input
+           <input
                 type="color"
                 value={props.defaultColor}
                 onChange={(e) => {

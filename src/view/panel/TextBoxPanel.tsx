@@ -72,7 +72,6 @@ export function TextBoxPanel(props: TextBoxPanelProps) {
                 />
                 <EmphasisButtons selectedObject={props.selectedObject}/>
                 <ColorPicker
-                    selectedObject={props.selectedObject}
                     defaultColor={defaultFontColor}
                     dispatchPickedColor={(pickedColor: string) => {
                     props.selectedObject && "font" in props.selectedObject.object &&

@@ -124,7 +124,7 @@ function setSelectedSlide(slidesMaker: SlidesMaker, newSelectedSlide: number): S
 
 function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | null): SlidesMaker {
     deepFreeze(slidesMaker);
-    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;
+    const slideList: Array<SlidesMakerSlideType> = deepClone(slidesMaker.slideList) as Array<SlidesMakerSlideType>;/*
     if (slidesMaker.currentSlide !== null && newSelectedObject) {
         let currentSlide: SlidesMakerSlideType = deepClone(slidesMaker.slideList[slidesMaker.currentSlide]) as SlidesMakerSlideType;
 
@@ -134,7 +134,7 @@ function setSelectedObject(slidesMaker: SlidesMaker, newSelectedObject: Id | nul
         }
 
         slideList[slidesMaker.currentSlide] = currentSlide;
-    }
+    }*/
 
     return {
         ...slidesMaker,

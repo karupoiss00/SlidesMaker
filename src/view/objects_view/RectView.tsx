@@ -35,7 +35,8 @@ export function RectView(props: RectViewProps) {
         ref: rectRef,
         isSelected: props.visibility,
         needUpdate: true,
-    }, (newX: number, newY: number) => {
+    },
+    (newX: number, newY: number) => {
         dispatch(updateObjectRect, {
             objectId: props.objectId,
             newRect: {

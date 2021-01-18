@@ -2,17 +2,9 @@ import {addObjectOnSelectedSlide, updateShape} from "../../model/SlidesMaker";
 import {Button} from "../controls/Button";
 import styles from "./Panel.module.css";
 import {PanelSection} from "./PanelSection";
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import {dispatch} from "../../state/StateManager";
-import {createShape} from "../../model/slide/slide_objects/shape/Shape";
-import {ShapeType} from "../../model/slide/slide_objects/shape/ShapeType";
-import {createRect} from "../../model/types/Rect";
-import {createStyle} from "../../model/types/Style";
-import {Colors} from "../../model/types/Colors";
 import AddFigureIcon from "./res/shapes/addShape.svg";
-import AddTriangle from "./res/shapes/addTriangle.svg";
-import AddEllipse from "./res/shapes/addEllipse.svg";
-import AddRectangle from "./res/shapes/addRectangle.svg";
 import {NumberSelector} from "./buttons/NumberSelector";
 import AddStrokeWidth from "./res/shapes/addStrokeWidth.svg";
 import {SlideObjectType} from "../../model/slide/Slide";
@@ -62,7 +54,6 @@ export function ShapePanel(props: ShapePanelProps) {
             <ShapeSelector visibility={isShapeTypesVisible} setVisibilityFn={setShapeTypesVisibility}></ShapeSelector>
             <div style={{display: shapePanelIsDisabled ? "none" : "inline-flex"}}>
                 <ColorPicker
-                    selectedObject={props.selectedObject}
                     defaultColor={defaultBackgroundColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&
@@ -79,7 +70,6 @@ export function ShapePanel(props: ShapePanelProps) {
                     }}
                 />
                 <ColorPicker
-                    selectedObject={props.selectedObject}
                     defaultColor={defaultStrokeColor}
                     dispatchPickedColor={(pickedColor: string) => {
                         props.selectedObject && "style" in props.selectedObject.object &&

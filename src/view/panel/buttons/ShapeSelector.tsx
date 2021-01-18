@@ -32,6 +32,7 @@ export function ShapeSelector(props: ShapeSelectorProps) {
         if (props.visibility && !IsInRect(e.clientX, e.clientY)) {
             props.setVisibilityFn(false)
         }
+        window.removeEventListener("mouseup", onClickButton);
     }
     window.addEventListener("mouseup", onClickButton);
 

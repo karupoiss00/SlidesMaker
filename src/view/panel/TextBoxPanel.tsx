@@ -74,7 +74,7 @@ export function TextBoxPanel(props: TextBoxPanelProps) {
                 <ColorPicker
                     defaultColor={defaultFontColor}
                     dispatchPickedColor={(pickedColor: string) => {
-                    props.selectedObject && "font" in props.selectedObject.object &&
+                        props.selectedObject && "font" in props.selectedObject.object &&
                         dispatch(updateTextBox, {objectId: props.selectedObject.id, newTextBox: {...props.selectedObject.object, font: {...props.selectedObject.object.font, fontColor: pickedColor}}})
                     }}
                 />

@@ -20,10 +20,11 @@ export function ColorPicker(props: ColorPickerProps) {
                 value={props.defaultColor}
                 onChange={(e) => {
                     const pickedColor: string = e.currentTarget.value;
-                    props.dispatchPickedColor(pickedColor);
-
                     if (e.target.parentElement)
-                        e.target.parentElement.style.background = e.target.value;
+                    {
+                        props.dispatchPickedColor(pickedColor);
+                        e.target.parentElement.style.background = pickedColor;
+                    }
                 }}
                 style={{
                     opacity: "0",
